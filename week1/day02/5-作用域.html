@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    /* 
+    作用域
+    JS中的作用域 ： 全局作用域  私有作用域
+    JS  作用域  就是指一块栈内存
+
+    栈内存  存储值类型  提供代码运行环境
+    堆内存  存储引用数据数据类型
+
+    全局作用域 ：页面一打开  就形成一个全局作用域  且只有一个
+    私有作用域 ：函数执行的时候形成私有作用域
+
+    全局变量 ：在全局声明的变量加全局变量
+    私有变量 ：在私有作用域声明的变量叫私有变量   形参也是私有变量
+
+    上级作用域 ： 查找规律 ：上级做用域是谁 就看这个函数是在哪个作用域声明的
+             对于私有作用域中的某些变量 若没有在私有作用域中声明过 那么函数执行时，就会去上级作用域查找该变量
+             上级做用域若没有该变量 则接着向上级查找 直到找到全局作用域 若没有就报错
+    作用域链  ：变量的查找机制  于一直向上级作用域查找
+
+    函数执行过程：
+      先开一个私有作用域 （栈内存）然后给形参赋值 然后在执行变量提升然后代码从上到下执行
+      私有变量有 形参 和 在私有作用域中声明过的变量，其他的变量都是上级作用域的 
+
+      //  es6针对 let 和 const 声明的变量多了一个块作用域({});理解成私有作用域
+    */
+   var a = 12//全局变量
+   var f = function(){
+       console.log(a)//undefined 变量提升
+       var a = 100
+       console.log(a) //100 内部值为100
+   }
+   f() //只要代码执行就有变量提升
+   console.log(a) // 12  全局作用域这个a 和私有作用域a 没关系
+
+
+   var b = 10;
+   var f2 = function(){
+       console.log(b);
+       b = 200;
+       console.log(b)
+   }
+   f2()
+   console.log(b)
+
+   var f3 = function(c){
+    // 
+    //let c = 100
+   }
+   /* var d = 10;
+   var f4 = function(){
+       console.log(d);
+       //暂时性死区  在let 和const之前不能使用 他们声明的任何变量
+       let d = 100;
+   } */
+   f4()
+   if(1<2){
+       var e = 12
+       let u = 13   
+   }
+   console.log(e)
+   console.log(u)
+
+
+
+</script>

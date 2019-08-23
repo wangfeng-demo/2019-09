@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    /* 
+    git svn 代码版本管理器
+    git status 查看当前仓库的状态
+
+
+
+    函数的两种声明方：
+     var f = function(){}
+     function f (){}
+     var f = ()=>{
+
+     }
+     形参 实参 
+     形参默认值:es6之前  在函数体内写 形参=形参||默认值
+               es6 的写法  再行参数书写  形参 = 默认值
+    剩余运算符 ... 形参c  把剩余的所有实参 都放在 c  这个形参对应的数组中去
+    arguments 实参集合
+    this 函数的执行主体  谁让这个函数执行的
+    return 一个决定返回结果  另一个打断函数执行
+    */
+   var f = function(a = 10,b = 100,...c){
+       a = a || 10;
+       b = b || 100;
+       console.log(c)
+       return a + b
+   }
+   f(1,2);
+   f(1);
+   f();
+  //箭头函数不实现不定项求和
+   var f = (...ary)=>{
+       console.log(ary);
+   }
+    f(1,2,3,4)
+    f(1,2)
+</script>

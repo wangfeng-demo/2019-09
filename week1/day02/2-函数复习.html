@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+      function fn() {
+        //函数体
+    }
+
+    var f=function(){
+        //函数体
+    }
+
+    var f2=()=>{
+        
+    }
+    //a b c 都是函数的形参
+    f() //函数名嗲表的是函数体的地址
+    /*函数的存储过程   在堆内存中开辟一个新的地址，把函数体当做字符串存储到改地址中，然后把地址赋给函数名*/
+    var ary =[1,2,f2];
+    ary[2]()  // 索引2就是f2  再加上一个小括号，就代表f2().   也就是相当于 函数执行，就是函数名加小括号
+
+    function fn2() {
+        return function () {
+            console.log(666)
+        }
+    }
+    fn2()();  //这是一个种写法
+
+    (function(){
+
+    })()   //这是另一种写法
+
+    /*
+        var a='123465';
+        a()    
+        这样会报错，是因为函数才会加小括号
+
+        arguments 实参集合，箭头函数中没有这个关键字
+        this在事件绑定中，指得是当前操作的元素
+        return 一个是决定函数的运行结果，另一个是打断函数的执行
+    */
+
+</script>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    var a = 12;
+    console.log(a)
+   
+   
+        console.log(a)
+        var a = 12; 
+    /* 
+    变量提升：代码执行之前 会把JS中带有var 和function关键字的变量提前声明
+             对于带var的是 只声明 不定义  给的默认值是undefined
+             带function的 既声明有定义
+             在条件句中的代码 也会进行变量提升 不管条件成不成立
+             对于带function的变量  这时只有声明 没有定义
+
+    */
+   // function  声明的函数 在整个代码执行之前 早就存在了 所以在整个JS任意位置都可以执行
+    console.log(f,f2)
+    function f(){
+        console.log(6666)   //函数体
+    }
+    var f2 = function() {
+        condole.log(8888)   //undefined
+    }
+    console.log(a1,f6)
+    if(1>2){
+        var a1 = 12
+        function f6(){
+
+        }
+    }
+    console.log(a1,f6)
+
+</script>

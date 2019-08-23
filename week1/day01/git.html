@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+        版本管理器：分布式的版本管理器，Git SVN
+    git把自己的电脑当做一个仓库，svn把所有版本放在了远程服务器中，是集中式的版本管理。
+    git config --global ueser.name    //自己的github用户名 本次用来做本地用户名
+    git config --global ueser.email   //自己的github邮箱本次用来做初始化邮箱使用
+
+    git config --list 是查看是否设置成功的操作
+    git status 是用来查看本地仓库状态的一个命令
+    git init 是把本地的文件夹初始化成了一个Git仓库
+    红色代表本地有修改的文件没有提交
+    绿色代表本地有修改，但是被提交到了暂存区
+
+    git 仓库有三个区：工作区，缓存区， 历史区
+    平时修改(编写)代码都是在工作区完成，
+    git add （+对应文件名）  就是把某个文件修改后的内容提交到缓存区
+    git add.  把当前仓库里的所有文件都提交了
+    git commit -m '备注' 把缓存区的内容提交到历史区
+
+    github 就是一个使用Git工具的远程仓库，
+    GitLab 码云 基于Git的代码托管平台
+    想把历史区的内容提交到远程仓库 就自己在github新建一个仓库就行了
+
+    git remote add （+桥梁名）  远程仓库地址
+    git remote add origin https://github.com/Jyingge/hello.git
+     -->
+    <!-- 先在本地新建文件夹 作为你的项目
+        git init  把文件夹变为仓库
+        ... 增 删 改 ----  git add . 把工作区左右的文件提交到缓存区
+        git commit -m '备注' 把缓存区的内容 提交到历史区
+        下一步  把历史区的代码提交到 远程仓库
+        先建一个远程仓库
+        然后本地执行 git remote add origin 远程仓库地址
+        上述命令  是把本地的仓库和远程仓库建立起链接
+        把远代码  到远程仓库 git push
+        第一次 执行命令是 会提示  git push --set-upstream origin master
+        运行这个命令 会提示输入用户名和密码 就可以提交到远程仓库
+        上述提示 在整个 项目中 只会出现一次 和运行之后就不会再出现
+        以后正常使用 git push 即可
+
+
+ -->
+
+</body>
+
+</html>

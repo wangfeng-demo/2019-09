@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    /* 
+    堆内存的销毁:   G谷歌浏览器为例  浏览器会定期看整个堆内存 会把没有被引用堆内存销毁掉
+
+    栈内存的销毁：
+        全局作用域对应的栈内存 ：关闭页面的时候才会销毁
+        私有作用域对应的栈内存 ：一般函数执行完成后 对应的栈内存就会被销毁
+        当返回值是一个引用数据类型  不会被销毁
+
+        栈溢出：内存泄漏 栈内存不够用沾满了
+
+        闭包 ：闭包是私有变量的保护机制 保护私有变量不被污染 也可以实现代码的模块化
+        面试时的闭包是指的一个不销毁的作用域
+    */
+var a  = [1,2,3,4];
+a = 2;
+
+var b = [1,2]
+var c = b
+b = 2; 
+
+function sum(a,b){
+    return a + b
+}  
+function f(){
+    console.log(666)
+} 
+function fn(){
+    var a = 12
+    var b = function(){console.log(111)}
+    return {
+        a,b
+    }
+}     
+var t = sum()
+var res = f()
+var res2 =fn() 
+
+
+// 假如一个页面有登录模块和注册模块 安排两个人去写  采用闭包
+function inp(){
+var a = 12;
+function f(){
+    console.log(a)
+}
+return {
+    f:f
+}
+}
+var obj = inp()
+obj.fn()
+
+</script>
