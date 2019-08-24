@@ -31,7 +31,7 @@
     this 函数的执行主体  谁让这个函数执行的
     return 一个决定返回结果  另一个打断函数执行
     */
-   var f = function(a = 10,b = 100,...c){
+   /* var f = function(a = 10,b = 100,...c){
        a = a || 10;
        b = b || 100;
        console.log(c)
@@ -45,5 +45,19 @@
        console.log(ary);
    }
     f(1,2,3,4)
-    f(1,2)
+    f(1,2) */
+    let i = 1;
+let fn = function (n) {
+    i *= 2;
+    return function (m) {
+        i += n + m;
+        console.log(i);
+    }
+};
+let f = fn(2);
+f(3);
+fn(2)(3);
+f(4);
+f(5);
+  
 </script>
