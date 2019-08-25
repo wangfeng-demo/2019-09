@@ -25,9 +25,9 @@
     普通函数的 this 指向规律
         1.事件绑定中的 this 是指向当前操作元素的
         2.自执行函数是中的this 是指向window
-        3.其他的函数执行中的this  看点 
+        3.其他的函数执行中的this  看点 没点的都是window
       */
-    var obj={
+    /* var obj={
         fn:function(){
             console.log(this);
         },
@@ -73,5 +73,20 @@
     obj.a();//obj
     ary[2]();//ary
     obj2.w();//obj2
+    obj = {num:20}
+     */
+var num = 10;
+obj = {num:20};
+obj.fn = (function(num){
+    num = this.num + 10;
+    this.num = num + 10;
+    return function(){
+        this.num += ++num;
+    }
+})(num)
+var fn = obj.fn;
+fn();
+obj.fn();
+console.log(num,obj.num)
 
 </script>

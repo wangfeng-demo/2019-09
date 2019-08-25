@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    for (let i = 0; i < 4; i++) {
+        setTimeout(() => {
+            console.log(i + 1)//想要一秒输出1一秒输出2则需要把var 变成let 然后输出i+1
+        }), (1000 * (i + 1));//一秒输出一次
+    }
+
+    for (var k = 0; k < 4; k++) {
+        (function (n) {
+            setTimeout(() => {
+                console.log(n)      
+            }), (6000);
+        })(k)
+        /* setTimeout(() => {
+            console.log(k + 1)  
+        }), (1000 * (k + 1));  */ 
+    }
+
+</script>

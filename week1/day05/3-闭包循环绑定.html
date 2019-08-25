@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="btnBox">
+        <input type="button" value="button_1" />
+        <input type="button" value="button_2" />
+        <input type="button" value="button_3" />
+        <input type="button" value="button_4" />
+        <input type="button" value="button_5" />
+    </div>
+
+</body>
+
+</html>
+<script type="text/javascript">
+    var btnBox = document.getElementById('btnBox'),
+        inputs = btnBox.getElementsByTagName('input');
+    var l = inputs.length;
+//方法三:利用自定义   this
+    /* for(var i = 0; i < l;i++){
+        //利用自定义属性 思想=>>在于  把索引 存储到元素身上
+      inputs[i].myIndex = i;   //当i等于0时 给一个input增加一个自定义属性 对应的值是 当前索引
+      inputs[i].onclick = function(){
+          alert(this.myIndex+1)
+        }
+    } */
+//方法一: 用let 会形成块级作用域
+    /* for(let i=0;i<l;i++){
+        inputs[i].onclick=function(){        //都输输出5
+            alert(i);
+        }
+    } */
+//闭包的方式一
+    /*  for(var i=0;i<l;i++){
+         (function(n){
+         inputs[i].onclick=function(){   
+             alert(n+1);
+         }
+     })(i)
+     } */
+//闭包方法二
+     /* for(var i=0;i<l;i++){
+         inputs[i].onclick=(function(n){
+         return function(){   
+             alert(n+1);
+         }
+         })(i);
+        } */
+//闭包方法三
+        function fn(n){
+        return function(){
+            console.log(n)
+         }
+        }
+        for(var i=0;i<l;i++){
+         inputs[i].onclick = fn(i)
+        }
+
+    
+</script>

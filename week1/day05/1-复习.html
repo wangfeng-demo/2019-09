@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<!-- <script src="./log.js"></script> -->
+<script>
+    /* logModal.f();
+    logM.f(); */
+    /* var x = 1;
+    var obj = { x: 2 };
+    obj.fn = (function (x) {
+        this.x *= x++;
+        return function (y) {
+            x += y;
+            this.x *= ++x;
+            console.log(x);
+        }
+    })(obj.x);
+    var fn = obj.fn;
+    obj.fn(2);
+    fn(1);
+    console.log(obj.x, x);
+ */
+
+
+    var n = 2;
+    var obj = {
+       n:3,
+       fn:(function(n){
+        n*=2;
+        this.n+=2;
+        var n = 5;
+        return function(m){
+       this.n*=2;
+       console.log(m + (++n));
+        }   
+       })(obj.n)
+    }
+    var fn = obj.fn;
+    fn(3);
+    obj.fn(3);
+    console.log(n,obj.n);
+</script>
