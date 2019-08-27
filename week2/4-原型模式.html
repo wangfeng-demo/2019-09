@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+var ary = [200,100]//字面量的创建方式
+var ary2 = new Array(100,200)//通过构造函数创建
+ary.push(1,2,3)
+ary2.push(4,5,6)
+console.log(ary,ary2);
+// Array  ary ary2都是Array的实例
+var Person = function(name,age){
+    this.name = name;
+    this.age = age;
+    this.eat =function(){   
+        console.log(`${this.name}吃屎`)
+    }
+}
+Person.prototype.play = function(){
+    //在prototype类的原型上加一个  play属性：值是一个函数
+    console.log('玩耍');
+}
+var per1 = new Person('李四',20)// per1是Person类的一个实例， Person是一个自定义类
+var per2 = new Person('张三',22)
+console.log(per1,per2);
+console.log(per1.play);// per1 是怎么调到  play函数
+
+console.log(per1._proto_ === Person.prototype);// true
+
+
+/*  
+    原型：prototype  就是一个堆内存
+    原型链  _proto_
+        1.每一个对象 都有一个_proto_的属性 指向当前实例所属类的prototype（如果不能确定它是谁实例都是object的实例）
+        2.所有的函数数据类型  都有prototype属性 这个属性值是一个对象 浏览器会默认给他开辟一个堆内存 指向自己的原型
+        3.在浏览器给prototype开辟的堆内存中 都有constructor属性  指向所属类（函数）本身
+        
+*/ 
+
+/*  
+    [函数]
+    普通函数、类（所有类：内置类、自己创建的类）
+
+    [对象]
+    普通对象、数组、正则、Math arguments...
+    实例是对象类型的（除了基本类型的字面量创建的值）
+    prototype 的值也是对象类型
+    函数也是对象类型的
+    ...
+
+*/
+/*
+     作用域链：变量的查找机制  先看变量是不是自己私有的 不是的话就去上级作用域查找
+     原型链： 它是一种基于_proto_向上查找的机制，当我们操作实例的某个属性或者方法的时候，
+             首先找自己空间中私有的属性或方法
+
+             1.找到了  结束查找，2.没有找到基于__proto__找所属类的prototype，如果找到就用公有的，如果没有找到
+             则基于__proto__接着向上找 一直找到object.prototype 的原型即可  如果没有操作属性方法不存在
+ 
+*/
+ var f = function(){
+     console.log(666);
+ }
+ console.log(f.prototype);
+ </script>

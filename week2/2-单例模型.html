@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+//var age = 10;
+//var name ='小明'
+//var sex = '男'
+
+//单例模式  就是一个对象  这个对象被称为命名空间、
+var per1 = {
+ age : 10,
+ name :'小明',
+ sex : '男',
+ eat: function(){
+     console.log(`${this.name}吃饭`)
+ }
+}
+per1.eat()
+var f = per1.eat
+f()         
+/* var tools = {
+    f1:function(){
+
+    },
+    f2:function(){
+
+    },
+    f3(){
+        console.log(666);
+    }
+}
+tools.f1(); */
+//高级单例模式
+var utils = function(){
+    var name ='小明'
+    var sex = '女';
+    var age  = 10;
+    var eat = function(){
+        console.log(`${name}吃`);
+    }
+    return {
+    name,sex,age,eat
+    } 
+}
+var per3 = utils() 
+per1.name = '小红'
+per1.eat = function(){
+     console.log(`${this.name}吃屎`)
+ }
+ per1.eat()
+console.log(per3.name,per1.name);
+// per1的name属性  用的人能否更改 ？//普通单例模型是没有私有的内容 别的人会可以随意更改你的内部内容
+// per3得name属性  用的人能否更改 ？//只是修改了per3的name属性 utils中得变量没有改变
+
+</script>

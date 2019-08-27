@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+function Person(name,age){
+this.name = name;
+this.age = age;
+}
+//吃 喝 玩 都是属于所有人类的公用属性
+//罢工用的属性  我们都要放在原型上
+Person.prototype.eat = function(){
+    console.log('吃')
+    this.drink();
+}
+Person.prototype.drink = function(){
+    console.log('喝')
+    this.play();
+}
+Person.prototype.play = function(){
+    console.log('玩')
+}
+var per1 = new Person('李四',20)
+var per2 = new Person('张三',30)
+/* per1.play(); */
+per2.eat();
+// eat 执行的时候  函数中得this 是per2；
+// eat 函数中得  this.drink() 其实就是 per2.drink()
+// per2.drink()执行的 的时候  函数中得this 也是per2的
+// drink 函数中得  this.play() 其实也是  per2.play()
+function mypush(ary,...res){
+            for(var i =0;i<res.length;i++){
+                ary.push(res[i])
+            }
+        }
+        var ary =[1,2,3,4];
+        
+        Array.prototype.mypush=function(...res){
+            for(var i =0;i<res.length;i++){
+                this.push(res[i])
+            }
+        }
+        ary.mypush(4,5,6);
+        console.log(ary);
+
+</script>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+var ary = []
+console.log(ary instanceof Array);//true    首先ary 必须是一个引用数据类型 否则都是false
+                                            //而且能从ary 通过原型链  链到Array 能就是true不能就是false
+console.log(ary instanceof Number);//false
+console.log(ary instanceof Object);//true
+//''.type();//string
+//[].myType();//array
+//该方法要放到基类的原型上
+//
+Object.prototype.myType = function(){
+    //通过this 拿到我们要去判断数据类型的数据
+    var str = ({}).toString.call(this);
+    var str2 = str.slice(8,str.length-1)
+    var str3 = str2.toLowerCase();
+    return str3
+    
+}
+console.log(''.myType());
+
+
+//类数组：元素集合 实参集合    
+function sum(...arg) {
+        console.log(arg);
+        arg.forEach((v, i) => {
+            console.log(v, i);
+        });
+    }
+    sum(1, 2)
+
+</script> 

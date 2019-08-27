@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    //数组原型上的方法  可以修改 但是不能覆盖
+    //自定义类是可以直接修改指向
+Array.prototype = {
+    pop(){
+        console.log('hahaha'); 
+    }
+}
+var ary = [1,2,3,4]
+/* ary.pop();
+console.log(ary); */
+ary.slice(0).pop()
+/* ary.pop().slice() */
+  Array.prototype.mypop = function(){
+        this.length--;
+        return this;
+  }
+  Array.prototype.mypush = function(){
+      for(var i = 0; i < arguments.length;i++){
+          this[this.length] = arguments[i]
+      }
+      return this;
+  }
+ary.mypop().mypush(100,200,300).mypop().mypop()
+console.log(ary);
+
+</script>

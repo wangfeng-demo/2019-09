@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+var person = function(name,age){
+    var obj = {
+        name:name,
+        age:age,
+        eat(){
+            console.log(`${this.name}吃饭`)
+        }
+    }
+    return obj
+}
+//构造函数模式
+var Person = function(name,age){
+    this.name = name;
+    this.age = age;
+    this.rat = function(){
+        console.log(`${this.name}吃饭`);
+    }
+    // 自己写了return?
+    //1.return 123 构造函数 若是一个值类型 则不影响new的执行结果
+    //2.return  引用数据类型   就会覆盖返回的实例  结果就不是当前类的实例了
+}
+var per1 = person('李四',20);
+console.log(per1);  //万物皆对象  所有的对象，包含创建的实例都是Object的实例
+//构造函数执行   ====>
+//new  执行函数的时候 开辟作用域 形参赋值变量提升 
+//然后让函数中得执行主体this 指向了一个新开辟的堆内存
+//代码执行中的this.xxx = xxx 都是给实例设置'私有属性'，
+//最后浏览器会把默认创建的实例返回 供外面接受
+//再次执行 new Fn 就是把上述的操作克隆一份  会形成新的实例（新的内存空间）所以实例是独立开的
+// 构造函数执行的时候  尽量减少return 的使用 防止覆盖
+var per2 = new Person('张三',22);
+console.log(per2);
+//工厂模式和  构造函数的区别？
+//构造函数模式  不需要创造一个对象
+//构造函数模式   不需要自己主动return内容
+
+</script>
