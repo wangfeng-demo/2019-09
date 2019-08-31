@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+/* 
+函数的三种角色
+   1.普通函数
+      形参 实参 this return arguments 作用域链
+   2.构造函数
+       原型 prototype  
+       原型链  __proto__
+       私有属性 共有属性  hasownProperty
+       in   instanseof 
+       new  执行 注意其中的this
+       类  实例
+    3. 作为普通对象 
+ */
+ function Person(name,age){
+    this.name = name;
+    this.age = age;
+    var fn = function(){
+        console.log(name,age);  
+    }
+return 123;
+ }
+var  a = Person('aaa',123)
+var per = new Person('李四',210)
+Person.qqq = 123
+</script>

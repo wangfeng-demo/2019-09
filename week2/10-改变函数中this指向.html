@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+  //call  apply  bind   三个都是用来改变函数中this的指向
+  //...................................call....................................
+  function f(){ 
+      console.log(this);
+      console.log(arguments);
+  } 
+  var obj = {
+      f
+  };
+  var fn = obj.f;
+  obj.f();//obj
+  fn();  //window
+  //fn.call (context,1,2,3,4,5)  
+  //第一个参数是用来改变函数执行时内部this的指向
+  // 第二个参数以及后边的参数  都是传给fn函数的实参
+  fn.call(obj,6,4,5,3)
+  fn.call([])
+  fn.call(1)
+  Object.prototype.toString.call('')//'[obgect string]'
+  var a = new f ;
+  console.log(a.toString());
+
+  ({}).toString();
+  Object.prototype.toString.call('')// ({}).tostring === obgect.prototype.toString
+  //上述 call 知悉哦哦你给的时候 把toSring方法咋弄的this指向改成了 字符串  所以返回的字符串的数字类型
+  //  call 这个方法  在什么地方存放   Function.prototype
+  //自己封装一个call
+ 
+  Function.prototype.myCall = function (context,...arg) {
+        // context 就是我们让this指向的哪个值， arg是要传给对应函数的实参
+        // this 就是咱们 f2
+        // this(...arg) // 能实现 让f2执行，并且把arg中的参数传给 f2
+        // 怎么把 f2中的this 改成  context ????
+        // context.eee()  eee这个函数中的this 就是 context;
+        // context.eee = this;// context.eee 跟 我们的 f2是同一个函数；
+        // context.eee(...arg); 
+        // delete context.eee; // 为了不再原有的对象中添加属性
+        // var n = Math.random();
+        var n = Symbol();//Symbolz执行达到为一的随机数
+        context[n] = this;
+        context[n](...arg);
+        delete context[n];
+    }
+
+    function f2(a,b) {
+        console.log(this);
+        console.log(a+b);
+    }
+    var obj = {
+        q:123,
+        w:234,
+        e:345
+    }
+    f2.myCall(obj,3,3);// 让 f2执行，并且把f2中的this指向改成 obj;把3，3当作实参传给f2
+
+//.........................apply................................
+//apply   的目的是跟call一样  区别在于第二个参数  第二个参数是一个数组或类数组
+//虽然第二个参数是一个集合  但是 函数执行时 参数还是被散乱的传过去  不是一个集合整个传的
+var obj = {
+    q:123,
+    w:234
+}
+var f = function(a,b,c,d){
+    console.log(this);
+}
+f.call(obj,1,2,3,4)
+f.apply(obj,[1,2,3,4])
+
+var ary = Math.max[2,3,5,6,7,9,4,8];
+        /* Math.max(...ary);
+        Math.max.apply(Math,ary); */
+//..............................bind............................................
+//  bind  的用法 跟call 一模一样，只是不让函数立即执行  而是返回了一个新函数
+//  新函数执行的时候 this 指向换掉了
+var obj = {a:123}
+var f = function(a,b,c){
+    console.log(this);
+    console.log(a,b,c);
+}
+var fn = f.bind(obj,6,5,6)
+console.log(fn);
+
+
+var f2 = (a)=>{
+    console.log(this);
+    return a;
+}
+f2();//window
+f2.call(obj);
+
+//  bind  返回值是一个新函数  新函数执行的时候让老函数执行了
+//  并且把老函数中得this指向改变了
+Function.prototype.myBind = function (context, ...arg) {
+        var _this = this; //此时，_this这个变量存储的就是f2函数
+        return function (...ary) {
+            // console.log(_this);
+            // _this.call(context,...arg)
+          return _this.apply(context,arg,...ary)
+ 
+        }
+    }
+    var fn2 = f2.myBind(obj,6,6,6); //window
+    //fn2执行的时候，f2执行，并且f2中的this改成了obj
+    fn2(1,2,3)
+
+
+    var fun =function(){
+        console.log(arguments);
+        console.log(this);
+    }
+    var fun2 =fun.bind(obj,666,888);
+    fun2();
+
+</script>

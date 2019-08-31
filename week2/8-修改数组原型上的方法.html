@@ -16,7 +16,7 @@
 Array.prototype = {
     pop(){
         console.log('hahaha'); 
-    }
+    }  
 }
 var ary = [1,2,3,4]
 /* ary.pop();
@@ -36,4 +36,15 @@ ary.slice(0).pop()
 ary.mypop().mypush(100,200,300).mypop().mypop()
 console.log(ary);
 
+
+    Number.prototype.plus = function(a){
+        return this+a
+
+    }
+    Number.prototype.minus = function(a){
+    return this-a
+    }
+    var n = 20;
+var  m = n.plus(10).minus(5)//==>20+10-5//为什么可以使用链式调用
+   //原因是  前边的执行返回结果   可以调用到后边的 函数 
 </script>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="nameBtn">姓名排序</button>
+    <button id="ageBtn">年龄排序</button>
+    <ul id="box">
+        <li>姓名是：小明；年龄是110</li>
+    </ul>
+</body>
+
+</html>
+<script>
+    var ary = [
+        {
+            name: '小明',
+            age: 110
+        },
+        {
+            name: '小理',
+            age: 120
+        },
+        {
+            name: '小伙',
+            age: 119
+        },
+        {
+            name: '小几',
+            age: 111
+        }
+    ]
+    var box = document.querySelector('#box')   
+    var nameBtn = document.querySelector('#nameBtn')
+    var ageBtn = document.querySelector('#ageBtn')
+    /* box.innerHTML = `
+            <li>姓名是：小明；年龄是110</li>
+            <li>姓名是：小明；年龄是110</li>
+            <li>姓名是：小明；年龄是110</li>
+            <li>姓名是：小明；年龄是110</li>
+    `; */
+    function renderHTML(){
+        var str = ''
+    for(var i = 0;i < ary.length; i++){
+        str += `<li>姓名是: ${ary[i].name};年龄是: ${ary[i].age}</li>`
+    }
+    box.innerHTML = str;
+    }
+    //排序的实现   先把数组进行排序  然后再去渲染数组 
+    var flag = 1;
+    ageBtn.onclick = function () {
+        flag*=-1;
+        ary.sort((a, b) => {
+            return (a.age - b.age)*flag
+        })
+        renderHTML();
+    }
+    nameBtn.onclick = function () {
+        flag*=-1;
+        ary.sort((a, b) => {
+            return  (a.name.localeCompare(b.name))*flag
+        })
+        renderHTML();
+    }   
+</script>
