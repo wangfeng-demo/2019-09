@@ -1,0 +1,73 @@
+*{margin:0;padding:0;list-style:none}
+.box{
+    margin:auto;
+    width: 1200px;
+}
+.box header{
+    height: 50px;
+    padding-left:100px;
+    border:1px solid #ccc
+}
+.box header div{
+    float: left;
+    height: 50px;
+    line-height: 50px;
+    margin:auto 10px;
+    color: #ccc;
+}
+main{
+    margin-top:20px
+}
+main .good_box{
+    float: left;
+    width: 220px;
+    height: 360px;
+    box-sizing: border-box;
+    border: 1px solid #ccc; 
+    margin-right: 25px;
+    margin-bottom: 20px;
+    position: relative;
+}
+main .good_box:nth-child(5n){
+    margin-right: 0;
+}
+main .good_box:hover{border-color:red}
+
+main .good_box .img_box{
+   width: 180px;
+   height: 180px;
+   margin:20px auto;  
+}
+main .good_box .img_box img{
+    width: 100%;
+}
+main .good_box .desc{
+    font-size: 10px;
+    color:#ccc;
+    text-align: center;
+}
+main .good_box .price{
+    font-size: 20px;
+    color:red;
+    text-align: center;
+    margin-top:30px
+}
+main .good_box .tab_box{
+    display:flex;
+    height: 30px;
+    width: 100%;
+    position: absolute;
+    bottom:0;
+    float: left;
+}
+main .good_box .tab_box .left:hover{color:red;
+cursor:pointer}
+main .good_box .tab_box div{
+      flex:1;
+      border-top:1px solid #ccc;
+      line-height:30px;
+      text-align :center;
+}
+main .good_box .tab_box div:nth-child(1){
+    border-right:1px solid #ccc;
+}

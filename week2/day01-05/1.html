@@ -138,10 +138,10 @@
 
 
     /*分析下面的changeThis方法该如何实现？*/
-    Function.prototype.changeThis = function changeThis(context,...arg) {
+    /* Function.prototype.changeThis = function changeThis(context,...arg) {
         //=>实现你的代码
          context.$fn = this;
-         context.$fn(...arg);
+         context.$fn(...arg);   
          delete context.$fn;
     };
     let obj = { name: 'Alibaba' };
@@ -151,7 +151,7 @@
     }
     let res = fn.changeThis(obj, 100, 200);
     res = {name:'Alibaba',total:300}
-    console.log(res);
+    console.log(res); */
     
 
 
@@ -171,4 +171,36 @@
     // }
     // let ary = [12, 23, 12, 13, 13, 12, 23, 14, 8];
     // console.log(ary.myUnique().sort((a, b) => a - b));
+
+
+    let utils = (function(){
+    /*
+     * toArray：转换为数组的方法
+     *   @params
+     *      不固定数量，不固定类型
+     *   @return
+     *      [Array] 返回的处理后的新数组
+     * by zhufengpeixun on 2019/08/12
+     */
+    function toArray(a,...age){
+        //实现你的代码
+    var arr =  [];
+    arr.push(a);
+    age.forEach((v)=>{
+        arr.push(v);
+    })
+    return arr
+    }
+    return {
+        toArray
+    };
+})();
+let ary = utils.toArray(10,20,30);
+//ary=[10,20,30]
+ console.log(ary);
+
+ary = utils.toArray('A',10,20,30);
+//ary=['A',10,20,30]
+console.log(ary);
+
 </script>

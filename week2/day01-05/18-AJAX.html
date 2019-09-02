@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="">
+    <title>Document</title>
+</head>
+
+<body>
+   
+</body>
+
+</html>
+<script>
+    var data;
+    //ajax  是一门从后台请求数据的技术
+    var xhr = new XMLHttpRequest(); //创造实例
+    xhr.open('get', './data.json', false);  //   ./data.json  就是数据存放地址  
+    xhr.onreadystatechange = function () {     //监听请求数据  获取数据
+        if (xhr.status == 200 && xhr.readyState == 4) {
+            console.log(xhr.response);
+            // var str = JSON.stringify(obj)//  把普通对象转换为JSON字符串
+            // var obj2 = JSON.parse(str)   //  把JSON字符串转换为JSON对象
+            console.log(JSON.parse(xhr.response));
+            data = JSON.parse(xhr.response)
+        }
+    }
+    xhr.send()               // 发送请求
+    console.log(data);
+</script>

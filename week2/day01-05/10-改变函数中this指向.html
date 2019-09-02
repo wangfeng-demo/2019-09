@@ -7,11 +7,19 @@
     <title>Document</title>
 </head>
 <body>
-    
+     
 </body>
 </html>
 <script>
   //call  apply  bind   三个都是用来改变函数中this的指向
+  /* 第一条：箭头函数中得this  始终都是上级作用域的this 不会出现任何意外 
+            箭头函数不存在new   因为他没有consturctor更何况没有this
+
+          其他的：时事件绑定中得this  是当前操作的元素
+                自执行函数的this 是window
+                定时器中得this  指向window
+                去他看点  函数执行前的是谁 this 就指向谁
+  */
   //...................................call....................................
   function f(){ 
       console.log(this);
