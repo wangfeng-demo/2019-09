@@ -59,5 +59,5 @@ commentBtn.onclick = function () {
 
         return (a.num- b.num) * flag
     })
-    renderHTML(dataAry);
+    renderHTML(dataAry);    
 }
