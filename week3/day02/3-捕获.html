@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    // 匹配 就是查看字符中 是否满足  正则的规则
+    /* 基于exec可以实现正则的捕获    加上全局修饰符  会修改lastindex的属性4
+      1.如果正则和当前字符串不匹配，捕获的结果是null
+      2.如果匹配  捕获的结果是一个数组：
+                0：大正则捕获的内容
+                index：正则捕获的索引
+                input：原始操作的字符串
+                ....
+      3.执行一次exec 只能捕获第一个和正则匹配的内容，其余匹配的内容还没有捕获到，而且更恶心的是
+         我傻傻的执行多次然而并没啥用
+        */
+    
+    // exec  正则.exec(字符串)
+    //正则的lastIndex属性是定义了 下一次捕获开始的位置
+    var reg = /\d+/g;
+    var res = reg.exec('珠峰2019哈哈2020')
+    console.log(res);
+    var res2 = reg.exec('珠峰2019哈哈2020')
+    console.log(res2);
+    var res3 = reg.exec('珠峰2019哈哈2020')
+    console.log(res3);
+    var res4 = reg.exec('珠峰2019哈哈2020')
+    console.log(res4);
+
+
+    var str = '你好2019www哈哈2018hello珠峰2020qqq哈哈2021world'// 只捕获哈哈后边的数字
+    var reg2 = /哈哈(\d+)([a-z]+)/g;
+    // exec 的返回值  第一项是大正则捕获的内容  从第二项开始 都是小分组的内容
+    /* var res = reg2.exec(str)
+    console.log(res); */
+
+
+    // 自己封装一个  execAll 的方法 可以实现一次性把所有的得符合条件的内容捕获到
+
+    /* RegExp.prototype.execAll = function (str = '') {
+        //首先查看对应的正则有没有修饰符  g
+        if (!this.global) {
+            // 代表正则没有修饰符
+            throw new Error ('您的正则没有修饰符g 不能使用该方法')
+            return;2
+        }
+        //怎么保证str是字符串？
+        str = str.toString();
+        //this --->reg2   
+        var res = this.exec(str);
+        console.log(res);
+        var ary = [];
+        while (res) {
+            ary.push(res)
+            res = this.exec(str);
+        }
+        return ary;         
+    }
+  console.log(reg2.execAll(str)); */
+  
+   
+</script>

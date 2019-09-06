@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    function formate(template) {
+    var t=new Date();
+    var y=t.getFullYear();
+    var m=t.getMonth()+1;
+    var d=t.getDate();
+    var n=0;
+        return template.replace(/\{\}/g,function () {
+            var temp='';
+            switch (n) {
+                case 0:
+                    temp=y;
+                    break;
+                case 1:
+                    temp=m;
+                    break;
+                default:
+                    temp=d;
+                    break;
+            }
+            n++;
+            return temp 
+        })
+}
+console.log(formate('今天是{}年{}月{}日'));
+console.log(formate('今天是{}-{}-{}'));
+console.log(formate('今天是{}/{}/{}'));
+
+
+function formate(template) {
+    var t=new Date();
+    var y=t.getFullYear();
+    var m=t.getMonth()+1;
+    var d=t.getDate();
+    var ary = [y,m,d];
+    var n=0;
+        return template.replace(/\{\}/g,function () {
+            return ary[n++]
+        })   
+}
+console.log(formate('今天是{}年{}月{}日'));
+console.log(formate('今天是{}-{}-{}'));
+console.log(formate('今天是{}/{}/{}'));
+</script>

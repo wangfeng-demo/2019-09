@@ -32,7 +32,7 @@
   obj.f();//obj
   fn();  //window
   //fn.call (context,1,2,3,4,5)  
-  //第一个参数是用来改变函数执行时内部this的指向
+  // 第一个参数是用来改变函数执行时内部this的指向
   // 第二个参数以及后边的参数  都是传给fn函数的实参
   fn.call(obj,6,4,5,3)
   fn.call([])
@@ -119,7 +119,7 @@ Function.prototype.myBind = function (context, ...arg) {
           return _this.apply(context,arg,...ary)
  
         }
-    }
+    } 
     var fn2 = f2.myBind(obj,6,6,6); //window
     //fn2执行的时候，f2执行，并且f2中的this改成了obj
     fn2(1,2,3)

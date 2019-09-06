@@ -61,4 +61,24 @@ console.log(per3.name,per1.name);
 // per1的name属性  用的人能否更改 ？//普通单例模型是没有私有的内容 别的人会可以随意更改你的内部内容
 // per3得name属性  用的人能否更改 ？//只是修改了per3的name属性 utils中得变量没有改变
 
+
+// 工厂模式  批量生产单例模式
+function factory(name,age) {
+    var obj = {
+        name,
+        age,
+        eat = function(){},
+        sleep = function(){}
+    }
+    return obj
+}
+//构造函数  没有return
+var Person = function(name,age){
+    this.name = name;
+    this.age = age;
+    this.eat = function(){
+    }
+    this.play = function(){
+    }
+}
 </script>

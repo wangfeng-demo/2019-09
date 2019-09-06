@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    // getCss 获取当前元素某个样式的属性值
+    // curEle[object]当前要操作的元素
+    // attr 当前要获取的样式属性名
+    let getCss = function getCss(curEle, attr) {
+        if ('getComputedStyle' in window) {
+            let val = window.getComputedStyle(curEle,null)[attr]
+            //把获取的结果去除单位  （不是所有的结果都能去单位例如：display/一复合属性都去不掉单位）
+            //只有符合数字+单位 这种模式才能用parsefloat去单位
+            let reg = /^-?\d+(\.\d+)?(px|rem|em|pt)?$/i
+            reg.test(val)? val= parseFloat(val):null 
+              return val ;
+        }
+        throw new Error('不兼容')
+    };
+    console.log(getCss(div,'paddingLeft'));
+    
+
+    //  设定当前元素的某一个具体样式的属性值
+    //  JS中元素设置样式只有两种
+    // 1.设置样式类名（前提 样式以及对应的样式处理完成）
+    //2. 通过行内设置xxx.style.xxx=xxx
+    let setCss = function(curEle,attr,value){
+  curEle['style'][attr] = value;
+    }
+</script>

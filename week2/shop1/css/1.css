@@ -15,6 +15,9 @@
     margin:auto 10px;
     color: #ccc;
 }
+.box header div:hover{
+    cursor: pointer;
+}
 main{
     margin-top:20px
 }
