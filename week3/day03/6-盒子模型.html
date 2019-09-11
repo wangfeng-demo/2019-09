@@ -46,7 +46,6 @@
         </div>
     </section>
 </body>
-
 </html>
 <script>
     /*
@@ -61,7 +60,6 @@
     console.log('=============================================');
     console.log(oDiv.offsetWidth);// width +左右padding +左右border
     console.log(oDiv.offsetHeight);// height + 上下padding+左右border
-
     // offsetLeft   offsetTop 获取当前盒子距离父级参照物的偏移量（top偏移 left左偏移）
     //参照物  同一个平面 元素的父级参照物和结构没有必然联系  父级参照物都是body
     //body的父级参照物是null
@@ -72,8 +70,9 @@
 
     //  给一个元素  怎么能算出  当前元素到body的迁移量
     function offset(curEle) {
-        var curLeft = curEle.offsetLeft;
+        var curLeft = curEle.offsetLeft;    
         var curTop = curEle.offsetTop;
+        curEle = curEle.offsetParent;
         while (curEle) {
             curLeft += curEle.offsetLeft + curEle.clientLeft;
             curTop += curEle.offsetTop + curEle.clientTop;
@@ -95,6 +94,7 @@
 
     // 以上13个属性中  只有scrollLeft和scrollTop是可以修改的 这两个属性是有最大值和最小值的
     // 其他属性都是只读属性；
+    //scrollLeft和scrollTop有边界值  
 
 
     // 获取一个屏幕的宽高

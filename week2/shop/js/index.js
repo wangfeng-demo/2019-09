@@ -1,11 +1,11 @@
 // 首先把数据从后台获取到  然后渲染到页面上
 (function(){
+    let dataAry;
     let xhr = new XMLHttpRequest(); //创造实例
     xhr.open('get', './data.json', false);  //   ./data.json  就是数据存放地址  
     xhr.onreadystatechange = function () {     //监听请求数据  获取数据
         if (xhr.status == 200 && xhr.readyState == 4) {
             let data = JSON.parse(xhr.response)
-            console.log(data);
             dataAry = data;
         }
     }

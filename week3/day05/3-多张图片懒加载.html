@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        body {
+            height: 2000px;
+            background: #eee;
+        }
+
+        #box {
+            width: 300px;
+            height: 300px;
+            position: relative;
+            top: 1600px;
+            border: 1px solid blue
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <img src="./1.gif" realSrc='./瀑布流/img/1.jpg' alt="">
+        <img src="./1.gif" realSrc='./瀑布流/img/1.jpg' alt="">
+        <img src="./1.gif" realSrc='./瀑布流/img/1.jpg' alt="">
+        <img src="./1.gif" realSrc='./瀑布流/img/1.jpg' alt="">
+        <img src="./1.gif" realSrc='./瀑布流/img/1.jpg' alt="">
+        <img src="./1.gif" realSrc='./瀑布流/img/1.jpg' alt="">
+    </div>
+</body>
+
+</html>
+<script src="./js方法库/utils.js"></script>
+<script>
+    /*
+    刚进入页面时   让图片显示一张默认小图  等到图片漏出来  再把图片的链接换成真正的图片地址
+    */
+
+    var img = document.getElementById('img')
+    function loadImg(ele) {
+        // 一执行该函数 我们就判断ele这个函数是否已经加载过 若已经加载过 下边代码不再执行
+        if (ele.loaded) return;
+        let scrT = document.documentElement.scrollTop;
+        let winh = utils.winH();
+        let tsrT = utils.offset(ele).top;
+        if (scrT + winh > tsrT) {
+            //说明已经暴露出来了
+            console.log(111);
+            let realSrc = ele.getAttribute('realSrc');
+            // ele.src = realSrc;
+            let temp = new Image();//创造一个img
+            temp.src = realSrc//使用临时创造的image 去远程服务器获取真实的图片
+            temp.onload = function () {
+                ele.src = realSrc;
+                temp = null;
+                utils.fadeIn(ele);
+
+            }
+            ele.loaded = true;//用自定义一个loaded属性  用来记录这个元素的加载情况
+        }
+    }
+    window.onscroll = function () {
+        loadAll()
+    }
+    function loadAll() {
+        var imgs = document.getElementsByTagName('img')
+        for (var i = 0; i < imgs.length; i++) {
+            loadImg(imgs[i])
+        }
+    }
+</script>

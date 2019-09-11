@@ -29,7 +29,16 @@
         return 666
     })  
     console.log(res);
+ /* =================================================================== */   
+    //replace 比match的优势是 即使有g;也能实现小分组的捕获
+    //str.replace('a','b')
+    //str.replace(/a/g,'b')
+    //str.replace(/a/g,function(){})
+    var str='珠峰zf培训px';
+    str=str.replace(/\w+/g,c=>c.toUpperCase())
+    console.log(str)
 
+/* ============================================================= */
 var str = new Date().toLocaleString();
 //2019/9/4 11:37:53
 //今天是2019年9月4日  上午11:37:53  
@@ -38,8 +47,9 @@ var str2 = str.replace(/(\d{4})(\/)(\d+)(\/)(\d+)/,function(...arg){
     return  `今天是个好日子 今天是${arg[1]}年${arg[3]}月${arg[5]}ri`
     
 })
-/* console.log(str2); */
-// 适应replace 实现身份证识别
+console.log(str2);
+/* =============================================================================== */
+// 使用replace 实现身份证识别
 var str  ='130427199401044410'
 var str3 = str.replace(/^\d{6}(\d{4})(\d{2})(\d{2})\d{2}(\d)(\d|x)$/,function(...arg){
 console.log(arg);
@@ -60,4 +70,6 @@ function getParam(str) {
     return o;
 }
 var obj = getParam(str)
+console.log(obj);
+
 </script>

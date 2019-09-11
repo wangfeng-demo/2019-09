@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        body {
+            height: 2000px;
+        }
+
+        #box {
+            position: relative;
+            top: 1200px;
+            width: 200px;
+            border: 1px solid red;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <img id="img" src="./1.gif" realSrc='./瀑布流/img/1.jpg' alt="">
+        <img id="img" src="./1.gif" realSrc='./瀑布流/img/1.jpg' alt="">
+        <img id="img" src="./1.gif" realSrc='./瀑布流/img/1.jpg' alt="">
+        <img id="img" src="./1.gif" realSrc='./瀑布流/img/1.jpg' alt="">
+        <img id="img" src="./1.gif" realSrc='./瀑布流/img/1.jpg' alt="">
+        <img id="img" src="./1.gif" realSrc='./瀑布流/img/1.jpg' alt="">
+    </div>
+</body>
+
+</html>
+<script src="./js方法库/utils.js"></script>
+<script>
+    /* let img = document.getElementById('img') */
+    let { setCss, getCss, winH, fadeIn, offset } = utils;
+    function loadImg(ele) {
+        if(ele.loaded)return ;
+        let wH = winH();
+        let srcT = document.documentElement.scrollTop;
+        let tsrT = offset(ele).top;
+        if (tsrT > wH + srcT) {
+            let realSrc = ele.getAttribute('realSrc')
+            let temp = new Image();
+            temp.src = realSrc;
+            temp.onload = function(){
+               ele.src = realSrc;
+               fadeIn(ele)
+            }
+           ele.loaded = true;
+        }
+    }
+    window.onscroll = function(){
+        loadAll()
+    }
+    function loadAll(){
+        let imgs = document.querySelectorAll('img')
+        for (let i = 0; i < imgs.length; i++) {
+            loadImg(imgs[i])
+        }
+    }
+</script>

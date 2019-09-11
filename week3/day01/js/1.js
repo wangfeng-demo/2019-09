@@ -8,7 +8,7 @@ Object.prototype.trans = function (){
 } 
 var lis = oLis.trans();
 
-// 从数组或者类数组中随机筛选几项 返回有筛选项组成的新数组
+// 从数组或者类数组中随机筛选几项 返回由筛选项组成的新数组
 Object.prototype.rm = function (n) {
     // this.length  和  n的情况
     if(n > this.length ){

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    let ary1 = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2', 'D1', 'D2'];
+    let ary2 = ['A', 'B', 'C', 'D'];
+    //=>合并后的数组为：['A1', 'A2', 'A', 'B1', 'B2', 'B', 'C1', 'C2', 'C', 'D1', 'D2', 'D']
+    ary = ary2.map(item => {
+        item += '3'
+        return item;
+    })
+    let ary3 = [...ary1, ...ary]
+   let res = ary3.sort((a,b)=>a.localeCompare(b));
+   let res2 = res.join('')
+   var t = res2.replace(/3/g,'');
+   console.log(t);
+   console.log( t.split(/(?=[A-Z][0-9]?)/));
+</script>

@@ -29,23 +29,52 @@
         textBox.innerHTML = html;
     }
 </script>
-<!-- <script>
-    match 优点 一次把大正则中符合的内容捕获到
-          缺点：不能捕获小分组
+ <script>
     var str = '珠峰2019哈哈2020'
     var reg = /\d+/
     var res = reg.exec(str);
     var res2 = str.match(reg);
     console.log(res, res2);
 
+/* ======================================================================================== */
 
-    var str2 = 'http://www.baodu.com?a=12&b=23&c=34'
-    var reg2 = /([^?=&]+)=([^?=&]+)/g
-    console.log(reg2.exec(str2));
-    console.log(str2.match(reg2));
+     /* function getParam(str) {
+        var reg = /([^?=&]+)=([^?=&]+)/g;
+        var ary = str.match(reg)
+        console.log(ary);
+        var obj = {};
+        ary.forEach(item => {
+            // 把数组中的每一项中的第二项当做属性名，第三性当做属性值
+            var m = item.split('=')
+            obj[m[0]] = m[1]
+        });
+        return obj
+    } 
+    var str = 'http://www.baidu.com?a=12&b=13&c=34';
+    var res=getParam(str);
+    console.log(res); */
+    
+//思考  把这个方法放在String原型上。
+   String.prototype.mygetParam = function mygetParam() {
+        var reg = /([^?=&]+)=([^?=&]+)/g;
+        var ary = this.match(reg)
+        console.log(ary);
+        var obj = {};
+        ary.forEach(item => {
+            // 把数组中的每一项中的第二项当做属性名，第三性当做属性值
+            var m = item.split('=')
+            obj[m[0]] = m[1]
+        });
+        return obj
+    } 
+    var str = 'http://www.baidu.com?a=12&b=13&c=34';
+    var res=str.mygetParam();
+    console.log(res);
+/* ==================================================================================== */
 /* match 是字符串的修饰方法  当正则不加全局修饰的符的时候：效果跟exec一样
        但是加上全局修饰符g之后 match 只会捕获到所有的大正则匹配的内容
-    
+     match 优点 一次把大正则中符合的内容捕获到
+          缺点：不能捕获小分组
     */
 
 </script> -->

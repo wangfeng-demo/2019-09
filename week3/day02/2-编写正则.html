@@ -9,13 +9,17 @@
 </head>
 
 <body>
-    <input type="text" placeholder="手机号" id = "inp">
-    <input type="password" placeholder="密码"id = 'psw' >
+        <input type="number" id="inpu">
+        <h3>手机号不合法</h3>
+
+    <input type="text" placeholder="手机号" id="inp">
+    <input type="password" placeholder="密码" id='psw'>
     <button id="btn">按钮</button>
 </body>
 
 </html>
 <script>
+///////////////////////////////////////////////////////////////////////////
     // 1、编写一个可以验证有效数字的正则
     //    有效数字符合哪些规则：小数 整数
     //    规则： 可以+-开头 0-1次 
@@ -24,14 +28,33 @@
     var reg = /^[+-]?[1-9]+(\.\d)?$/
     var reg = /^[+-]?(([1-9]\d*)|0)(\.\d)?$/
     console.log(reg.test('0.1'));
+////////////////////////////////////////////////////////////////////////////////
     //  验证手机号码
     // 11位 
     // 1开头 第二位是356789
     var reg = /^1[356789]\d{9}$/
     console.log(reg.test('13478958258'));
-let inp = document.querySelector('#inp'),
-   btn = document.querySelector('#btn'),
-   psw = document.querySelector('#psw');
+    //oninput 触发事件
+    var inpu = document.querySelector('#inpu');
+    var h3 = document.querySelector('h3');
+    inpu.oninput = function () {
+        console.log(this.value);
+        var str = this.value;
+        if (str.length == 11) {
+            if (!reg.test == 11) {
+                h3.style.display = 'block'
+            } else {
+                h3.style.display = 'none'
+            }
+        } else if (str.length > 11) {
+            h3.style.display = 'block'
+
+        }
+    }
+/////////////////////////////////////////////////////////////////////////////////////
+    let inp = document.querySelector('#inp'),
+        btn = document.querySelector('#btn'),
+        psw = document.querySelector('#psw');
 
     /* btn.onclick = function () {
         var val = inp.value;
@@ -40,17 +63,17 @@ let inp = document.querySelector('#inp'),
         alert(str)
     } */
 
-
+////////////////////////////////////////////////////////////////////////
     //验证qq邮箱的正则
     //  前边是QQ号  
     //中间是@qq.com
     var reg = /^[1-9]\d{4,10}@qq\.com$/
 
-
+//////////////////////////////////////////////////////////////////
     //验证身份证号正则
     var reg = /^[1-9]\d{5}\d{4}\d{2}\d{2}\d{2}\d(\d|X)$/
 
-
+/////////////////////////////////////////////////////////////////
     // 编写密码的正则
     //  6-16位
     //得是数字 字母 或者下划线  
@@ -59,8 +82,8 @@ let inp = document.querySelector('#inp'),
     btn.onclick = function () {
         var str1 = psw.value;
         var bol = /[A-Z].test(str1)&&[a-z].test(str1)&&\d.test(str1)/
-        var bol2 = str1.length >= 8 && str1.length<=20;
-        var str2 = bol.test(str1&&bol2)? '合法' : '不合法';
+        var bol2 = str1.length >= 8 && str1.length <= 20;
+        var str2 = bol.test(str1 && bol2) ? '合法' : '不合法';
         alert(str2);
     }
 
@@ -68,9 +91,9 @@ let inp = document.querySelector('#inp'),
     var reg = /^(1[89])|([2-5]\d)|(6[0-5])$/
     console.log(reg.test('25'));
 
-//捕获object后边的东西
+    //捕获object后边的东西
     var str = '[object Undefined]';
     var reg = / (\w+)/
     console.log(reg.exec(str));
-    
+
 </script>

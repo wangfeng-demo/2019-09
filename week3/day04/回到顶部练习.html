@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box {
+            height: 2000px;
+            background: -webkit-linear-gradient(green, red, gold, blue, #fff)
+        }
+
+        #btn {
+            position: fixed;
+            bottom: 100px;
+            right: 100px;
+            font-size: 30px;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+    </div>
+    <button id="btn">回到顶部</button>
+</body>
+
+</html>
+<script>
+    let box = document.getElementById('box'),
+        btn = document.getElementById('btn')
+    let winH = document.documentElement.clientHeight || document.body.clientHeight;
+    window.onscroll = function () {
+        let tarT = document.documentElement.scrollTop;
+        if (tarT > winH) {
+            btn.style.display = 'block'
+        }
+        else {
+            btn.style.display = 'none'
+        }
+    }
+    btn.onclick = function () {
+        document.documentElement.scrollTop = 0
+    }
+    let timer = null;
+    btn.onclick = function () {
+        timer = setInterval(() => {
+            if (document.documentElement.scrollTop <= 0) {
+                clearInterval(timer)
+            }
+            document.documentElement.scrollTop -= 20
+
+        }, 20)
+    }
+
+</script>

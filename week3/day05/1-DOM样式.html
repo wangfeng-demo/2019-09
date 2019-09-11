@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            list-style: none;
+        }
+    #box{
+        width: 100px;
+        height: 100px;
+    }
+    </style>
+</head>
+<body>
+    <div id="box" style="padding:30px">珠峰培训</div>
+</body>
+</html>
+<script src="./js方法库/utils.js"></script>
+<script>
+var box = document.getElementById('box');
+//通过 style 的这种方式  我们只能获取  行内样式
+console.log(box.style.width);
+console.log(box.style.padding);
+getComputedStyle(box,null)//通过这种方法 可以获取当前元素的所有样式  ie6-8不兼容
+var {getCss,setCss,offset,winH} = utils
+console.log(getCss(box,'height'));
+console.log(setCss(box,'background','pink'));
+console.log(setCss(box,'margin',200));
+console.log(offset(box));
+console.log(winH(box));
+</script>
