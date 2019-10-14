@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: #ee0011;
+            text-align: center;
+            line-height: 100px;
+            font-size:10px
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box" id="box">
+        王峰
+    </div>
+</body>
+
+</html>
+<script>
+    /*
+    规定时间内的多方向匀速运动
+    time ：已经运动的时间
+    duration: 总时间
+    [记录每个方向的起止位置，目标值，总距离]
+    begin: 开始位置
+    target: maxL=document.documentElemnet.clienWidth + box.offsetLeft; 目标位置
+    change = target - begin 总距离
+    
+     */
+    let time = 0,
+        interval = 1,
+        duration = 1000;
+    let target = {
+        left: document.documentElement.clientWidth - box.offsetWidth,
+        top: document.documentElement.clientHeight - box.offsetHeight,
+        fontSize:25
+    }
+    // let change = {
+    //     left = target['left'] - begin['left'],
+    //     top = target['top'] - begin['top']
+    // }
+    //建议循环添加  根据目标值算出当前元素每一个运动方向的总距离(前提：计算出每个方向的起始值)
+    let change = {};
+    let begin = {};
+    for (var atter in target) {
+        if (target.hasOwnProperty(atter)) {
+            begin[atter] = parseFloat(window.getComputedStyle(box)[atter]);
+            change[atter] = target[atter] - begin[atter]
+        }
+    }
+    let animateTimer = setInterval(() => {
+        time += interval;
+        if (time > duration) {
+            for (let key in target) {
+            if (target.hasOwnProperty(key)) {
+                box.style[key] = target[key] + 'px'
+            }
+        }
+            clearInterval(animateTimer);
+            return;
+        }
+        //=>根据目标值中得方向，基于公式计算出每个方向的当前位置
+        let cur = {};
+        for (let atter in target) {
+            if (target.hasOwnProperty(atter)) {
+                cur[atter] = time / duration * change[atter] + begin[atter];
+            }
+        }
+        for (let key in cur) {
+            if (cur.hasOwnProperty(key)) {
+                box.style[key] = cur[key] + 'px'
+            }
+        } 
+    }, interval)
+    let $box = $('#box');
+</script>

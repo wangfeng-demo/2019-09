@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .box {
+            width: 400px;
+            height: 100px;
+            border: 1px solid red;
+            overflow: hidden;
+            margin: auto
+        }
+
+        .big_box {
+            width: 800px;
+            height: 100px;
+            overflow: hidden;
+        }
+
+        .big_box li {
+            width: 100px;
+            height: 100px;
+            float: left;
+        }
+
+        .big_box img {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <ul class="big_box">
+            <li><img src="../day04/跑马灯哥哥/img/1.jpg" alt=""></li>
+            <li><img src="../day04/跑马灯哥哥/img/2.jpg" alt=""></li>
+            <li><img src="../day04/跑马灯哥哥/img/3.jpg" alt=""></li>
+            <li><img src="../day04/跑马灯哥哥/img/4.jpg" alt=""></li>
+        </ul>
+    </div>
+</body>
+
+</html>
+<script>
+    let box = document.querySelector('.box'),
+        big_box = document.querySelector('.big_box');
+    big_box.innerHTML += big_box.innerHTML;
+    let timer = 0
+    timer = setInterval(() => {
+        if (box.scrollLeft >= 400) {
+            /* clearInterval(timer) */
+            box.scrollLeft = 0;
+        }
+        box.scrollLeft++
+    }, 17)
+</script>

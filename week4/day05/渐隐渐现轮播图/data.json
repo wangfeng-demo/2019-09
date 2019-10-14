@@ -1,0 +1,21 @@
+[{
+        "id": 1,
+        "pic": "./img/1.jpg",
+        "desc":"HUAWEI NOVA1"
+    },
+    {
+        "id": 2,
+        "pic": "./img/2.jpg",
+        "desc":"HUAWEI NOVA2"
+    },
+    {
+        "id": 3,
+        "pic": "./img/3.jpg",
+        "desc":"HUAWEI NOVA3"
+    },
+    {
+        "id": 4,
+        "pic": "./img/4.jpg",
+        "desc":"HUAWEI NOVA4"
+    }
+]

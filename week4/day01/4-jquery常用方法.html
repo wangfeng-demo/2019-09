@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    //jQuery 方法只能 jQ 对象或者 jQ($ 或者 jQuery)调用，同样原生对象的方法也只能原生对象调用
+    let $tabBox = $('.tabBox'); 
+    console.log($tabBox);
+    // 1. height() 不传参时时获取元素对象的高度，传参是设置高度
+    console.log($tabBox.height());
+
+    // 2. width() 不传参获取元素对象的宽度、传参是设置宽度
+    console.log($tabBox.width());
+
+    // 3. offset() 获取当前元素距离 body 顶部和左侧的距离，返回一个对象
+    console.log($tabBox.offset());
+
+    // 4. scrollTop() / scrollLeft() 获取纵向/横向滚动条卷曲的距离
+    $(document.body).scrollTop(100); // 传参设置，不传参获取
+
+    // 5. innerHeight() / innerWidth() 获取当前元素的 clientHeight/clientWidth
+    console.log($tabBox.innerHeight());
+    console.log($tabBox.innerWidth());
+
+    // 6. outerWidth()/outerHeight() 获取/设置当前元素的包含边框的高度，等价于 offsetWidth/offsetHeight.
+    console.log($tabBox.outerHeight());
+    console.log($tabBox.outerWidth());
+    console.log($tabBox.outerWidth(true)); // 传递参数true表示获取时需要加上 margin 值
+
+    // 7. hasClass() 当前元素是否有某个类名
+    console.log($tabBox.hasClass('tabBox')); // true
+
+    // 8. addClass()  为当前 jQ 元素追加类名
+    $tabBox.addClass('classByJQ');
+
+    // 9. removeClass() 从当前 jQ 对象中移除类名
+    setTimeout(() => $tabBox.removeClass('classByJQ'), 2000);
+
+    // 10. append() 向元素末尾添加一个元素，容器.append(元素)
+    $('#contextFilter').append('<p>这是一个追加的元素</p>');
+
+    // 11. 元素.remove() 把元素移除
+    // $('#fields').remove();
+
+    // 12. next 获取下一个弟弟; nextAll 获取所有的弟弟
+    console.log($('.tabBox').next());
+    console.log($('.tabBox').nextAll());
+
+    // 13. prev 上一个哥哥; prevAll 所有的哥哥
+    console.log($('#contextFilter').prev());
+    console.log($('#contextFilter').prevAll());
+
+    // 14. children(selector) 把元素下满足 selector 的元素获取到
+    console.log($('ul.header').children('.active'));
+
+    // 15. siblings(selector) 获取当前元素的所有兄弟元素
+    console.log($('ul.header').siblings());
+
+    // 16. css('width') 获取宽度； css('width', '200px') 设置宽度；css({width: '200px', height: '200px', color: 'red'); // 批量设置
+
+    console.log($('ul').css('width'));
+    $('ul').css('width', '300px');
+    $('ul').css({ height: '100px', color: 'red' });
+
+    // 17. text() 不传递是获取元素的 innerText，传参是设置元素的 innerText
+    console.log($('.header li.active').text())
+    $('.header li.active').text('哈哈哈哈哈')
+
+    // 17. html() 不传递是获取元素的 innerHTML，传参是设置元素的 innerHTML
+    console.log($('.header li.active').HTML())
+    $('.header li.active').HTML('<i>hajhahahh</i>')
+</script>

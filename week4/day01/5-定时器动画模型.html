@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            position: relative;
+            left: 0;
+            top:0;
+            background: #ee0011;
+            text-align: center;
+            line-height: 100px;
+            transition: left 1s linear, top 1s ease-in;
+        }
+        /* 
+        元素居中
+        display:flex  align-items:center
+
+
+         */
+    </style>
+</head>
+
+<body>
+        
+    <div class="box" id="box">
+        王峰
+    </div>
+    <button id="btn">点我</button>
+</body>
+
+</html>
+<script>
+    /*
+    动画：
+    1. CSS3动画==> 能用c3解决的动画绝对不用js因为c3性能好!
+    + transition过渡动画
+    + animation贞动画
+    + transform是变形不是动画（经常依托某种动画元素在一定时间内实现变形效果）
+
+
+
+    2.JS动画
+    + 定时器    
+    + window.requestAnimationFrame(callback)（JS中得贞动画）
+    + 所谓canvas动画就是JS基于定时器完成的（canvas是HTML标签，可以理解为是一个画布，我们可以根据
+        JS在画布上绘制出图像和效果
+    3.FLASH动画(ActionSript)==>几乎已经被pass掉了   不用
+    */
+
+
+
+    //监听窗口大小改变  使用window.onresize;
+    //=>需求  让盒子运动到右边结束  
+    // let minL = 0,
+    //     maxL = document.documentElement.clientWidth - box.offsetWidth;
+    // // //=>[固定步长的匀速运动]
+    /* let step = 5,
+        autoTimer = setInterval(() => {
+            let curl = box.offsetLeft;
+            curl += step;
+            if (curl >= maxL) {
+                box.style.left = maxL + 'px'
+                clearInterval(autoTimer)
+                return
+            }
+            box.style.left = curl + 'px'
+        }, 17) */
+
+
+    //法二
+    //     let step = 5;
+    //     function fn() {
+    //         let curl = box.offsetLeft;
+    //         curl += step;
+    //         if (curl >= maxL) {
+    //             box.style.left = maxL + 'px'
+    //         } else {
+    //             //  setTimeout(() => {
+    //             //      fn();
+    //             // }, 17)
+    //             window.requestAnimationFrame(fn)
+    //         }
+    //         box.style.left = curl + 'px'
+    //     }
+    // fn()吧
+    // ==>固定时间的匀速运动
+
+
+    //第一种思路：步长=总距离/总时间*频率剩下变成 固定不长的匀速运动了
+
+    //第二种 ：在JS中基于定时器是完成动画，无论是固定步长还是固定时间，只要算出当前盒子应该运动的位置即可（新的位置信息）
+    //t:time 当前运动的时间
+    //d:duration总时间
+    //b:begin起始位置
+    //c:change总距离
+    //=>t/d：当前已经运动的时间/总时间=>当前动画完成的百分比
+    //t/d*c:当前动画完成的百分比*总距离=>当前已经走的距离
+    //t/d*c+b:用当前走的距离+盒子的起始位置=>当前盒子应该有的位置 
+    // let duration = 1000,//总时间
+    //     interavl = 2,   // 频率 ：多长时间迈一步
+    //     begin = 0,//=>起始位置
+    //     time = 0,//=>已经运动的时间  
+    //     target = maxL,//=>目标位置
+    //     change = target - begin;//==>总距离=目标值减初始值
+    // let autoTimer = setInterval(() => {
+    //     //=>根据公式算出当前盒子应有的位置
+    //     time += interavl   //=> time + 17 
+    //     if (time >= duration) { 
+    //         box.style.left = target + 'px';
+    //         clearInterval(autoTimer)
+    //         begin = 0;
+    //         return ;
+    //         }
+    //     let curL = time / duration * change + begin;
+    //     box.style.left = curL + 'px'
+    // }, interavl);
+
+
+    // 让盒子一秒钟从左移动到右边
+    // let box = document.getElementById('box');
+    // let winW = document.documentElement.clientWidth || document.body.clientWidth;
+    // let boxW = box.offsetWidth;
+    // let maxL = winW - boxW; // 要去移动的距离
+    // let duration = 1000; // 一共要移动的时间
+    // let speed = maxL / duration; // 1毫秒移动的距离
+    // left = 0;
+    // let timer = setInterval(() => {
+    //     left += 20 * speed;
+    //     if (left > maxL) {
+    //         box.style.left = maxL + 'px'
+    //         clearInterval(timer);
+    //     }
+    //     box.style.left = left + 'px'
+    // }, 20)
+    var box = ducument.getElementById('box');
+
+            btn.onclick = function () {
+                box.style.left = 400 + 'px'
+                box.style.top = '300px'
+            }

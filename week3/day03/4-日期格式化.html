@@ -14,46 +14,83 @@
 
 </html>
 <script>
-    function formate(template) {
-    var t=new Date();
-    var y=t.getFullYear();
-    var m=t.getMonth()+1;
-    var d=t.getDate();
-    var n=0;
-        return template.replace(/\{\}/g,function () {
-            var temp='';
-            switch (n) {
-                case 0:
-                    temp=y;
-                    break;
-                case 1:
-                    temp=m;
-                    break;
-                default:
-                    temp=d;
-                    break;
-            }
-            n++;
-            return temp 
+    // function formate(template) {
+    //     var t = new Date();
+    //     var y = t.getFullYear();
+    //     var m = t.getMonth() + 1;
+    //     var d = t.getDate();
+    //     var n = 0;
+    //     return template.replace(/\{\}/g, function () {
+    //         var temp = '';
+    //         switch (n) {
+    //             case 0:
+    //                 temp = y;
+    //                 break;
+    //             case 1:
+    //                 temp = m;
+    //                 break;
+    //             default:
+    //                 temp = d;
+    //                 break;
+    //         }
+    //         n++;
+    //         return temp
+    //     })
+    // }
+    // console.log(formate('今天是{}年{}月{}日'));
+    // console.log(formate('今天是{}-{}-{}'));
+    // console.log(formate('今天是{}/{}/{}'));
+
+
+    function formate(template, time) {
+        time = time ? new Date(time) : new Date();
+        template = template || '今天是{0}年{1}月{2}日';
+        var y = time.getFullYear();
+        var m = time.getMonth() + 1;
+        var d = time.getDate();
+        var h = time.getHours();
+        var f = time.getMinutes();
+        var s = time.getSeconds();
+        var ary = [y, m, d, h, f, s];
+        return template.replace(/\{(\w+)\}/g, function (content, $1) {
+            return ary[$1]
         })
-}
-console.log(formate('今天是{}年{}月{}日'));
-console.log(formate('今天是{}-{}-{}'));
-console.log(formate('今天是{}/{}/{}'));
+    }
+    console.log(formate('今天是{0}年{1}月{2}日 {3}时{4}分{5}秒'));
+    // console.log(formate('今天是{}-{}-{}'));
+    // console.log(formate('今天是{}/{}/{}'));
 
 
-function formate(template) {
-    var t=new Date();
-    var y=t.getFullYear();
-    var m=t.getMonth()+1;
-    var d=t.getDate();
-    var ary = [y,m,d];
-    var n=0;
-        return template.replace(/\{\}/g,function () {
-            return ary[n++]
-        })   
-}
-console.log(formate('今天是{}年{}月{}日'));
-console.log(formate('今天是{}-{}-{}'));
-console.log(formate('今天是{}/{}/{}'));
+    //时间格式字符串处理方法
+    ~function () {
+        function formatTime(template = '{0}年{1}月{2}日 {3}时{4}分{5}秒') {
+            let timeAry = this.match(/\d+/g); // ["2019", "9", "25", "16", "51", "3"
+            return template.replace(/\{(\d+)\}/g, (content, $1) => {
+                let timer = timeAry[$1] || '00';
+                timer.length < 2 ? '0' + timer : null;
+                return timer
+            })
+        }
+        //扩展到内置类String.prototype上
+        ['formatTime'].forEach(item => {
+            String.prototype[item] = eval(item);
+        })
+    }()
+    let time = '2019-9-25 16:51:3'
+    console.log(time.formatTime());
+
+    //////////////////////////////////////////////////////////////////////////////////////////////
+    function rem(time, template) {
+        var res = time.match(/\d+/g)
+        var n = 0
+        return template.replace(/\{\{\}\}/g, function (content) {
+            var timer = res[n++] || '00';
+            timer.length < 2 ? timer + '0' : null;
+            return timer
+        })
+    }
+    var time = '2019/12/21 12:21:21'
+    var template = '今天是{{}}年{{}}月{{}}日{{}}时{{}}分{{}}秒'
+    rem(time, template)
+
 </script>

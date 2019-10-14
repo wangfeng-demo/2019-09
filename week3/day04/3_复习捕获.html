@@ -40,7 +40,7 @@
         if(!that.global){
             // 没有全局修饰符 g ;
             that = eval(that.toString()+'g');//  '/xxx/g'
-        }
+        } 
         var res = that.exec(str);
         var ary = [];
         while(res){

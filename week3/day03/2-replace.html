@@ -15,61 +15,52 @@
 </html>
 <script>
     //prplace 配合正则替换
-    
     var str = '2019-02-03'
     var res = str.replace(/-/g, '/')
+    console.log(res);
 
     var str = 'ddfnn1556svavsrg51s3ve513215';
     var res = str.replace(/\d+/g, '');
-    
-    var res = str.replace(/\d+/g, function (...arg) {
-        //该回调函数的参数 第一项是大正则捕获的内容  后边若有小正则  则就是小正则捕获的内容
-        //倒数第一项是 整个字符串 倒数第二项是  匹配大正则
-        console.log(arg)
-        return 666
-    })  
     console.log(res);
- /* =================================================================== */   
+    var res = str.replace(/\d+/g, function (...arg) {
+        console.log(arg);
+        return 666
+    })
+    console.log(res);
+
+    //该回调函数的参数 第一项是大正则捕获的内容  后边若有小正则  则就是小正则捕获的内容
+    //倒数第一项是 整个字符串 倒数第二项是  匹配大正则
+    /* =================================================================== */
     //replace 比match的优势是 即使有g;也能实现小分组的捕获
     //str.replace('a','b')
     //str.replace(/a/g,'b')
     //str.replace(/a/g,function(){})
-    var str='珠峰zf培训px';
-    str=str.replace(/\w+/g,c=>c.toUpperCase())
-    console.log(str)
-
-/* ============================================================= */
-var str = new Date().toLocaleString();
-//2019/9/4 11:37:53
-//今天是2019年9月4日  上午11:37:53  
-var str2 = str.replace(/(\d{4})(\/)(\d+)(\/)(\d+)/,function(...arg){
+    /* ============================================================= */
+    var str = new Date().toLocaleString();
+    //2019/9/4 11:37:53
+    //今天是2019年9月4日  上午11:37:53  
+    var str2 = str.replace(/(\d{4})(\/)(\d+)(\/)(\d+)/, function (...arg) {
+        return `今天是个好日子 今天是${arg[1]}年${arg[3]}月${arg[5]}日`
+    })
     console.log(str2);
-    return  `今天是个好日子 今天是${arg[1]}年${arg[3]}月${arg[5]}ri`
-    
-})
-console.log(str2);
-/* =============================================================================== */
-// 使用replace 实现身份证识别
-var str  ='130427199401044410'
-var str3 = str.replace(/^\d{6}(\d{4})(\d{2})(\d{2})\d{2}(\d)(\d|x)$/,function(...arg){
-console.log(arg);
-return `这个人是${arg[4] %2 ?'男':'女'}  生日是${arg[1]}${arg[2]}${arg[3]}`
-
-})
-console.log(str3);
+    /* =============================================================================== */
+    // 使用replace 实现身份证识别
+    var str = '130427199401044410'
+    var str3 = str.replace(/^\d{6}(\d{4})(\d{2})(\d{2})\d{2}(\d)(\d|x)$/, function (...arg) {
+        console.log(arg);
+        return `这个人是${arg[4] % 2 ? '男' : '女'}  生日是${arg[1]}${arg[2]}${arg[3]}`
+    })
+    console.log(str3);
 
 
-//使用 replace 的捕获方法实现 getParam  方法     记住
-var str = 'http://baidu.com/?a=23&b_1=13&ccc=34'
-function getParam(str) {
-    var o = {};
-    // str.replace(/([^?=&]+)=([^?=&]+)/g,function(a,b,c){
-    //     o[b]=c;
-    // })
-    str.replace(/([^?=&]+)=([^?=&]+)/g,(a,b,c)=>o[b]=c)
-    return o;
-}
-var obj = getParam(str)
-console.log(obj);
-
+    //使用 replace 的捕获方法实现 getParam  方法     记住
+    String.prototype.myGetParam = function (key) {
+        var obj = {};
+        this.replace(/([^?=&]+)=([^?=&]+)/g, (a, b, c) => obj[b] = c)
+        return key ? obj[key] : obj;
+    }
+    var str = 'http://baidu.com/?a=23&b_1=13&ccc=34#heash'
+    var obj1 = str.myGetParam('a');
+    var obj2 = str.myGetParam();
+    /* console.log(obj1, obj2); */
 </script>

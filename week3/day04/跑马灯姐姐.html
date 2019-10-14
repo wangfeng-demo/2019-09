@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        #box {
+            width: 400px;
+            height: 100px;
+            margin: 20px auto;
+            border: 1px solid red;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        #box_pig {
+            width: 800px;
+            height: 100px;
+        }
+
+        #box_pig li {
+            width: 100px;
+            height: 100px;
+            float: left;
+        }
+ 
+        #box_pig li img {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <div id="box_pig">
+            <li><img src="../day04/跑马灯哥哥/img/1.jpg" alt=""></li>
+            <li><img src="../day04/跑马灯哥哥/img/2.jpg" alt=""></li>
+            <li><img src="../day04/跑马灯哥哥/img/3.jpg" alt=""></li>
+            <li><img src="../day04/跑马灯哥哥/img/4.jpg" alt=""></li>
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+    let box = document.getElementById('box'),
+        box_pig = document.getElementById('box_pig')
+    box_pig.innerHTML += box_pig.innerHTML;
+    setInterval(() => {
+        if (box.scrollLeft >= 400) {
+            /* clearInterval(timer) */
+            box.scrollLeft = 0;
+        }
+        box.scrollLeft++
+    }, 17)
+</script>

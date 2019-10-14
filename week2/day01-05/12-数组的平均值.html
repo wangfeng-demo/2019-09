@@ -15,17 +15,19 @@
 </html>
 <script>
     //  求一组数字的平均值   去除最大值  最小值
-    var average = function (...ary) {
-        ary.sort((a, b) => a - b)
-        ary.shift();
-        ary.pop();
-        var res = eval(ary.join('+')) / ary.length;
+
+    var average = function (...arg) {
+        this.sort((a, b) => a - b)
+        this.shift();
+        this.pop();
+        var res = eval(this.join('+')) / this.length;
         return res
     }
-    console.log( average(7, 5, 8, 9, 5, 6, 7, 2, 1, 4)) 
+    Array.prototype.average = average;
 
+  let arr = [7, 5, 8, 9, 5, 6, 7, 2, 1, 4]
+       arr.average()
 
-/* 
     var average = function () {
         //扩展运算符
         var ary = [...arguments];
@@ -35,10 +37,10 @@
         var res = eval(ary.join('+')) / ary.length;
         return res
     }
-    console.log( average(7, 5, 8, 9, 5, 6, 7, 2, 1, 4))  */
+    console.log(average(7, 5, 8, 9, 5, 6, 7, 2, 1, 4))
 
 
-    /* var average = function () {
+    var average = function () {
         //扩展运算符
         arguments.__proto__ = Array.prototype//修改原型指向   let ary = [].slice.call(arguments,0)
         arguments.sort((a, b) => a - b)
@@ -47,14 +49,14 @@
         var res = eval(ary.join('+')) / ary.length;
         return res
     }
-  console.log( average(7, 5, 8, 9, 5, 6, 7, 2, 1, 4))  */
+    console.log(average(7, 5, 8, 9, 5, 6, 7, 2, 1, 4)) * /
 
-    /* var ary = [7,5,8,9,5,6,7,2,1,4]
-    ary.sort((a,b)=>a-b)
+    var ary = [7, 5, 8, 9, 5, 6, 7, 2, 1, 4]
+    ary.sort((a, b) => a - b)
     ary.shift();
     ary.pop();
-    var res = eval(ary.join('+'))/ary.length;
-    console.log(res) */
+    var res = eval(ary.join('+')) / ary.length;
+    console.log(res)
 
 
     //类数组转数组方法：  [...arguments]  Array.from(arguments) [].slice.call(arguments)

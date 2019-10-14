@@ -49,7 +49,7 @@
         }
 
         .body.current {
-              display: block 
+            display: block
         }
     </style>
 </head>
@@ -86,9 +86,8 @@
             }
         }
     }
-    new Tab('#tab_box')   
+    new Tab('#tab_box')
     /* function Tab(id) { 
-        
         this.box = document.querySelector(id);
         this.tabs = this.box.getElementsByClassName('tab');
         this.bodys = this.box.getElementsByClassName('body');
@@ -97,7 +96,6 @@
         this.mapBind();
     }
     Tab.prototype.mapBind = function () {
-        // this.tabs
         for (let i = 0; i < this.tabs.length; i++) {
             this.tabs[i].onclick = () => {
                 // 为什么使用箭头函数？？？
@@ -126,29 +124,51 @@
     new Tab('#tab_box')
 
  */
-/* function Tab(id){
-     this.box = document.querySelector(id);
-    this.tabs = this.box.getElementsByClassName('tab');
-    this.bodys = this.box.getElementsByClassName('body');
-    this.mapBind();
-    }
-
-Tab.prototype.mapBind = function(){
-    for(let i = 0;i < this.tabs.length;i++){
-        this.tabs[i].onclick = () =>{
-            this.clearClass()
-            this.tabs[i].className = 'tab current'
-            this.bodys[i].className = 'body current'
+    /* function Tab(id){
+        this.box = document.querySelector(id);
+        this.tabs = this.box.getElementsByClassName('tab');
+        this.bodys = this.box.getElementsByClassName('body');
+        this.mapBind();
+        }
+    
+    Tab.prototype.mapBind = function(){
+        for(let i = 0;i < this.tabs.length;i++){
+            this.tabs[i].onclick = () =>{
+                this.clearClass()
+                this.tabs[i].className = 'tab current'
+                this.bodys[i].className = 'body current'
+            }
         }
     }
-}
-Tab.prototype.clearClass = function(){
-    for(let j = 0;j < this.tabs.length;j++){
-        this.tabs[j].className = 'tab';
-        this.bodys[j].className = 'body'
+    Tab.prototype.clearClass = function(){
+        for(let j = 0;j < this.tabs.length;j++){
+            this.tabs[j].className = 'tab';
+            this.bodys[j].className = 'body'
+        }
     }
-}
-new Tab('#tab_box') */
+    new Tab('#tab_box') */   
+    /* class Tab {
+        constructor(id) {
+            this.box = document.querySelector(id);
+            this.tabs = this.box.getElementsByClassName('tab');
+            this.bodys = this.box.getElementsByClassName('body');
+            this.mapBind();
+        }
+        mapBind() {
+            for (let i = 0; i < this.tabs.length; i++) {
+                this.tabs[i].onclick = () => {
+                    this.clearClass()
+                    this.tabs[i].className = 'tab current'
+                    this.bodys[i].className = 'body current'
+                }
+            }
+        }
+        clearClass() {
+            for (let j = 0; j < this.tabs.length; j++) {
+                this.tabs[j].className = 'tab';
+                this.bodys[j].className = 'body'
+            }
+        }
+    }
+    new Tab('#tab_box') */
 </script>
-
-

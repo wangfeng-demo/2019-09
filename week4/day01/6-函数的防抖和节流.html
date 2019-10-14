@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        html,
+        body {
+            height: 500%;
+            background: -webkit-linear-gradient(top left, lightblue, lightgreen, lightyellow, orange)
+        }
+    </style>
+</head>
+
+<body>
+<input type="text" name="" id="inp">
+</body>
+
+</html>
+<script>
+    /* 
+    *函数的防抖(debounce):不是某个事件触发就去执行函数，而是在指定时间间隔内执行一次，减少函数执行次数
+    *函数的节流(throttle):为了缩减执行的频率，但不像防抖，一定时间内只能执行一次，而是一定时间内能执行多次
+    *@param
+    *   func 执行的方法
+    *   wait等待的时间间隔
+    *   immediate 触发边界
+    * @return
+    *   可被调用的函数
+    */
+    //模拟underscroll 里面的debounce防抖
+    // function debounce(func, wait, immediate) {
+    //         let result = null
+    //             timeout = null;
+    //         return function (...args) {
+    //             let context = this,
+    //             now = immediate && !timeout;
+    //             clearTimeout(timeout)
+    //             timeout = setTimeout(() => {
+    //                 timeout = null;
+    //               if (!immediate)result = func.call(context,...args);   
+    //             }, wait);
+    //            if(now) result = func.call(context,...args);
+    //            return result
+    //         }
+    //     }
+    //     let count = 0;
+    //     function fn() {
+    //         console.log(++count);
+    //     }
+    //     let lazyFn = debounce(fn, 100, true);
+    //     window.onscroll = lazyFn;
+    //////////////////////////////////////////////////////////////////////////////////////////////////
+    // let timer = null;
+    // window.onscroll = function () {
+    //     clearTimeout(timer)
+    //     timer = setTimeout(() => {
+    //         console.log(666);·
+    //     }, 1000)
+    // }
+    //////////////////////////////////////////////////////////////////////////////////////////////////
+    //简易防抖
+    // function debounce(fn, wait, immediate) {
+    //     wait = wait || 1000;
+    //     var timer = null;
+    //     return function () {
+    //         clearTimeout(timer);
+    //         timer = setTimeout(() => {
+    //             fn.apply(this, arguments)
+    //         }, wait)
+    //     }
+    // }
+    // let fn = function () {
+    //     console.log(666)
+    // }
+    // let f = debounce(fn, 1000, true)
+    // window.onscroll = f;
+    ///////////////////////////////////////////////////////////////////////////////////////////////////防抖
+    var timer = null
+    inp.oninput = function () {
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+            let str = this.value;
+            if (!/^1[3-9]\d{9}$/.test(str)) {
+                alert('不合法')
+            }
+        }, 2000)
+    }
+
+    //节流
+    var flag = true;
+    window.onscroll = function () {
+        if (!flag) return;
+        flag = false;
+        setTimeout(() => {
+            console.log(666);
+            flag = true;
+        }, 1000)
+    }
+    //封装throtell
+    function throttle(fn, wait = 1000) {
+        var flag = true;
+        return function () {
+            if (!flag) return;
+            flag = false;
+            setTimeout(() => {
+                flag = true;
+                fn.call(this, ...arguments)
+            }, wait)
+        }
+    }
+    function f() {
+        console.log(this);
+    }
+    window.onscroll = throttle(f)
+</script>

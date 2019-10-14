@@ -14,20 +14,29 @@
 
 </html>
 <script>
-    //var btn = document.querySelectorAll('#btn')
-    //btn.onclick = function(){
-    //    console.log(this)//当前操作的元素
-    //}
-    /* btn.onclick = ()=>{
-        console.log(this)       //箭头函数的this 被箭头函数当做变量是处理的
-    } */
-    /* 
+ /* 
     普通函数的 this 指向规律
         1.事件绑定中的 this 是指向当前操作元素的
         2.自执行函数是中的this 是指向window
-        3.其他的函数执行中的this  看点 没点的都是window
-      */
-    /* var obj={
+        3.箭头函数this永远指向上级作用域
+        4.其他的函数执行中的this  看点 
+        5.构造函数执行 this  是当前类的实例
+        6.在小括号表达式当中  会影响this的指向
+        7.使用call apply bind 可以改变this指向
+      */    
+
+
+
+
+    var btn = document.querySelectorAll('#btn')
+    btn.onclick = function(){
+       console.log(this)//当前操作的元素
+    }
+    btn.onclick = ()=>{
+        console.log(this)       //箭头函数的this 被箭头函数当做变量是处理的
+    }
+   
+    var obj={
         fn:function(){
             console.log(this);
         },
@@ -74,7 +83,7 @@
     ary[2]();//ary
     obj2.w();//obj2
     obj = {num:20}
-     */
+    
 var num = 10;
 obj = {num:20};
 obj.fn = (function(num){

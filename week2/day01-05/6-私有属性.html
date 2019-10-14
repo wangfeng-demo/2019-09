@@ -32,17 +32,11 @@ console.log('name' in per1);
 
 
 //  封装一个hasOwnProperty
-
 Object.prototype.hasOwnProperty = function(key){
-//怎么获取per1？？？  this
-//属性  通过key 这个形参可以获取
-//判断key 是不是this的共有属性？？//1.得是this的属性2.不能是私有属性
 if((key in this) && !this.hasOwnProperty(key)){
      return  true 
 }
      return false
 } 
-console.log(per1.hasOwnProperty('eat'));//true
-
-// 看看看看
+(per1.hasOwnProperty('eat'));
 </script>

@@ -63,6 +63,9 @@
         renderHtml(dataAry);    
     }
 })()
+
+
+
 let dataAry ;
 // 1、通过ajax获取数据
 let xhr = new XMLHttpRequest();

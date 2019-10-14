@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script src="./jquery/jquery-1.11.3.min.js"></script>
+<script>
+    /* 
+       回调函数：把一个函数A 当做实参传给函数B  B方法执行的时候，把A执行了,我们把这种机制叫做"回调函数机制"
+       1.根据需求 '回调函数'可以被执行多次
+       2.不仅可以吧回调函数执行，还可以给回调函数传递实参，这样在回调函数中设置形参（或者使用arg）接受即可
+       3.还可以用call改变回调函数中得this 指向
+       4.可以在宿主函数（在哪执行的，宿主函数就是谁）中接受回调函数执行的结果
+    */
+    let fn = (callback) => {
+        //=>callback 传进来的函数
+        //callback && callback(100, 200);
+        //typrof callback === 'Function'? callback():null
+        let res = callback(10, 20);
+        console.log(res);
+    }
+    fn((n, m) => {
+        //console.log(n,m);
+        //回调函数的 this是 WINDOW 除非 宿主函数执行毁掉你函数的时候吧this指向改掉了
+        //  箭头函数除外：this是上下文中的
+        return n + m
+    });
+    /*---------------------------------------------------------------------------------------------*/
+    //=>和内置的FOR-EACH类似（但是FOR-EACH只能循环数组）用来遍历数组（类数组、对象）中的每一项
+    // $.each()
+    [11, 31, 51, 71, 91].forEach(function (item, index) {
+        console.log(item, index, this);
+        //默认this=>WINDOW
+        //this=>'哈哈'
+    }, '哈哈')//=>FOR-EACH第二个参数是用来改变回调函数中this的
+    /*---------------------------------------------------------------------------------------------*/
+    $.each([11, 31, 51, 71, 91], function (index, item) {
+        console.log(item, index, this);
+        //this=>只能是当前遍历的这一项（item）
+    });
+    /*---------------------------------------------------------------------------------------------*/
+    //自己封装一个each方法  可以循环 数组、类数组、对象
+    //obj=>我们需要迭代的 数组、类数组、对象    
+    //方法一
+    let each = function (obj, callback) {
+        //验证obj是数组 还是类数组  还是对象
+        let flag = 'length' in obj;//=>先简单验证，有length就是数组或者类数组
+        if (flag) {
+            //执行循环数组的方法
+            for (let i = 0; i < obj.length; i++) {
+                let item = obj[i];
+                let res = callback && callback.call(item, i, item)//=>接收回调函数的返回值，如果返回的是false我们结束循环即可
+                if (res === false) {
+                    break
+                }
+            }
+        } else {
+            //执行循环对象的方法
+            for (let key in obj) {
+                if (obj.hasOwnProperty(key)) {
+                    let value = obj[key]
+                    let res = callback && callback.call(value, key, value);
+                    if (res === false) {
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    each([12, 13, 14, 15], function (index, item) {
+        //this=>item
+        //retuen false==>如果回调函数返回值返回false，我们让其代表 结束当前迭代；
+        console.log(item);
+        if (index >= 1) {
+            return false;
+        }
+    });
+    each({ name: '王峰', age: 18, sex: '男' }, function (key, value) {
+        console.log(value);
+        if (key === 'age') {
+            return false
+        }
+    });
+    //方法二
+    String.prototype.myReplace = function myReplace() {
+
+    }
+    var str = 'my name is 0123, my age is 5156',
+        ary = ['王峰', '18'];
+    let index = 0;
+    str = str.replace(/(\d+)/g, function (...arg) {
+        return  ary[index++]
+    })
+    console.log(str);
+
+</script>

@@ -15,9 +15,10 @@
 </html>
 <script src="./js/3.js"></script>
 <script>
+    //execAll 实现getparam
     var str = 'http://www.baidu.com?a=12&b=23&c=34'
-    var reg = /([^?=&]+)=([^?=&]+)/
-    var ary = reg.execAll(str)
+    var reg = /([^?=&]+)=([^?=&]+)/g
+    var ary = reg.execAll(str)//["a=12", "a", "12"]
     console.log(ary);
     var obj = {};
     ary.forEach(item => {

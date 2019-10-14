@@ -34,7 +34,9 @@
 
 <body>
     <div id="box">
-        <img id="img" src="./1.gif" realSrc='https://img13.360buyimg.com/n1/jfs/t1/40331/20/14253/219020/5d54f956Ee7847924/2dbdccb19b3731cf.jpg' alt="">
+        <img id="img" src="./1.gif"
+            realSrc='https://img13.360buyimg.com/n1/jfs/t1/40331/20/14253/219020/5d54f956Ee7847924/2dbdccb19b3731cf.jpg'
+            alt="">
     </div>
 </body>
 
@@ -55,15 +57,17 @@
             let realSrc = ele.getAttribute('realSrc')
             let temp = new Image();
             temp.src = realSrc;
-            temp.onload = function () {
+            temp.onload = function (){
                 ele.src = realSrc;
                 temp = null;
                 fadeIn(ele);
             }
             ele.loaded = true;
         }
-    }     
+    }
     window.onscroll = function () {
         loadImg(img)
     }
+
+
 </script>

@@ -1,66 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+
 <body>
-    
+
 </body>
+
 </html>
 <script>
-// 如何 获取一个符串中出现次数最多的字符 以及次数
-//使用循for环
-// var str = 'adjneinvsyuebluiasbuvebviwubbsliuvwevmi4'
-// var obj = {};
-// for (var  i = 0; i < str.length; i++) {
-//    if(obj.hasOwnProperty(str[i])){
-//        obj[str[i]] += 1
-//    }else{
-//        obj[str[i]] = 1
-//    }  
-// }
-// var a = '';
-//     var max = 0;
-//     for (var key in obj) {
-//         if (obj[key]>max) {
-//            max=key;
-//            a=key;
-//         }
-//     }
-//     console.log(key,a);
+    // 如何 获取一个符串中出现次数最多的字符 以及次数
+    //使用循for环
+    // var str = 'adjneinvsyuebluiasbuvebviwubbsliuvwevmi4'
+    // var obj = {};
+    // for (var  i = 0; i < str.length; i++) {
+    //    if(obj.hasOwnProperty(str[i])){
+    //        obj[str[i]] += 1
+    //    }else{
+    //        obj[str[i]] = 1
+    //    }  
+    // }
+    // var a = '';
+    //     var max = 0;
+    //     for (var key in obj) {
+    //         if (obj[key]>max) {
+    //            max=obj[key];
+    //            a=key;
+    //         }
+    //     }
+    //     console.log(max,a);
 
-// var reg = /(\w)(\w)\1/;     \1   \2  代表小分组
-// console.log(reg.test('abb'));
+    // var reg = /(\w)(\w)\1/;     \1   \2  代表小分组
+    // console.log(reg.test('abb'));
 
-//1使用正则
+    //1使用正则
 
-var str = 'adjneinvsyuebluiasbuvebviwubbsliuvwevmi4'
-var obj = {};
-str = str.split('').sort((a,b)=>a.localeCompare(b)).join('')
-console.log(str);
-var reg = /(\w+)\1*/g;
-// 1-1使用match
+    var str = 'adjneinvsyuebluiasbuvebviwubbsliuvwevmi4'
+    var obj = {};
+    str = str.split('').sort().join('')
+    var reg = /(\w)\1+/g;
+    var letter = '',max = 0
+    str.replace(reg,($1,$2)=>{
+        if($1.length>max){
+            max = $1.length;
+            letter = $2
+        }
+         return {
+                max, letter
+            }
+    })
+    console.log(letter,max);
 
-/* var ary = str.match(reg) 
-console.log(ary);
-
-ary.sort((a,b)=>b.length-a.length)
-console.log(ary);
-
-console.log(ary[0],ary[0].length);
- */
-// 2-2使用replace
-var letter = '',max = 0
-str.replace(reg,(x,y)=>{
-    console.log(x,y);
-    if(x.length>max){
-        max = x.length;
-        letter = y
+    var str = 'adjneinvsyebluiasbuvebiwubbsliuvwevmi4'
+    let obj = {};
+    str = str.split('').sort().join('')
+    let ary = str.match(/(\w)\1+/g);
+    console.log(ary);// ["aa", "bbbbb", "eeee", "iiiii", "ll", "nn", "sss", "uuuu", "vvvv", "ww"]
+    ary.sort((a, b) => b.length - a.length)
+    console.log(ary);// ["bbbbb", "iiiii", "eeee", "uuuu", "vvvv", "sss", "aa", "ll", "nn", "ww"]
+    let max = ary[0].length,
+        res = [ary[0].substr(0, 1)]
+    for (let i = 1; i < ary.length; i++) {
+        let item = ary[i];
+        if (item.length < max) {
+            break;
+        }
+        res.push(item.substr(0, 1))
     }
-})
-console.log(letter,max);
-
+    console.log(res, max)
 </script>

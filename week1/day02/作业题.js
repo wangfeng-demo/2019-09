@@ -1,7 +1,7 @@
 //1、
 var str= "我是MT";
 function test() {
-    console.log(str);0
+    console.log(str);
     var str= "哈哈哈";
     console.log(str);
 }
@@ -21,7 +21,7 @@ console.log(a);//undefined undefined 12
 
 //3、
 function test(){
-    if("a" in window){
+    if(!"a" in window){
      var a = 10;
     }
     console.log(a);

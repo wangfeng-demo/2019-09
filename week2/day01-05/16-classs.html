@@ -11,6 +11,7 @@
 </body>
 </html>
 <script>
+    //  Es6中得类和继承
 function Person(age){
     this.age = age;
 }
@@ -19,12 +20,12 @@ Person.getName = function(){};
 
 
     //es6写法
-    //Class  声明的类  不能当做普通函数去执行  只能通过new执行
 class Animal{
-        consturctor(age){
-            //实例的私有属性
-            this.age=age
-        }
+        consturctor(age,name){
+            //实例的私有属性 
+            this.age = age;
+            this.name  = name;
+        }//=>给原型上设置方法  (只能设置方法不能设置属性)
         eat(){
             //实例的共有属性
             console.log('animal eat');
@@ -33,15 +34,36 @@ class Animal{
              //实例的共有属性
 
         }
+        //==>>把Animal 当做普通对象设置的私有方法（和实例没有关系）同样也只能设置方法不能写属性
         static getName(){
             //把类当做对象去增加属性
             console.log('class 静态方法');
             
         }
     }
-    
-    var ani =new  Animal(100);
-       console.dir(ani)
-    var ani = new Animal(1000)
+    //想让Animal3继承  上边Anima3 的属性  想继承谁就加  extends Animal
+    //并且在构造体里加super()
+    class Animal3 extends Animal{
+        consturctor(age,name){
+            super();// ==>类似call继承 
+            //实例的私有属性 
+            this.age = age;
+            this.name  = name;
+        }//=>给原型上设置方法  (只能设置方法不能设置属性)
+        eat(){
+            //实例的共有属性
+            console.log('animal eat');
+        }
+        play(){
+             //实例的共有属性
 
+        }
+        //==>>把Animal 当做普通对象设置的私有方法（和实例没有关系）同样也只能设置方法不能写属性
+        static getName(){
+            //把类当做对象去增加属性
+            console.log('class 静态方法');
+            
+        }
+    }
+//     注意====>>>Class  声明的类  不能当做普通函数去执行  只能通过new执行
 </script>

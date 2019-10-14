@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <p id="p1"></p>
+        <p id="p2"></p>
+        <p id="p3"></p>
+    </div>
+</body>
+
+</html>
+<script>
+    function insertAfter(newEle, originEle) {
+        //=>newEle:新插入的元素
+        //=>originEle:指定的老元素 
+        //思路 ：插入到原有元素的后边 也就是插入到原有元素弟弟的前边
+        let next = originEle.nextElementSibling;
+        par = originEle.parentNode;
+        if (next) {
+            //=>  有弟弟插到弟弟的前边
+            par.parentNode.insertBefore(newEle, next)
+        } else {
+            //=>没有弟弟 就添加到容器的末尾
+            par.appendChild(newEle)
+        }
+    }
+    insertAfter(link, p2);
+
+</script>

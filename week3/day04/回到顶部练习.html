@@ -49,11 +49,12 @@
     btn.onclick = function () {
         timer = setInterval(() => {
             if (document.documentElement.scrollTop <= 0) {
-                clearInterval(timer)
+                clearInterval(timer);
             }
             document.documentElement.scrollTop -= 20
-
         }, 20)
     }
-
+  window.onmousewheel = function(){
+    clearInterval(timer);
+  }
 </script>

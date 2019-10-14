@@ -1,0 +1,113 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.box {
+    width: 800px;
+
+    margin: 200px auto;
+    border: 1px solid #eee;
+    box-sizing: border-box;
+}
+
+.header {
+    height: 70px;
+    background: rgb(212, 239, 245);
+    line-height: 70px;
+    padding-left: 30px;
+    position: relative;
+}
+
+.header div {
+    display: inline-block;
+    font-size: 20px;
+    color: black;
+    width: 100px;
+}
+
+.header .cur,
+.header .cur1,
+.header .cur2,
+.header .cur3 {
+    position: absolute;
+    overflow: hidden;
+    border: 2px solid palevioletred;
+    width: 100px;
+    height: 40px;
+    text-align: center;
+    line-height: 50px;
+}
+
+.header .cur {
+    top: 14px;
+    left: 150px;
+}
+
+.header .cur1 {
+    top: 14px;
+    left: 300px;
+}
+
+.header .cur2 {
+    top: 14px;
+    left: 450px;
+}
+
+.header .cur3 {
+    top: 14px;
+    left: 600px;
+}
+
+.header .cur li,
+.header .cur1 li,
+.header .cur2 li,
+.header .cur3 li {
+    width: 100px;
+    display: none;
+}
+
+.header .cur li.current,
+.header .cur1 li.current,
+.header .cur2 li.current,
+.header .cur3 li.current {
+    display: block
+}
+
+.body {
+    overflow: hidden;
+    padding: 0 30px;
+}
+
+.body .first_list,
+.body .second_list,
+.body .third_list,
+.body .fourth_list {
+    height: 80px;
+    overflow: hidden;
+    line-height: 80px;
+    font-size: 20px;
+    border-bottom: 1px dashed #ccc;
+}
+
+.body .first_list .brand_list,
+.body .second_list .size_list,
+.body .third_list .system_list,
+.body .fourth_list .internet_list {
+    width: 50px;
+    height: 50px;
+    float: left;
+    color: #ccc;
+    margin-right: 20px;
+}
+
+.body .first_list li,
+.body .second_list li,
+.body .third_list li,
+.body .fourth_list li {
+    float: left;
+    text-align: center;
+    margin-right: 20px;
+    cursor: pointer;
+}

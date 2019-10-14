@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .www {
+            font-size: 50px;
+        }
+
+        #Box {
+            background: salmon
+        }
+    </style>
+</head>
+
+<body>
+    <div id="Box" class="qqq">问问非农</div>
+</body>
+
+</html>
+<script src="../jquery/jquery-1.11.3.min.js"></script>
+<script>
+    //id选择器  #ID
+    //class类名选择 .className
+    //标签名选择器 p ul li div
+    let idEg = $('#tabBox');
+    let classEg = $('.tabBox');
+    let tagNameEg = $('ul');
+
+    //1. 原生 JS 对象转 jQ 对象：把原生对象作为一个参数传递给 $()方法 => $(原生js元素对象)，
+    let tabBox = document.getElementById('Box');
+    console.log(Box);
+    console.log($('#Box'))
+    //2. jQ 对象转原生对象：jQ 对象的里面的索引对应的都是原生对象，可以使用[索引]或者 get(索引)获取。
+    console.log($('#Box')[0]);
+    console.log($('#Box').get(0));
+    $Box = $('.qqq')
+    $Box.addClass('www')
+
+    $('.qqq').on('click', function () {
+        // $('.qqq').toggleClass('www')
+        $(this).toggleClass('www')
+        $this = $(this)
+        $this.css({color:'red',heigth:'314px'})   
+    })
+</script>

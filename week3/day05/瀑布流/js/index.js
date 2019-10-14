@@ -33,7 +33,7 @@ function renderHTML(ary) {
                 <div class="img">
                     <img style="height:${height}px" src="./img/default.jpg" realSrc = "${pic}"alt="">
                 </div>
-                <p class="desc">${desc}</p>
+                   <p class="desc">${desc}</p>
                 <div class="author">${author}</div>
                `
         //  字符串拼接好之后 怎么想结构里添加
@@ -101,7 +101,7 @@ function loadAll() {
     [...imgs].forEach(item=>loadImg(item))
 }
 
-function fadeIn(ele) {
+/* function fadeIn(ele) {
     ele.style.opacity = 0;
     let a = 0;
     ele.timer = setInterval(() => {
@@ -112,7 +112,7 @@ function fadeIn(ele) {
         }
         ele.style.opacity = a;
     }, 20);
-}
+} */
 
 
 

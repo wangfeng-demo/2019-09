@@ -1,0 +1,143 @@
+*{margin:0;padding:0;list-style:none;}
+.box{
+    width: 1200px;
+    margin:auto;
+}
+.box header{
+    height: 50px;
+    border:1px solid #eee;
+    padding-left:20px
+}
+.box header div{
+    float: left;
+    height: 50px;
+    line-height:50px;
+    margin-right:10px;
+    color:#ccc
+}
+.box header div:hover{
+    cursor: pointer;
+}
+main{
+    overflow: hidden;
+    margin-top:20px;
+}
+main .good_box{
+    float: left;
+    width: 220px;
+    height:360px;
+    margin-right: 25px;
+    border:1px solid #ccc;
+    box-sizing: border-box;
+    position: relative;
+}
+main .good_box .pic_box{
+width: 180px;
+height: 180px;
+margin:20px auto;
+}
+main .good_box:nth-child(5n){
+    margin-right: 0
+}
+main .good_box .pic_box img{
+    width: 100%;
+    height: 100%;
+}
+main .good_box .desc{
+    font-size:15px;
+    color:#ccc;
+    text-align: center;  
+}
+main .good_box .price{
+    font-size:20px;
+    color:#ccc;
+    text-align: center;
+    color:red;
+    padding-top:10px;
+}
+main .good_box .tab_box{
+    display:flex;
+    height: 30px;
+    width: 100%;
+    position: absolute;
+    bottom:0;
+    float: left;
+}
+main .good_box .tab_box div{
+    flex: 1;
+    border-top:1px solid #ccc;
+    line-height: 30px;
+    text-align: center;
+}
+main .good_box .tab_box .left:nth-child(1){
+    border-right: 1px solid #ccc
+} */
+.box{
+    width: 1200px;
+    margin:20px auto;
+}
+.box header{
+    height: 50px;
+    border:1px solid #eee;
+    padding-left:20px;
+}
+.box header div{
+    float: left;
+    font-size: 16px;
+    line-height: 50px;
+    text-align: center;
+    margin-right:20px;
+    color:#ccc;
+}
+main{
+    margin-top:10px;
+}
+main .good_box{
+    width: 220px;
+    height: 360px;
+    margin-right: 25px;
+    border:1px solid #ccc;
+    position: relative;
+    float:left;
+    box-sizing:border-box;
+}
+main .good_box:nth-child(5n){
+    margin-right:0;
+}
+main .good_box .pic_box{
+    width: 180px;
+    height: 180px;
+   margin:20px auto
+}
+main .good_box .pic_box img{
+    width: 100%;
+    height: 100%;   
+}
+main .good_box .desc{
+    font-size: 16px;
+    color:#ccc;
+    text-align:center;
+}
+main .good_box .price{
+    color:red;
+    text-align:center;
+    margin-top:10px
+}
+main .tab_box{
+    display: flex;
+    height: 30px;
+    width: 100%;
+    position: absolute;
+    bottom:0
+}
+main .tab_box div{
+    flex:1;
+    border-top:1px solid #ccc;
+    text-align:center;
+    line-height: 30px;
+}
+main .tab_box div:nth-child(1){
+border-right:1px solid #ccc
+}
+
+

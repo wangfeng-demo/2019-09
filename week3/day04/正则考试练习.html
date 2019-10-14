@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- <input type="text" placeholder="手机号" id='inp'>
+        <input type="text" placeholder="QQ 或 163 邮箱" id='inp2'>
+        <button id='btn'>提交</button> -->
+    <input type="text" placeholder="身份证" id='inp'>
+    <button id='btn'>解析</button>
+    <h2 id='box'></h2>
+</body>
+
+</html>
+<script>
+    // 可以有 +- 号 ； 可以有小数 ， 整数部分多位数不能以 0 开头
+    // +- 是一个整体
+    // 小数部分是一个整体 ： \.\d+
+    // 整数部分 多位数时 首位不能是 0； [1-9]\d+|\d
+    var reg = /^[+-]?(([1-9]\d+)|\d)(\.\d+)?$/
+    // 手机号 1 开头 3456789 后边没要求
+    var reg = /^1[3456789]\d{9}$/
+    // 至少 5 位 不能以 0 开头； 至多 11 位 @qq.com @QQ.com @Qq.COM
+    var reg = /^[1-9]\d{4,10}@qq\.com$/i
+    // 密码 8-18； 既有大写 又有小写； 还得有数字
+    function judge(str) {
+        if (str.length > 18 || str.length < 8) return false;
+        if (!/[a-z]/.test(str)) return false;
+        if (!/[A-Z]/.test(str)) return false;
+        if (!/\d/.test(str)) return false;
+        return true;
+    }
+    /*
+    1. 汉字 /^[\u4E00-\u9FA5]&/ 2.长度 2-10 位； 3.可能有译名 ·汉字
+    */
+    var reg = /^[\u4E00-\u9FA5]{2,10}(·[\u4E00-\u9FA5]{2,10})?$/
+    // 身份证号码的验证；只验证 18 位；
+    // 14523419900204201X
+    var reg = /^[1-9]\d{5}\d{4}\d{2}\d{2}\d{2}\d(\d|X)$/
+    // 匹配一个 18 - 65 年龄段
+    // 18 19
+    // 20 - 59
+    // 60 - 65
+    // var reg = /^(1[89])([2-5]\d)(6[0-5])$/
+    // btn.onclick = function () {
+    //     var res = inp.value;
+    //     var res2 = inp2.value;
+    //     var reg = /^1[345678]\d{9}$/
+    //     var reg2 = /^([1-9]\d{4,10}@qq\.com|[a-zA-Z]\w{5,17}@163\.com$)$/
+    //     // alert(reg.test(res))
+    //     // alert(reg2.test(res2))
+    // }
+    btn.onclick = function () {
+        var str = inp.value;
+        var reg = /^\d{6}(\d{4})(\d{2})(\d{2})\d{2}(\d)(\d|X)$/;
+        var res = reg.exec(str);
+        console.log(res);
+        if (res) {
+            box.innerHTML = `这个人的出生年月是${str[1]}年${str[2]}月${str[3]}性别是${str[4] % 2 ? '男' : '女'}`
+        } else {
+            alert('身份证不合法')
+        }
+    }
+    ////////////////////////////////////////////////////////
+    // '[object Number]'捕获得到 number
+    Object.prototype.getType = function () {
+        let str = ({}).toString.call(this);
+        let reg = / (\w+)/;// ' Number' 'Number'
+        return reg.exec(str)[1].toLowerCase()
+    }
+    ''.getType();// string
+    [].getType();// array
+
+    ////////////////////////////////////////////////////////////
+    RegExp.prototype.execAll = function (str = '') {
+        var _this = this
+        if (!this.global) {
+            _this = eval(_this + 'g')
+        }
+
+        var res = _this.exec(str);
+        let ary = [];
+        while (res) {
+            ary.push(res);
+            res = _this.exec(str)
+        }
+        return ary
+    }
+    var str = '王峰2019纪莹2020yyy666'
+    var reg = /\d+/g;
+    var res = reg.execAll(str)
+    console.log(res);
+    //////////////////////////////////////////////////////////////////////////////
+    var str = 'http://www.zhufengpeixun.cn/?lx=1&from=wx&b=12&c=13#qqqq';
+    function getParam(url) {
+        var reg = /([^?=&]+)=([^?=&]+)/g
+        let obj = {};
+        reg.execAll(url).forEach(item => {
+            obj[item[1]] = item[2]
+        });
+        return obj;
+    }
+    getParam(str)
+
+    ////////////////////////////////////////////////////////////
+    String.prototype.getParam = function () {
+        var reg = /([^?=&]+)=([^?=&#]+)/g
+        let obj = {};
+        this.match(reg).forEach(item => {
+            var res = item.split('=');
+            obj[res[0]] = res[1]
+        })
+        var reg2 = /#.+/g;
+        var res2 = this.match(reg2);
+        obj.heash = res2[0]
+        return obj
+    }
+    var str = 'http://www.zhufengpeixun.cn/?lx=1&from=wx&b=12&c=13#qqqq';
+    str.getParam();
+    /////////////////////////////////////////////////////////////
+    String.prototype.getParam = function () {
+        var reg = /([^?=&]+)=([^?=&#]+)/g
+        let obj = {};
+        this.replace(reg, ($0, $1, $2) => {
+            return obj[$1] = $2
+        })
+        var value = this.match(/#.+/) ? this.match(/#.+/)[0] : null;
+        obj.hash = value;
+        return obj
+    }
+    var str = 'http://www.zhufengpeixun.cn/?lx=1&from=wx&b=12&c=13#qqqq';
+    str.getParam()
+
+    String.prototype.getCookie = function (key) {
+        var reg = /([^ ;=]+)=([^ ;=]+)/g;
+        var obj = {}
+        reg.execAll(this).forEach(item => {
+            obj[item[1]] = item[2]
+        })
+        return key ? obj[key] : obj
+    }
+    var cookie = "BAIDUID=5C1A3B3D0495139CF9AA1629520D87AE:FG=1; BIDUPSID=5C1A3B3D0495139CF9AA1629520D87AE; PSTM=1566525303; BD_UPN=12314753; COOKIE_SESSION=14_1_7_9_2_8_0_0_7_4_20_0_26_0_0_23_1567251360_1567404557_1567404534%7C9%230_1_1567404534%7C1; delPer=0; BD_HOME=0; H_PS_PSSID=29634_1462_21088_29522_29519_29721_29567_29221_29461_29640"
+    var res1 = cookie.getCookie();
+    var res2 = cookie.getCookie('BAIDUID')
+    console.log(res1, res2);
+    // 使用正则去除字符串的首尾空格
+    // 以 1 到 多个 空格开头或者结尾的 都替换成空；
+    var str = ' sdfgsg fsgfsd ';
+    var res = str.replace(/^ +| +$/g, '')
+    /* console.log(res);
+    console.log(str); */
+
+
+    // replace 实现大小写转换 (方法一)
+    var str = 'aqweAVsdDFEc';
+    var res = str.replace(/[a-zA-Z]/g, function ($1) {
+        if ($1.toLowerCase() == $1) {
+            return $1.toUpperCase();
+        }
+        return $1.toLowerCase();
+    })
+
+    // 获取字符串中出现次数最多的字符；
+    var str = 'sfgsdfgsertdgfsdfgsertwegdsfgertewgsdfgsdg';
+    function getMax() {
+        var obj = {}
+        for (let i = 0; i < str.length; i++) {
+            var item = str[i];
+            if (obj.hasOwnProperty(item)) {
+                obj[item] += 1
+            } else {
+                obj[item] = 1;
+            }
+
+        }
+        var num = 0, key = '';
+        for (let k in obj) {
+            if (obj[k] > num) {
+                num = obj[k];
+                key = k;
+            }
+        }
+        console.log(num, key);
+    }
+    getMax(str)
+
+var str = 'adjneinvsyebluiasbuvebiwubbsliuvwevmi4'
+function getMax(str){ 
+    var res = str.split('').sort().join('');
+    var reg = /(\w)\1*/g;
+    var num = 0, key = '';
+    var ary = res.replace(reg, function ($0, $1) {
+        console.log($0,$1);
+        if ($0.length > num){
+            num = $0.length;
+            key = $1;
+        }
+    })
+    return {num,key}
+}
+getMax(str)
+</script>

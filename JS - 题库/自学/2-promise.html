@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    /* 
+    Promise :它是   ES6中新增加的类（new Promise），目的是为了管理JS的异编程，所以我们把它称为Promise设计模式
+    */
+    // let p = new Promise();
+    // p.then();
+
+    // new Promise().then();//网站mdn经常学
+    //=>Promise 的三个状态：pending（准备：开始执行异步的任务）\fulfilled成功\rejected失败 
+    new Promise(() => {
+        //=>执行一个异步的任务（new Promise的时候，创建Promise的实例,
+        //立即会把函数体中的异步操作执行） 
+        //==>Promise 是同步的它可以管  理异步
+        setTimeout(() => {
+        }, 1000);
+        console.log(1);//第一步输出1
+    }).then();
+    console.log(2);//第二步输出2
+    ////////////////////////////////////////////////////////////////////////////
+    new Promise((resolve, reject) => {
+        //==>resolve 当异步操作执行成功，我们执行resolve方法
+        //=>reject  当异步操作执行失败，我们执行reject方法
+        setTimeout(() => {
+            resolve(100);
+        }, 1000);
+    }).then((res) => {
+        //==>  第一个参数传递的是resolve
+        console.log('ok', res);
+    }, () => {
+        //==> 第二个参数传递的是reject
+        console.log('no');
+    });
+    /////////////////////////////////////////////////////////////////////////////////
+    //promise 如何管理异步
+    let val;
+    let pro = new Promise((resolve, reject) => {
+        let xhr = new XMLHttpRequest();
+        xhr.open('get', './data.json', true);
+        xhr.onreadystatechange = (() => {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                val = JSON.parse(xhr.response);
+                resolve(val);
+            }
+            if (xhr.status !== 200) {
+                reject(val)
+            }
+        });
+        xhr.send();
+    });
+    pro.then((res) => {
+        console.log(res)
+    },
+        () => {
+            console.log(222)
+        })
+</script>

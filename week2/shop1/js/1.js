@@ -30,11 +30,9 @@ function renderHTML(ary) {
     mainBox.innerHTML = str;
 }
 renderHTML(dataAry);
-
 let timeBtn = document.querySelector('.timeBtn'),
     priceBtn = document.querySelector('.priceBtn'),
     commentBtn = document.querySelector('.commentBtn');
-
 let flag = 1;
 timeBtn.onclick = function () {
     flag *= -1;

@@ -37,19 +37,21 @@ Array.prototype.unique = function(){
 
 String.prototype.getParame = function (key) {
     var str = this.split('?')[1];
-    var ary = str.split('&');// ['id=3964660765015','a=12','b=23']
+    var ary = str.split('#')[0];
+    var res = ary.split('&');// ['id=3964660765015','a=12','b=23']
     var obj = {};
-    ary.forEach((item)=>{
+    res.forEach((item)=>{
         // item 是一些 'a=12'  'b=13' 之类的 字符串
-        var arr = item.split('=');// ['id','3964660765015']; ['a','12']
+        var arr = item.split('=');// ['id','3964660765015']; ['a','12']["#hello"]
         obj[arr[0]] = arr[1];
     })
+    obj.hash = str.split('#')[1]
     if(key){
         return obj[key]
     }
     return obj;
 }
-var str = 'https://www.souyidai.com/p2p?id=3964660765015&a=12&b=23'
+var str = 'https://www.souyidai.com/p2p?id=3964660765015&a=12&b=23&#hello'
 console.log(str.getParame('id'));//'3964660765015'
 console.log(str.getParame('a'));// '12'
 console.log(str.getParame('b')); // '23'

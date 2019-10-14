@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    //////////////////////////////////////////////////////////////////
+    var a = 'abc' + 123 + 456;
+    alert(a);
+
+    var b = '456' - '123';
+    alert(b);
+
+    var c = 1,
+        d = '1';
+    var f = c > d ? (c < d ? c : d) : (c == d ? c : d);
+    alert(f); // 'abc123456'
+    //////////////////////////////////////////////////////////////////
+    var str = 'abc123',
+        num = parseFloat(str);
+    if (num === NaN) {
+        alert(NaN);
+    } else if (num === 123) {
+        alert(123);
+    } else if (typeof num === 'number') {
+        alert('number');
+    } else {
+        alert('str');
+    } //'number'
+    /////////////////////////////////////////////////////////////////
+    let point = {
+        x: 10,
+        y: 20,
+        moveTo: function (x, y) {
+            let moveX = function (x) {
+                this.x = x;
+            }
+            let moveY = function (y) {
+                this.y = y;
+            }
+            moveX(x);
+            moveY(y);
+        }
+    };
+    point.moveTo(100, 200);
+    console.log(point.x, point.y);//10,20
+    /////////////////////////////////////////////////////////////////////
+    //请说出你对 “重排和重绘读写分离” 的理解！
+    
+</script>

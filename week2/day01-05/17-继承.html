@@ -1,63 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+
 <body>
-    
+
 </body>
+
 </html>
 <script>
-// 继承  就是 子类  继承 父类上的 属性
-function Fn() {
- Fn.prototype = new Array()// Fn 类  继承了Array的 公有方法   
-}
-var f = new Fn();
-console.log(f.pop);
+    // 原型继承      
+    function A() {
+        this.x = 100
+    }
+    A.prototype = {
+        constructor = A,
+        getX: function () {
+            console.log(this.x);
+        }
+    };
+    function B() {
+        this.y = 200;
+    }
+    B.prototype = new A()//  让B.prototype作为A的一个实例就可以继承A上的属性和方法
+    let f = new B();
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+    //  call 继承  把父类A 作为普通函数执行  让A 中得this变为B 的实例  相当于给B 的实例增加属性和方法
+    function A() {
+        //=>  this = f
+        this.x = 100
+    }
+    A.prototype = {
+        constructor = A,
+        getX: function () {
+            console.log(this.x);
+        }
+    };
+    function B() {
+        // this=> f实例
+        A.call(this);
+        this.y = 200;
+    }
+    let f = new B();
+/////////////////////////////////////////////////////////////////////////////////////////////////
+//=>寄生组合继承  A的私有变为B 的私有  A的共有变为B的共有       
+//他和原型继承的唯一区别：
+//=> B.prototype = new A()创建A的实例虽然指向了A 的原型但是实例不是空的存放了A 的私有属性   这些属性变为B        的共有属性   创建对象的方式 里面没有任何私有属性 并且指向A的原型                      
+function A() {
+        //=>  this = f
+        this.x = 100
+    }
+    A.prototype = {
+        constructor = A,
+        getX: function () {
+            console.log(this.x);
+        }
+    };
+    function B() {
+        // this=> f实例
+        A.call(this);
+        this.y = 200;
+    }
+    B.prototype = Object.create(A.prototype)
+    let f = new B();
+/////////////////////////////////////////////////////////////////////////////////////////////////
+    function Child(toy) {
+        Person.call(this, name.age)//  让Person函数执行，并且让Person执行时中得this 改成了当前Child的this  n那么                                     Person中得this.name  this.age 就变成了 child中的this.name  this.age
+        // this.name = name;
+        // tis.age = age;
+        this.toy = toy;
+    }
 
-//  call 继承
-function Person(name,age) {
-    this.name = name;
-    this.age = age;
-}
-Person.prototype.eat = function(){}
+    // Child.prototype = Person.prototype;//  小孩类的原型直接接改成了人类的原型  人类的共有属性  小孩也就有了
+    // Child.prototype = new Person();  //该类的原型直接改成了  人类的一个实例
+    Child.prototype = Object.create(Person.prototype)     // 重点记住===>>>寄生组合式
+    //Child.prototype = Object.create(Person.prototype)  返回值是一个空对象  但是这个空对象的__proto__指向Person的原型的
+    Child.prototype.sleep = function () { }
+    var xm = new Child('小明', 20, '挖掘机');
+    console.log(xm);
 
-function Child(toy) {
-    Person.call(this,name.age)//  让Person函数执行，并且让Person执行时中得this 改成了当前Child的this  n那么                                     Person中得this.name  this.age 就变成了 child中的this.name  this.age
-    // this.name = name;
-    // tis.age = age;
-    this.toy = toy;
-}
-
-// Child.prototype = Person.prototype;//  小孩类的原型直接接改成了人类的原型  人类的共有属性  小孩也就有了
-// Child.prototype = new Person();  //该类的原型直接改成了  人类的一个实例
-Child.prototype = Object.create(Person.prototype)     // 重点记住===>>>寄生组合式
-//Child.prototype = Object.create(Person.prototype)  返回值是一个空对象  但是这个空对象的__proto__指向Person的原型的
-Child.prototype.sleep = function(){}
-var xm = new Child('小明', 20,'挖掘机');
-console.log(xm);
-
-//  重点 ===>>> 记住这种方式
-class Parent{
-        constructor(name){
+    //  重点 ===>>> 记住这种方式
+    class Parent {
+        constructor(name) {
             this.name
         }
-        eat(){}
-        play(){}
-        static getName(){}
+        eat() { }
+        play() { }
+        static getName() {} 
     }
-    class Children extends Parent{
-        constructor(toy){
+    class Children extends Parent {
+        constructor(toy) {
             super();//这个super就是Parent的constructor，相当于我们的call继承
-            this.toy=toy
+            this.toy = toy
         }
-        study(){}
+        study() { }
     }
     //class 继承可以把私有的 共有的  静态  属性 全部继承过来 
-    var c1=new Children('wajuejijishu');
+    var c1 = new Children('wajuejijishu');
     console.log(c1);
 
 </script>

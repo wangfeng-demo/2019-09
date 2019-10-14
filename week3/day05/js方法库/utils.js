@@ -1,6 +1,6 @@
 //=>公共方法库:项目中常用的一些方法,我们都封装到这里
 let utils = (function () {
-    //==>
+    //==>透明度
   let fadeIn = function (ele) {
         ele.style.opacity = 0;
         let a = 0;
@@ -28,7 +28,6 @@ let utils = (function () {
         reg.test(val) ? val = parseFloat(val) : null;
         return val;
     };
-
     //=>设置元素样式
     let setCss = function (curEle, attr, value) {
         if (attr === 'opacity') {

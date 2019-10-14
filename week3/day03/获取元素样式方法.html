@@ -6,14 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+    img{width: 400px;}
+    </style>
 </head>
 
-<body>
-
+<body>  
+    <img src="../day05/瀑布流/img/1.jpg" style="width:480px!important;">
 </body>
-
 </html>
 <script>
+   console.log(window.getComputedStyle(img,'width'));
+     
     // getCss 获取当前元素某个样式的属性值
     // curEle[object]当前要操作的元素
     // attr 当前要获取的样式属性名
@@ -28,7 +32,7 @@
         }
         throw new Error('不兼容')
     };
-    console.log(getCss(div,'paddingLeft'));
+   /*  console.log(getCss(div,'paddingLeft')); */
     
 
     //  设定当前元素的某一个具体样式的属性值

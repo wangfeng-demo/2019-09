@@ -15,7 +15,7 @@
 </html>
 <script>
     // 匹配 就是查看字符中 是否满足  正则的规则
-    /* 基于exec可以实现正则的捕获    加上全局修饰符  会修改lastindex的属性4
+    /* 基于exec可以实现正则的捕获    加上全局修饰符  会修改lastindex的属性
       1.如果正则和当前字符串不匹配，捕获的结果是null
       2.如果匹配  捕获的结果是一个数组：
                 0：大正则捕获的内容
@@ -30,45 +30,43 @@
     //正则的lastIndex属性是定义了 下一次捕获开始的位置
     var reg = /\d+/g;
     var res = reg.exec('珠峰2019哈哈2020')
-    console.log(res);
+    console.log(res, '===');
     var res2 = reg.exec('珠峰2019哈哈2020')
-    console.log(res2);
+    console.log(res2, '==');
     var res3 = reg.exec('珠峰2019哈哈2020')
     console.log(res3);
     var res4 = reg.exec('珠峰2019哈哈2020')
     console.log(res4);
+    ///////////////////////////////////////////////////////////////////////////////////
 
+    var str = '你好2019www哈哈2018hello珠峰2020哈哈2021londne'; //就捕获哈哈后面的数字
+    var reg0 = /哈哈(\d+)([a-z]+)/g;
 
-    var str = '你好2019www哈哈2018hello珠峰2020qqq哈哈2021world'// 只捕获哈哈后边的数字
-    var reg2 = /哈哈(\d+)([a-z]+)/g;
-    // exec 的返回值  第一项是大正则捕获的内容  从第二项开始 都是小分组的内容
-    /* var res = reg2.exec(str)
-    console.log(res); */
-
-    //////////////////////////////////////////////////////////////////////////////////////////
-    // 自己封装一个  execAll 的方法 可以实现一次性把所有的得符合条件的内容捕获到
-
+    /*封装一个execAll的方法 可以一次性把所有符合条件的内容捕获到*/
     RegExp.prototype.execAll = function (str = '') {
-        //首先查看对应的正则有没有修饰符  g
-        if (!this.global) {
-            // 代表正则没有修饰符
-            throw new Error('您的正则没有修饰符g 不能使用该方法')
-            return;
+        // 首先查看对应的正则有没有修饰符g 
+        // if (!this.global) {
+        //     // 代表正则没有修饰符
+        //     throw new Error('您的正则没有修饰符g 不能使用该方法')
+        //     return;
+        // }
+        var _this = this;
+        if (!_this.global) {
+            // 代表正则没有修饰符g
+            _this = eval(reg + 'g')
         }
-        //怎么保证str是字符串？
-        str = str.toString();
-        //this --->reg2   
-        var res = this.exec(str);
+        var res = _this.exec(str);
         var ary = [];
         while (res) {
-            ary.push(res)
-            res = this.exec(str);
+            // 每次循环的时候都要让res更新
+            ary.push(res);
+            res = _this.exec(str);
         }
-        return ary;
+        return ary
     }
-    console.log(reg2.execAll(str));
+    console.log(reg0.execAll(str));
+
     //封装一个getCookie的方法 使用execAll  放在字符串的原型上
-   
     String.prototype.getCookie = function (key) {
         var reg = /([^; =]+)=([^; =]+)/g
         var ary = reg.execAll(this)
@@ -77,11 +75,18 @@
             //循环这个数组  把数组中得每一项的第二项当做属性名 第三项当属性值
             obj[item[1]] = item[2]
         });
-        return key? obj[key]:obj;
+        return key ? obj[key] : obj;
     }
     var cookie = "BAIDUID=5C1A3B3D0495139CF9AA1629520D87AE:FG=1; BIDUPSID=5C1A3B3D0495139CF9AA1629520D87AE; PSTM=1566525303; BD_UPN=12314753; COOKIE_SESSION=14_1_7_9_2_8_0_0_7_4_20_0_26_0_0_23_1567251360_1567404557_1567404534%7C9%230_1_1567404534%7C1; delPer=0; BD_HOME=0; H_PS_PSSID=29634_1462_21088_29522_29519_29721_29567_29221_29461_29640"
-  var res1 = cookie.getCookie();
-   var res2 = cookie.getCookie('BAIDUID')     
-   console.log(res1,res2);
-   
+    var res1 = cookie.getCookie();
+    var res2 = cookie.getCookie('BAIDUID')
+    console.log(res1, res2);
+
+    Object.prototype.myType = function () {
+        let res = ({}).toString.call(this)
+        var reg = / (\w+)/
+        let ary = reg.exec(res)[1].toLowerCase();
+        return ary
+    }
+    console.log(''.myType());
 </script>
