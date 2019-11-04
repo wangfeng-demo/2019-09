@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    /* 
+    Promise :它是   ES6中新增加的类（new Promise），目的是为了管理JS的异编程，所以我们把它称为Promise设计模式
+    */
+    // let p = new Promise(execuctor函数);
+    // p.then();
+
+    // new Promise().then();//网站mdn
+    //=>Promise 的三个状态：pending（准备：开始执行异步的任务）\fulfilled成功\rejected失败 
+    new Promise(() => {
+        //=>执行一个异步的任务（new Promise的时候，创建Promise的实例,
+        //立即会把函数体中的异步操作执行） 
+        //==>Promise 是同步的它可以管  理异步
+        setTimeout(() => {}, 1000);
+        console.log(1); //第一步输出1
+    }).then();
+    console.log(2); //第二步输出2
+    ////////////////////////////////////////////////////////////////////////////
+    new Promise((resolve, reject) => {
+        //==>resolve 当异步操作执行成功，我们执行resolve方法
+        //=>reject  当异步操作执行失败，我们执行reject方法
+        setTimeout(() => {
+            resolve(100);
+        }, 1000);
+    }).then((res) => {
+        //==>  第一个参数传递的是resolve
+        console.log('ok', res);
+    }, () => {
+        //==> 第二个参数传递的是reject
+        console.log('no');
+    });
+    ///////////////////////////////////////////////////////////////////////////////////
+    let p = new Promise(function (resolve, reject) {
+        // resolve  执行成功对应的回调函数
+        // reject   执行失败对应的回调函数
+        // 具体是执行成功还是失败 是由 书写executor函数的这个人决定的
+        setTimeout(() => {
+            resolve(123);
+            // reject(123)
+        }, 3000);
+        // resolve(qqq)
+    });
+    // console.log(p)
+    // then 接收两个函数作为参数 第一个函数对应 resolve  第二个函数对应 reject
+    p.then(function (data) {
+        console.log('success')
+        console.log(data);
+    }, function (err) {
+        console.log('error')
+        console.log(err)
+        console.log(aaa)
+    }).then(function (data2) {
+        console.log('data2', data2)
+    }, function (err2) {
+        console.log(rr2)
+    });
+
+    /////////////////////////////////////////////////////////////////////////////////
+    //promise 如何管理异步
+    let val;
+    let pro = new Promise((resolve, reject) => {
+        let xhr = new XMLHttpRequest();
+        xhr.open('get', './data.json', true);
+        xhr.onreadystatechange = (() => {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                val = JSON.parse(xhr.response);
+                resolve(val);
+            }
+            if (xhr.status !== 200) {
+                reject(val)
+            }
+        });
+        xhr.send();
+    });
+    pro.then((res) => {
+            console.log(res)
+        },
+        () => {
+            console.log(222)
+        })
+    ///////////////////////////////////////////////////////////////////////////////
+    let p = new Promise((resolve, reject) => {
+        $.ajax({
+            url: './data.json',
+            success: resolve,
+            error: rej
+        });
+    });
+    p.then(function (data) {
+        console.log(data);
+        return 666;
+    }).then(function (data2) {
+        console.log(data2);
+    }).catch(function (err) {
+        console.log(err);
+    })
+    //////////////////////////////////////////
+    new Promise((res, rej) => {
+        res(123)
+    }).then((data) => {
+        console.log(data);
+    }).catch((err) => {
+        console.log(err);
+        return 111;
+    }).finally(() => {
+        //不管是成功还是失败都要执行的代码  我们要放到这个函数中
+    })
+    /////////////////////////////////////////////////////////////////////
+    // Promise.all 所有的条件都成功 才会走成功的回调函数 否则失败的回调函数
+    //executor 函数是同步执行函数  .then catch 函数都是异步执行函数。
+    var p1 = new Promise(function (res, rej) {
+        setTimeout(() => {
+            res(111)
+        }, 2000)
+    })
+    var p2 = new Promise(function (res, rej) {
+        setTimeout(() => {
+            res(222)
+        }, 3000)
+    })
+    var p3 = new Promise(function (res, rej) {
+        setTimeout(() => {
+            res(333)
+        }, 4000)
+    })
+    Promise.all([p1, p2, p3]).then((data) => {
+        console.log('data', data);
+    }, (err) => {
+        console.log('err', err);
+    })
+
+    Promise.race([p1, p2, p3]).then((data) => { //p1, p2, p3谁先执行完就走谁 不管成功失败
+        console.log('success', data);
+    }, (err) => {
+        console.log('fail', err);
+    })
+    Promise.resolve(888).then((data) => {
+        console.log(data);
+    })
+    Promise.reject(666).then((data) => {//手动创造一个成功太
+        console.log(data);
+    }).catch((error) => {
+        console.log(555);//手动创造失败类 必须有第二个函数接受错误信息
+
+    })
+</script>

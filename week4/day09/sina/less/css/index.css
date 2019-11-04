@@ -1,0 +1,131 @@
+* {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  text-decoration: none;
+}
+.lt {
+  float: left;
+}
+.rt {
+  float: right;
+}
+header {
+  background: pink;
+  padding: 3vw;
+}
+header .logo_box {
+  height: 10vw;
+  overflow: hidden;
+  color: #fff;
+  position: relative;
+}
+header .logo_box .logo {
+  height: 10vw;
+  font-size: 80px;
+  line-height: 10vw;
+  display: inline-block;
+}
+header .logo_box .tab {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid #eee;
+  height: 6vw;
+  line-height: 6vw;
+  border-radius: 6px;
+  padding: 0 4vw;
+  font-size: 13px;
+}
+header .logo_box .tab .lit {
+  color: #333;
+  font-size: 12px;
+}
+header .logo_box .tool_box {
+  font-size: 5vw;
+  margin: 2vw 4vw 0 0;
+}
+header .logo_box .tool_box .icon_user {
+  margin: 2vw;
+}
+header nav {
+  overflow: hidden;
+}
+header nav ul li {
+  float: left;
+  display: block;
+  width: 10vw;
+  text-align: center;
+  margin: 1vw 4vw 2vw 0;
+}
+header nav ul li a {
+  color: #fff;
+}
+header nav ul li:nth-child(7n) {
+  margin-right: 0;
+}
+.banner {
+  padding: 3vw;
+  height: 60vw;
+}
+.banner .swiper-slide {
+  height: 60vw;
+  overflow: hidden;
+  color: #fff;
+}
+.banner .swiper-slide img {
+  width: 100%;
+  height: 100%;
+}
+.banner .swiper-slide p {
+  color: #fff;
+  position: relative;
+  transform: translateY(-100%);
+  background: rgba(0, 0, 0, 0.4);
+  padding: 0 4vw;
+  height: 10vw;
+  line-height: 10vw;
+  bottom: 1.5vw;
+}
+.banner .swiper-pagination {
+  text-align: right;
+  color: #fff;
+  font-size: 16px;
+  padding-right: 5vw;
+  box-sizing: border-box;
+}
+.banner .swiper-pagination span:nth-child(1) {
+  font-size: 18px;
+}
+.list_box {
+  overflow: hidden;
+}
+.list_box .list {
+  display: flex;
+  width: 88vw;
+  margin: auto;
+  border-bottom: 1px solid #eee;
+  position: relative;
+  font-size: 16px;
+  padding: 3vw;
+  min-height: 20vw;
+}
+.list_box .list .textbox {
+  flex: 1;
+}
+.list_box .list .textbox .commentBox {
+  position: absolute;
+  bottom: 3vw;
+  left: 2vw;
+  font-size: 13px;
+}
+.list_box .list .imgbox {
+  width: 30vw;
+  height: 20vw;
+}
+.list_box .list .imgbox img {
+  width: 100%;
+  height: 100%;
+}

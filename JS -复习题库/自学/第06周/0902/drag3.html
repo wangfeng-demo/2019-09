@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>珠峰培训</title>
+	<link rel="stylesheet" href="css/reset.min.css">
+	<style>
+		html,
+		body {
+			height: 100%;
+			overflow: hidden;
+		}
+
+		#box {
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: 10;
+			width: 100px;
+			height: 100px;
+			background: red;
+			cursor: move;
+		}
+
+		#container {
+			position: relative;
+			box-sizing: border-box;
+			margin: 30px auto;
+			width: 300px;
+			height: 200px;
+			border: 2px solid lightseagreen;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="box" draggable="true"></div>
+	<div id="container"></div>
+	<!-- 
+		HTML5中DRAG事件：可以把一个元素从当前位置拖拽到指定的容器中
+			dragstart
+			drag
+			dragend
+			dragover 拖动元素到指定的目标区域上
+			drop 可以把拖动元素放到目标区域中了
+
+		1.给要拖拽的元素设置可被拖拽属性
+		  draggable="true"
+		2.在拖拽开始的时候，记录一些信息
+	 -->
+	<script>
+		box.ondragstart = function (ev) {
+			//=>DragEvent:拖拽事件对象
+			// dataTransfer（DataTransfer）：setData/getData/clearData 设置的内容最后都会变为字符串  setData(类型标识,对应的值)
+			ev.dataTransfer.setData('@A', ev.target.id);
+		}
+
+		container.ondragover = function (ev) {
+			ev.preventDefault();
+		}
+		container.ondrop = function (ev) {
+			ev.preventDefault();
+			let _ID = ev.dataTransfer.getData('@A'),
+				_ELE = document.getElementById(_ID);
+			container.appendChild(_ELE);
+		}
+	</script>
+</body>
+
+</html>

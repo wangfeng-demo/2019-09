@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #btn {
+            width: 200px;
+            height: 200px;
+            background: red;
+            margin: 50px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="" name="" id="inp">
+    <input type="" name="" id="inp1">
+    <div class="" id="btn"></div>
+</body>
+
+</html>
+<script>
+    // 1.1 鼠标事件：鼠标动作时触发的事件
+    // 元素.onclick = function() {} 单击事件
+    // 元素.ondbclick = function () {} 双击事件
+    // 元素.onmouseenter = function () {} 鼠标移入
+    // 元素.onmouseleave = function () {} 鼠标移出
+    // 元素.onmouseover = function () {} 鼠标滑过
+    // 元素.onmouseout = function () {} 鼠标划出
+    // 元素.onmousemove = function () {} 鼠标移动
+    // 元素.onmousedown = function () {} 鼠标按下
+    // 元素.onmmouseup = function () {} 鼠标抬起
+    // 元素.onmousewheel = function () {} 鼠标滚轮滚动
+    btn.ondblclick = function () {
+        console.log('双击');
+    }
+    btn.onmousemove = function () {
+        console.log('移动');
+    }
+    btn.onmouseover = function () {
+        console.log('划过')
+    };
+    btn.onmouseout = function () {
+        console.log('划出')
+    };
+    btn.onmousedown = function () {
+        console.log('按下')
+    };
+    btn.onmouseup = function () {
+        console.log('抬起')
+    };
+    btn.onmousewheel = function () {
+        console.log('滚轮');
+    };
+    btn.oncontextmenu = function (e) {
+        console.log('右键');
+        e.preventDefault();
+    }
+    //1.2  键盘事件：一般input  textarea contenteditable  document.body  document windowdocument.documentElement监听键盘事件
+    //元素.onkeydown = function() {} 键盘按下 
+    //元素.onkeyup = function () {} 键盘抬起
+    inp.onkeydown = function () {
+        console.log('123')
+    };
+    inp.onkeyup = function () {
+        console.log('keyup')
+    };
+    //1.3 表单元素事件
+    // onfocus 获取焦点（光标）事件
+    // xxx.focus()使该元素失焦;
+    // onblur 失去焦点时触发   
+    // onchange 事件，表单的值（value）发生改变并且失焦 时触发
+    // oninput input、textarea等元素的输入事件
+    inp1.onfocus = function () {
+        console.log('获取焦点')
+    };
+
+    inp1.onblur = function () {
+        console.log('失去焦点')
+    };
+
+    inp1.oninput = function () {
+        console.log(this.value);
+    };
+    inp1.onchange = function () {
+        console.log('change');
+    }
+    ///1.4 系统事件：
+    // window.onload 页面中所有的资源全部加载完触发
+    // window.onresize 当前窗口尺寸发生改变时触发
+    // window.onsroll 滚动条滚动时触发
+    window.onresize = function () {
+        console.log('变了、变了');
+    };
+            
+    $(window).ready(function () {
+        //DOM结构加载完成之后触发
+        console.log('ready');
+    })
+</script>

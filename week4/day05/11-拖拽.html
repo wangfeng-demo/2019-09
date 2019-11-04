@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        #box {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            cursor: move;
+            position: absolute;
+            background:rgb(248, 47, 255);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box"></div>
+</body>
+
+</html>
+<script>
+    var box = document.getElementById('box')
+    //  鼠标按下  决定了盒子可以跟随鼠标移动   鼠标抬起 盒子就跟随;
+    function move(e) {
+        this.style.left = e.pageX - this.startX + 'px';
+        this.style.top = e.pageY - this.startY + 'px';
+    }
+    box.addEventListener('mousedown', function (e) {
+        //记录按下时 记录  鼠标在盒子的初始位置  记录到盒子自己的属性上;
+        let o = offset(this);
+        this.startX = e.pageX - o.l;
+        this.startY = e.pageY - o.t;
+        // this.addEventListener('mousemove', move, false)
+        //鼠标丢失的问题 可以通过 document绑定事件来解决；
+        this.fn = move.bind(this)
+        document.addEventListener('mousemove',this.fn,false)// move.bind(this)this是box;
+    }, false)
+
+    box.addEventListener('mouseup', function (e) {
+        // box.removeEventListener('mousemove', move, false)
+        document.removeEventListener('mousemove', this.fn, false)
+    }, false)
+
+
+    function offset(ele) {
+        let l = ele.offsetLeft,
+            t = ele.offsetTop,
+            temp = ele.offsetParent;
+        while (temp) {
+            l += temp.offsetLeft + temp.clientLeft;
+            t += temp.offsetTop + temp.clientTop;
+            temp = temp.offsetParent;
+        }
+        return {
+            l,
+            t
+        }
+    }
+</script>

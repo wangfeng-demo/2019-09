@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>珠峰培训-模态框</title>
+	<!-- IMPORT CSS -->
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<style>
+		.modal-backdrop {
+			display: none;
+			background: rgba(0, 0, 0, .5);
+		}
+
+		.modal {
+			width: 500px;
+			height: 264px;
+			transition: opacity .3s linear !important;
+		}
+
+		.modal .modal-dialog {
+			margin: 0;
+		}
+
+		.modal .modal-header {
+			cursor: move;
+		}
+	</style>
+</head>
+
+<body>
+	<!-- Button-->
+	<button type="button" class="btn btn-primary" id="loginBtn">
+		百度登录
+	</button>
+
+	<!-- Modal -->
+	<div class="modal" id="loginModal" style="opacity:0">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">百度登录</h5>
+					<button type="button" class="close" id="loginCloseBtn">
+						<span>&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					夫君子之行，静以修身，俭以养德。非淡泊无以明志，非宁静无以致远。夫学须静也，才须学也，非学无以广才，非志无以成学。淫慢则不能励精，险躁则不能治性。年与时驰，意与日去，遂成枯落，多不接世，悲守穷庐，将复何及！
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary">提交</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal-backdrop" id="loginModalBack"></div>
+
+	<!-- IMPORT JS -->
+	<script src="js/jquery.min.js"></script>
+	<script src="js/drag-plugin.js"></script>
+	<script src="js/dialog.js"></script>
+</body>
+
+</html>

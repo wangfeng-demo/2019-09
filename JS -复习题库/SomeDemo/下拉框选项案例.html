@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="inp">
+    <ul id="list" style="display: none">
+        <li>111</li>
+        <li>222</li>
+        <li>333</li>
+        <li>444</li>
+    </ul>
+</body>
+
+</html>
+<script>
+    //方法一
+    inp.onfocus = function (e) {
+        e.preventDefault();
+        list.style.display = 'block';
+    }
+    inp.onblur = function () {
+        setTimeout(() => {
+            list.style.display = 'none';
+        }, 100)
+
+    }
+    list.onclick = function (e) {
+        if (e.target.nodeName.toLowerCase() == 'li') {
+            inp.value = e.target.innerText;
+
+        }
+    }
+
+    //方法二
+
+
+    inp.onfocus=function(e){
+    e.preventDefault();
+    list.style.display='block';
+}
+inp.onclick=function(e){
+    e.stopPropagation();
+}
+list.onclick=function(e){
+    if (e.target.nodeName.toLowerCase()=='li') {
+        inp.value=e.target.innerText;
+        list.style.display='none';
+    }
+}
+document.addEventListener('click',function (e) {
+    e.stopPropagation();
+    list.style.display='none';
+},false)
+
+</script>

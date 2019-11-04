@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>REM</title>
+	<link rel="stylesheet" href="css/reset.min.css">
+	<style>
+		html {
+			/*320设备： 1rem = 20px */
+			font-size: 20px;
+		}
+
+		.box {
+			margin: 1rem;
+			width: 5rem;
+			height: 5rem;
+			line-height: 5rem;
+			text-align: center;
+			font-size: 1rem;
+			background: lightblue;
+		}
+
+		.box:nth-child(2) {
+			width: 7.5rem;
+			height: 7.5rem;
+			line-height: 7.5rem;
+		}
+
+		.box:nth-child(3) {
+			width: 10rem;
+			height: 10rem;
+			line-height: 10rem;
+		}
+
+		/* @media screen and (width:375px) {
+			.box:nth-child(1) {
+				width: 117px;
+				height: 117px;
+				line-height: 117px;
+			}
+
+			.box:nth-child(2) {
+				width: 176px;
+				height: 176px;
+				line-height: 176px;
+			}
+
+			.box:nth-child(3) {
+				width: 234px;
+				height: 234px;
+				line-height: 234px;
+			}
+		} */
+	</style>
+	<script>
+		function computedREM() {
+			let HTML = document.documentElement,
+				winW = HTML.clientWidth;
+			HTML.style.fontSize = winW / 320 * 20 + 'px';
+		}
+		computedREM();
+		window.addEventListener('resize', computedREM);
+		/* 
+		 * REM响应式布局开发
+		 *   第一步：拿到设计稿后（现在设计稿一般是750PX的），我们设定一个初始的REM和PX的换算比例（一般设置为1REM=100PX，为了方便后期换算）
+		 *   第二步：测量出设计稿中元素的尺寸（PS测出来的是PX单位），在编写样式的时候全部转换为REM的单位（除以100即可） =>100%还原设计稿
+		 *   第三步：编写一段JS，获取当前设备的宽度，让其除以设计稿的宽度750，再乘以初始的换算比例100，计算出当前设备下，1REM应该等于多少像素（只要改变HTML的FONT-SIZE就可以）；这样HTML字体大小一改，之前所有以REM为单位的元素都会跟着自动缩放......
+		 * 
+		 * 现在真实项目中，主体响应式布局以REM为主，部分效果实现可以基于FLEX来做，需要样式微调增还是要基于@media来完成的...
+		 */
+
+		 /*
+		  * DPR适配：屏幕像素密度比 
+		  */
+	</script>
+</head>
+
+<body>
+	<div class="box">1</div>
+	<div class="box">2</div>
+	<div class="box">3</div>
+
+
+
+	<!-- 
+		CSS常用的单位：
+			px 像素（固定单位）
+			em 相对单位，相对于父元素的字体大小设定的单位
+			rem （root em）相对于当前页面根元素（HTML）的字体大小设定的
+			%
+			deg
+			s / ms
+			......
+	 -->
+</body>
+
+</html>

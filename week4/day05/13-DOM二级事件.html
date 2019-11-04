@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        div {
+            box-sizing: border-box;
+        }
+
+        #outer {
+            width: 500px;
+            height: 500px;
+            background: plum;
+            margin: 50px auto;
+            padding: 50px
+        }
+
+        #center {
+            width: 400px;
+            height: 400px;
+            background: palegreen;
+            padding: 50px
+        }
+
+        #inner {
+            width: 300px;
+            height: 300px;
+            background: pink;
+            text-align: center;
+            line-height: 300px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="outer">
+        <div id="center">
+            <div id="inner">
+                王峰帅
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script src="./渐隐渐现轮播图/jquery/jquery-1.11.3.min.js"></script>
+<script>
+    //DOM0级事件和DOM2级事件绑定区别：
+    //DOM0级事件只有冒泡阶段，DOM2级事件的第三个参数false表示冒泡，true表示捕获
+    //DOM0级事件只能为一个事件绑定一个事件函数，而DOM2级事件可以绑定多个事件函数；
+
+
+    //JQ利用了 DOM 的二级事件绑定
+    // $('#box').on('click', function () {
+    //     console.log(111)
+    // })
+    // $('#box').on('click', function () {
+    //     console.log(222)
+    // })
+    var outer = document.getElementById('outer'),
+        center = document.getElementById('center'),
+        inner = document.getElementById('inner')
+    // outer.addEventListener('click', function () {
+    //     console.log(222)
+    // }, false); //false 代表对应的函数需要在冒泡阶段触发,true代表对应的函数在捕获阶段触发
+    // outer.addEventListener('click', function () {
+    //     console.log(111111111111)
+    // }, false)
+    // outer.addEventListener('click', function () {
+    //     console.log(2222222222222222)
+    // }, false)
+
+    // center.addEventListener('click', function () {
+    //     console.log(333);
+    // }, false)
+    // inner.addEventListener('click', function () {
+    //     console.log(444);
+    // }, false)
+
+
+
+
+    // Element.prototype.on = function (type, callback) {
+    //     this.addEventListener(type,callback,false)
+    // }
+    // outer.on('click', function () {
+    //     console.log(666);
+    // })
+
+   /*  function f(e) {
+        console.log(11, e, target);
+    }
+
+    inner.addEventListener('click', f, false)
+    inner.removeEventListener('click', f, true) */
+
+
+    Element.prototype.one = function (type, callback) {
+         function fn(ev){
+            callback.call(this,ev);
+            this.removeEventListener(type,fn,false)
+        }
+        this.addEventListener(type,fn,false)
+    }
+    inner.one('click', function (ev) {
+        console.log('myone')
+    })
+</script>

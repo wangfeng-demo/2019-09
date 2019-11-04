@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        #box {
+            width: 530px;
+            height: 350px;
+            margin: auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .big_box li {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 530px;
+            height: 350px;
+            display: none;
+        }
+
+         .big_box li:nth-child(1) {
+            display: block
+        }
+
+        .big_box li:target {
+            /* target  当前处于目标阶段的li 有当前样式 */
+            display: block;
+            animation: move1 2s linear;
+        }
+        .big_box li:nth-child(2) {
+            animation: bounceIn 2s linear;
+        }
+        .big_box li:nth-child(3) {
+            animation: bounceIn 2s linear;
+        }
+        .lit_box {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            height: 100px;
+            text-align: center;
+        }
+
+        .lit_box li {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 10px solid rgba(255, 255, 255, 0.6);
+            box-sizing: border-box;
+            cursor: pointer;
+        }
+
+        @keyframes bounceIn {
+
+            from,
+            20%,
+            40%,
+            60%,
+            80%,
+            to {
+                -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+                animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+            }
+
+            0% {
+                opacity: 0;
+                -webkit-transform: scale3d(0.3, 0.3, 0.3);
+                transform: scale3d(0.3, 0.3, 0.3);
+            }
+
+            20% {
+                -webkit-transform: scale3d(1.1, 1.1, 1.1);
+                transform: scale3d(1.1, 1.1, 1.1);
+            }
+
+            40% {
+                -webkit-transform: scale3d(0.9, 0.9, 0.9);
+                transform: scale3d(0.9, 0.9, 0.9);
+            }
+
+            60% {
+                opacity: 1;
+                -webkit-transform: scale3d(1.03, 1.03, 1.03);
+                transform: scale3d(1.03, 1.03, 1.03);
+            }
+
+            80% {
+                -webkit-transform: scale3d(0.97, 0.97, 0.97);
+                transform: scale3d(0.97, 0.97, 0.97);
+            }
+
+            to {
+                opacity: 1;
+                -webkit-transform: scale3d(1, 1, 1);
+                transform: scale3d(1, 1, 1);
+            }
+        }
+
+        @keyframes move1 {
+            0% {
+                transform: scale(0) rotate(0deg);
+                opacity: 0;
+            }
+            50%{
+                transform: scale(0.5) rotate(80deg);
+            }
+            50%{
+                transform: scale(1) rotate(360deg);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <ul class="big_box">
+            <li id="img1"><img src="./img/1.jpg" alt=""></li>
+            <li id="img2"><img src="./img/2.jpg" alt=""></li>
+            <li id="img3"><img src="./img/3.jpg" alt=""></li>
+            <li id="img4"><img src="./img/4.jpg" alt=""></li>
+        </ul>
+        <ul class="lit_box">
+            <li>
+                <a href="#img1">
+                    <img src="./img/1.jpg" alt="">
+                </a>
+            </li>
+            <li><a href="#img2">
+                    <img src="./img/2.jpg" alt="">
+                </a></li>
+            <li><a href="#img3">
+                    <img src="./img/3.jpg" alt="">
+                </a></li>
+            <li><a href="#img4">
+                    <img src="./img/4.jpg" alt="">
+                </a></li>
+        </ul>
+    </div>
+</body>
+
+</html>
+<script>
+
+</script>

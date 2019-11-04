@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+	<title>珠峰培训 - 微信：18310612838</title>
+	<meta name="keyword"
+		content="技术体系：HTML5、CSS3、JAVASCRIPT、ES6、AJAX、NODE、VUE、REACT、小程序、FLUTTER等；课程体系：零基础就业课、在线框架课、全栈架构课；学前端就选珠峰，十年专注做前端！">
+	<!-- IMPORT CSS -->
+</head>
+
+<body>
+	<div id="app">
+		<h3 v-html='msg' ref='titleBox'></h3>
+		<p ref='pBox'></p>
+	</div>
+	<!-- IMPORT JS -->
+	<script src="./node_modules/vue/dist/vue.js"></script>
+	<script>
+		//=>VUE框架开发的时候，我们应该尽可能减少直接去操作DOM
+		//=>我们基于REF可以把当前元素放置到this.$refs对象中，从而实现对DOM的直接操作（只有在mounted及之后才可以获取到）
+		let vm = new Vue({
+			el: '#app',
+			data: {
+				msg: '你好世界'
+			},
+			mounted() {
+				console.log(this.$refs); //=>{titleBox:H3,pBox:P}
+			}
+		});
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>JQUERY中AJAX的应用</title>
+</head>
+
+<body>
+	<script src="js/jquery.min.js"></script>
+	<script>
+		/* 
+		 * $.ajax() 基于原生JS的AJAX四步操作进行封装
+		 *    $.ajax([URL],[OPTIONS])
+		 *    $.ajax([OPTIONS])  URL在配置项中（推荐）
+		 *    $.get/post/getJSON/getScript()
+		 *    ......
+		 * 配置项信息
+		 *    url:请求的API接口地址
+		 *    method:HTTP请求方式，默认GET
+		 *    data:传递给服务器的信息，默认null（可以是字符串，可以是对象，而且如果GET系列请求，JQ会自动把信息拼接到URL的末尾，基于问号传参传递给服务器；如果是POST请求，JQ会基于请求主体，把信息传递给服务器）
+		 *    dataType:预设服务器返回的结果格式（服务器返回的一般都是JSON格式的字符串，如果我们设置了DATA-TYPE，JQ会根据设置的类型，把服务器返回的结果处理为对应的格式），支持的内容text / json / xml / html / script / jsonp(跨域) =>不影响服务器返回的结果，只是把服务器返回的结果进行二次处理
+		 *    async:是否为异步操作，默认是TRUE，代表异步操作
+		 *    cache:缓存处理，只对GET系列请求有作用，默认是TRUE不处理缓存，当我们设置FALSE后，JQ帮我们在URL的末尾设置一个随机数
+		 *    contentType:设置传递给服务器内容的格式类型 默认是"application/x-www-form-urlencoded"
+		 *        客户端传递给服务器信息的格式（类型一般都是字符串），常用的：
+		 *        form-data表单数据：JSON格式 '{"name":"xxx","lx":1}'
+		 *        x-www-form-urlencoded：name=xxx&lx=1
+		 *        raw：纯文本格式
+		 *    headers:设置请求头信息，他是一个对象
+		 *    timeout:设置超时的时间
+		 *    success:回调函数，当数据请求成功执行，方法中的参数就是从服务器获取的结果
+		 *    error:回调函数，数据请求失败执行，方法中的参数是错误信息
+		 */
+		$.ajax({
+			url: 'http://yapi.demo.qunar.com/mock/95100/project/list',
+			method: 'POST',
+			data: {
+				name: 'zhufeng',
+				lx: 'teacher'
+			},
+			dataType: 'json',
+			async: true,
+			cache: false,
+			headers: {},
+			success: (result, status, xhr) => {
+				//=>xhr:是JQ帮我们处理过的AJAX实例
+				console.log(result, status, xhr);
+			}
+		});
+	</script>
+</body>
+
+</html>

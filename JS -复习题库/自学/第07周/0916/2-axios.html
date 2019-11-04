@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+	<title>珠峰培训</title>
+	<!-- IMPORT CSS -->
+</head>
+
+<body>
+	<!-- IMPORT JS -->
+	<script src="node_modules/axios/dist/axios.min.js"></script>
+	<script>
+		/*
+		 * axios：一款基于PROMISE设计模式封装的AJAX库（JQ中的AJAX就是最普通的AJAX库，没有基于PROMISE管理） 
+		 */
+		//=>axios.get([URL],[OPTIONS]);
+		// axios.get();
+		// axios.delete();
+		// axios.head();
+
+		//=>axios.post([URL],[DATA],[OPTIONS])：DATA通过请求主传递给服务器的内容
+		// axios.post();
+		// axios.put();
+
+		/*
+		 * OPTIONS
+		 *   baseURL：基础的URL路径 
+		 *   transformRequest：处理请求参数（对POST系列有作用）
+		 *   transformResponse：把返回的结果进行处理
+		 *   headers：设置请求头
+		 *   params：GET系列请求传递给服务器的内容（会把PARAMS中的内容拼接为X-WWW-FORM-URLENCODED这种格式，基于URL问号传参传递给服务器）
+		 *   paramsSerializer：传递参数的序列化
+		 *   timeout：超时时间
+		 *   withCredentials：跨域请求中是否允许携带凭证
+		 *   responseType：预设服务器返回结果的格式，默认是JSON，支持BUFFER/TEXT/STREAM/DOCUMENT...
+		 *   validateStatus：AXIOS本身只有在HTTP状态码以2开头的时候才认为是成功，其余都认为是失败状态，当然我们可以自己来设置，基于validateStatus这个来修改
+		 *   ......
+		 */
+		//=>执行axios.xxx()都会返回一个PROMISE实例，AJAX请求成功会把实例的状态改为FULFILLED，请求失败状态改为REJECTED；并且获取的结果或者错误原因作为PROMISE的VALUE
+		/* axios.get('http://127.0.0.1:5500/json/data2.json', {
+			headers: {
+				AAA: encodeURIComponent('珠峰哈哈哈')
+			},
+			params: {
+				lx: 1,
+				from: 'WX'
+			}
+		}).then(result => {
+			//=>result：从服务器获取的结果
+			/!*
+			 * CONFIG：我们自己配置的选项信息
+			 * DATA：存储的是响应主体内容 
+			 * HEADERS：存储响应头的信息
+			 * REQUEST：AJAX实例
+			 * STATUS：响应状态码
+			 * STATUS-TEXT：状态码的描述
+			 *!/
+			return result.data;
+		}).catch(reason => {
+			console.log(reason);
+			throw new Error(reason);
+		}).then(data => {
+			//=>data：从服务器获取的响应主体内容
+			console.log(data);
+		}); */
+	</script>
+
+	<script>
+		/* axios.post('http://127.0.0.1:5500/json/data2.json', {
+			lx: 1,
+			from: 'WX'
+		}, {
+			headers: {
+				AAA: encodeURIComponent('珠峰哈哈哈')
+			},
+			transformRequest: function (data) {
+				if (!data) return data;
+				let str = ``;
+				for (let key in data) {
+					if (!data.hasOwnProperty(key)) break;
+					str += `&${key}=${data[key]}`;
+				}
+				return str.substring(1);
+			}
+		}).then(result => {
+			return result.data;
+		}).catch(reason => {
+			throw new Error(reason);
+		}).then(data => {
+			console.log(data);
+		}); */
+	</script>
+
+	<script>
+		/* 在使用AXIOS之前，我们一般都需要配置默认的配置项 */
+		// 1.基础URL，后期再发送请求的时候，URL请求地址最前面的公共部分就不需要再写了
+		axios.defaults.baseURL = "http://127.0.0.1:5500";
+		// 2.跨域请求中允许携带资源凭证（例如COOKIE信息）
+		axios.defaults.withCredentials = true;
+		// 3.设置请求头:POST系列中，我们传递给服务器数据的格式一般以x-www-form-urlencoded格式为主
+		axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded';
+		// 4.设置请求拦截器（只对POST系列有用）：把基于请求主体传递给服务器的内容进行拦截，把内容格式变为x-www-form-urlencoded这种格式，再传递给服务器
+		axios.defaults.transformRequest = function (data) {
+			if (!data) return data;
+			let str = ``;
+			for (let key in data) {
+				if (!data.hasOwnProperty(key)) break;
+				str += `&${key}=${data[key]}`;
+			}
+			return str.substring(1);
+		};
+		// 5.设置响应拦截器：[成功状态]把从服务器获取的结果中的响应主体信息获取到即可，[失败状态]手动把错误信息抛出异常
+		axios.interceptors.response.use(function (response) {
+			return response.data;
+		}, function (error) {
+			throw new Error(error);
+		});
+		// 6.配置什么才算成功（把PROMISE状态改为FULFILLED）
+		axios.defaults.validateStatus = function (status) {
+			return /^(2|3)\d{2}$/.test(status);
+		}
+
+		// axios.get('/json/data2.json').then(data => {
+		// 	console.log(data);
+		// }).catch(reason => {
+		// 	console.log(reason);
+		// });
+
+		//=>Promise.all
+		let promise1 = Promise.resolve(100);
+		let promise2 = Promise.resolve(200);
+		axios.all([promise1, promise2]).then(results => {
+			let [val1, val2] = results;
+			console.log(val1, val2);
+		});
+		/* axios.all([promise1, promise2]).then(axios.spread(function (val1, val2) {
+			//=>axios.spread：把基于axios.all获取的结果一项项的单独获取到
+			console.log(val1, val2);
+		})) */
+	</script>
+</body>
+
+</html>

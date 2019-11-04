@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>珠峰培训-事件委托</title>
+	<!-- IMPORT CSS -->
+	<link rel="stylesheet" href="css/reset.min.css">
+	<style>
+		.container {
+			margin: 20px auto;
+			width: 200px;
+		}
+
+		.container .box {
+			box-sizing: border-box;
+			float: right;
+			width: 100px;
+			height: 35px;
+			line-height: 35px;
+			text-align: center;
+			font-size: 16px;
+			border: 1px solid #AAA;
+			position: relative;
+			top: 1px;
+		}
+
+		.container .detail {
+			display: none;
+			box-sizing: border-box;
+			float: right;
+			width: 200px;
+			height: 70px;
+			line-height: 70px;
+			text-align: center;
+			font-size: 14px;
+			border: 1px solid #AAA;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container clearfix">
+		<div class="box"><span>购物车</span></div>
+		<div class="detail">
+			暂无购物车内容
+		</div>
+	</div>
+	<!-- IMPORT JS -->
+	<script>
+		let box = document.querySelector('.box'),
+			detail = document.querySelector('.detail');
+		document.onmouseover = function (ev) {
+			let target = ev.target;
+			if (target.tagName === "SPAN") {
+				//=>如果事件源是SPAN，我们让其变为其父元素
+				target = target.parentNode;
+			} 
+			if (/^(box|detail)$/.test(target.className)) {
+				//=>如果事件源的CLASS是BOX/DETAIL
+				detail.style.display = 'block';
+				return;
+			}
+			detail.style.display = 'none';
+		}
+
+		/* 
+		box.onmouseover = function (ev) {
+			detail.style.display = 'block';
+		}
+		box.onmouseout = function (ev) {
+			detail.style.display = 'none';
+		}
+		detail.onmouseover = function (ev) {
+			detail.style.display = 'block';
+		}
+		detail.onmouseout = function (ev) {
+			detail.style.display = 'none';
+		} 
+		*/
+	</script>
+</body>
+
+</html>

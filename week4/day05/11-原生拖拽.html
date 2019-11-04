@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #lit_box {
+            width: 100px;
+            height: 100px;
+            background: palegreen
+        }
+
+        #big_box {
+            width: 400px;
+            height: 400px;
+            border: 1px solid greenyellow;
+            margin: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="file" name="" id="inp">
+    <div id="lit_box" draggable="true">
+
+    </div>
+    <div id="big_box">
+
+    </div>
+</body>
+
+</html>
+<script>
+    //<input type="file" name="" id="inp">
+    inp.oninput = function(e){
+        let file = e.target.files[0];
+        let url = URL.createObjectURL(file);
+        big_box.innerHTML += `<img src = ${url}>`
+    }
+    var litBox = document.getElementById('lit_box'),
+        bigBox = document.getElementById('big_box');
+    // litBox.ondragstart = function (e) {
+    //     console.log('start', e);
+    // }
+    // litBox.ondrag = function (e) {
+    //     console.log('拖动中', e);
+    // }
+    // litBox.ondragend = function (e) {
+    //     console.log('end', e);
+    // }
+
+    bigBox.ondragenter = function (e) {
+        console.log('拖进来');
+    }
+    bigBox.ondragover = function (e) {
+        console.log('拖上来');
+        e.preventDefault()
+    }
+       /*  bigBox.ondragleave = function () {
+            console.log('离开');
+        } */
+    bigBox.ondrop = function(e){
+        e.preventDefault()//阻止打开默认图片
+        let file = e.dataTransfer.files[0];//file 代表文件对象
+       let url = URL.createObjectURL(file)//产生对应文件的路径
+        console.log(url);
+        this.innerHTML = `<img src = ${url}>`
+
+    }
+</script>

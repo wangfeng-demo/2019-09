@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        #box {
+            overflow: hidden;
+            width: 462px;
+            height: 462px;
+            margin: 100px auto;
+            position: relative;
+        }
+
+        .container {
+            width: 462px;
+            height: 462px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container-1 {
+            width: 462px;
+            height: 462px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display:none;
+        }
+
+        .container .wriper,
+        .container-1 .wriper-1 {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .container .wriper .silde,
+        .container-1 .wriper-1 .silde-1 {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+        }
+
+        .container .wriper .silde img,
+        .container-1 .wriper-1 .silde-1 img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .footer {
+            width: 100%;
+            height: 40px;
+            display: flex;
+            position: absolute;
+            bottom: 0;
+            box-sizing: border-box;
+            background: rgba(0, 0, 0, .8);
+            user-select: none;
+        }
+
+        .footer span {
+            flex: 1;
+            display: inline-block;
+            width: 95.5px;
+            height: 40px;
+            margin: auto;
+            border-right: 1px solid #ccc;
+            text-align: center;
+            line-height: 40px;
+            font-size: 12px;
+            color: #8b8989;
+        }
+
+        .click {
+            width: 110px;
+            height: 30px;
+            display: flex;
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: #333e50;
+            z-index: 999;
+        }
+
+        .click a {
+            flex: 1;
+            display: inline-block;
+            text-align: center;
+            line-height: 30px;
+            width: 50px;
+            height: 30px;
+            color: #fff;
+            text-decoration: none;
+            z-index: 3
+        }
+
+        .click a.on {
+            background: #3b8bed;
+        }
+
+        .footer span.active {
+            background: #3b8bed;
+
+            color: #fff;
+        }
+
+        .footer span:hover {
+            cursor: pointer;
+        }
+
+        .footer span:nth-child(4) {
+            border-right: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <section class="container">
+            <div class="wriper">
+                <div class="silde">
+                    <a href="http://xyq.163.com/news/20191017/4905_841222.html"><img src="./img/10.jpg" alt=""></a>
+                </div>
+                <div class="silde">
+                    <a href="http://xyq.163.com/2019/xmhz/"> <img src="./img/12.jpg" alt=""></a>
+                </div>
+                <div class="silde">
+                    <a href="http://xyq.163.com/2019/jinyi/yllsys.html"><img src="./img/13.jpg" alt=""></a>
+                </div>
+                <div class="silde">
+                    <a href="http://xyq.163.com/bcswpk/"> <img src="./img/14.jpg" alt=""></a>
+                </div>
+            </div>
+            <div class="footer">
+                <span class="active">10.25新服</span>
+                <span>群雄逐鹿冠军</span>
+                <span>驭龙猎手</span>
+                <span>百城兽王赛</span>
+            </div>
+        </section>
+        <div class="container-1">
+            <div class="wriper-1">
+                <div class="silde-1 active">
+                    <a href="http://id5.163.com/fab/"><img src="./img/15.jpg" alt=""></a>
+                </div>
+                <div class="silde-1">
+                    <a href="http://stzb.163.com/"><img src="./img/16.jpg" alt=""></a>
+                </div>
+                <div class="silde-1">
+                    <a href="http://qiyu.163.com/"><img src="./img/17.jpg" alt=""></a>
+                </div>
+            </div>
+            <div class="footer">
+                <span class="tab active">第五人格</span>
+                <span class="tab">率士之滨</span>
+                <span class="tab">超级会员</span>
+            </div>
+        </div>
+        <div class="click">
+            <a href="javascript:;" class="on" type = "ok">官方</a>
+            <a href="javascript:;" class="" type = "key" >合作</a>
+        </div>
+    </div>
+</body>
+
+</html>
+<script src="../自学/渐隐渐现轮播图周/jquery/jquery-1.11.3.min.js"></script>
+<script>
+  /*   let $box = $('#box'),
+        $container = $('.container'),
+        $containerQ = $('.container-1'),
+        $sildeT = $containerQ.find('.silde-1'),
+        $footer = $containerQ.find('footer'),
+        $spanL = $containerQ.find('span'),
+        $wriper = $container.find('.wriper'),
+        $silde = $container.find('.silde'),
+        $span = $container.find('span'),
+        $click = $box.find('a');
+        
+    let n = 0,
+        Interval = 2000,
+        aotuTimer = null;
+
+    function init() {
+        $silde.eq(0).siblings().hide();
+    }
+    init();
+
+    function autoMove() {
+        aotuTimer = setInterval(move, Interval)
+    }
+    autoMove()
+
+    function move() {
+        n++;
+        if (n >= $silde.length){
+            n = 0;
+        }
+        $silde.eq(n).css({
+            opacity: 0
+        }).show().animate({
+            opacity: 1
+        }, 300).siblings().animate({
+            opacity: 0
+        }, 300, function () {
+            $silde.eq(n).siblings().hide()
+        })
+    }
+
+    function throttle(fn, wait = 300) {
+        let timer = null
+        return function () {
+            clearTimeout(timer)
+            timer = setTimeout(() => {
+                fn.apply(this, ...arguments)
+            }, wait)
+        }
+    }
+    $container.on('mouseenter', function () {
+        clearInterval(aotuTimer)
+    })
+    $container.on('mouseleave', function () {
+        autoMove();
+    })
+    $span.on('mouseenter', throttle(function () {
+        let index = $(this).index();
+        n = index;
+        n--;
+        move();
+        $span.eq(n).addClass('active').siblings().removeClass('active')
+    }));
+    $click.on('click', function (e) {
+        let tar = e.target || e.srcElement;
+        if(tar.nodeName.toLowerCase() === 'a'){
+        if(tar.getAttribute('type') === 'ok'){
+            $(this).addClass('on').siblings().removeClass('on')
+            $container.css({display:'block'});
+            $containerQ.css({display:'none'})
+        }else{
+            $container.css({display:'none'});
+            $containerQ.css({display:'block'});
+            $(this).addClass('on').siblings().removeClass('on');
+        }
+    }
+    })    
+    $spanL.on('mouseenter',function(){
+        let n = $(this).index();
+        $sildeT.eq(n).show().siblings().hide()
+        $spanL.eq(n).addClass('active').siblings().removeClass('active')
+    }) */
+
+
+
+let bannerMoudle = (function () {
+        let idSelector='';
+        let $box = null,
+        $container =null,
+        $containerQ = null,
+        $sildeT = null,
+        $footer = null,
+        $spanL = null,
+        $wriper = null,
+        $silde = null,
+        $span = null,
+        $click = null;
+        
+    let n = 0,
+        Interval = 2000,
+        aotuTimer = null;
+//节流
+function throttle(fn, wait = 300) {
+        let timer = null
+        return function () {
+            clearTimeout(timer)
+            timer = setTimeout(() => {
+                fn.apply(this, ...arguments)
+            }, wait)
+        }
+    }
+//获取元素
+    function initEle(id) {
+        $box = $(id);
+        $container = $('.container');
+        $containerQ = $('.container-1');
+        $sildeT = $containerQ.find('.silde-1');
+        $footer = $containerQ.find('footer');
+        $spanL = $containerQ.find('span');
+        $wriper = $container.find('.wriper');
+        $silde = $container.find('.silde');
+        $span = $container.find('span');
+        $click = $box.find('a');
+        $silde.eq(0).siblings().hide();
+    }
+//自动轮播   
+    function autoMove() {
+        aotuTimer = setInterval(move, Interval)
+    }
+
+    function move() {
+        n++;
+        if (n >= $silde.length){
+            n = 0;
+        }
+        $silde.eq(n).css({
+            opacity: 0
+        }).show().animate({
+            opacity: 1
+        }, 300).siblings().animate({
+            opacity: 0
+        }, 300, function () {
+            $silde.eq(n).siblings().hide()
+        })
+    }
+ //绑定事件
+ function evenBind(){
+    $container.on('mouseenter', function () {
+        clearInterval(aotuTimer)
+    })
+    $container.on('mouseleave', function () {
+        autoMove();
+    })
+    $span.on('mouseenter', throttle(function () {
+        let index = $(this).index();
+        n = index;
+        n--;
+        move();
+        $span.eq(n).addClass('active').siblings().removeClass('active')
+    }))
+    $click.on('click', function (e) {
+        let tar = e.target || e.srcElement;
+        if(tar.nodeName.toLowerCase() === 'a'){
+        if(tar.getAttribute('type') === 'ok'){
+            $(this).addClass('on').siblings().removeClass('on')
+            $container.css({display:'block'});
+            $containerQ.css({display:'none'})
+        }else{
+            $container.css({display:'none'});
+            $containerQ.css({display:'block'});
+            $(this).addClass('on').siblings().removeClass('on');
+        }
+       } 
+    })    
+    $spanL.on('mouseenter',function(){
+        let n = $(this).index();
+        $sildeT.eq(n).show().siblings().hide()
+        $spanL.eq(n).addClass('active').siblings().removeClass('active')
+    })
+ }
+
+    return {
+        init(id) {
+            idSelector=id;
+            initEle(id);
+            autoMove();
+            evenBind();
+        }
+    }
+})()
+bannerMoudle.init('#box');
+
+</script>

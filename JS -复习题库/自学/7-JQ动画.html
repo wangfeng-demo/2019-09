@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: #ee0011;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="box"></div>
+</body>
+    
+</html>
+<script src="./jquery/jquery-3.3.1.js"></script>
+<script>
+    let $box = $('#box');
+    // Animate:$:fn
+    $box.animate({
+        top: 300,
+        left: 500
+    }, 500, 'linear', () => {
+        $box.css({
+            borderRadius: '50%',
+            background: 'lightblue'
+        });
+    });
+
+    //>快捷动画
+    //1. show/hide/toggle
+    //2. faseIn/fadeOut/fadeinTaggle
+    //3. sideDown/slideUp/slideTaggle
+</script>

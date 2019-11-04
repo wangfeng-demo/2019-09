@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>LESS学习</title>
+	<!--
+		LESS的编译常用的分为两种
+		1.开发环境下（开发项目的时候）
+		  我们基于less-2.5.3.min.js进行编译：基于link把less文件导入，但是rel的值必须是stylesheet/less，这样导入的JS会找到这些less文件，把less编译为css即可
+
+		2.生产环境下（项目部署上线的时候）
+		  我们需要把less编译为css，然后让页面中导入的都是编译后的css
+		  需要基于node环境，并且基于less模块进行编译（命令操作方式）
+			- 安装NODE(安装NPM)
+			- $ npm install less -g  （MAC电脑上最好设置sudo安装）
+			- 找到对应的less文件目录，在目录中：$ lessc xxx.less xxx.css / -x （设置-x是为了把代码进行压缩）
+	-->
+	<link rel="stylesheet/less" href="test1.less">
+	<script src="../js/less-2.5.3.min.js"></script>
+</head>
+
+<body>
+	<!-- <button class="link">按钮</button> -->
+	<div class="box"></div>
+
+	<!-- <div class="box1">
+		<img src="../images/zf_cube1.png" alt="">
+	</div>
+
+	<div class="box2">
+		<img src="../images/zf_cube2.png" alt="">
+	</div> -->
+</body>
+
+</html>

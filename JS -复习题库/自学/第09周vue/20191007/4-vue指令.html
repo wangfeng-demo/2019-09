@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+	<title>珠峰培训 - 微信：18310612838</title>
+	<meta name="keyword"
+		content="技术体系：HTML5、CSS3、JAVASCRIPT、ES6、AJAX、NODE、VUE、REACT、小程序、FLUTTER等；课程体系：零基础就业课、在线框架课、全栈架构课；学前端就选珠峰，十年专注做前端！">
+	<!-- IMPORT CSS -->
+</head>
+
+<body>
+	<!-- 
+		VUE指令：directive
+			1.都是按照v-xxx处理的，它是vue中规定给元素设置的自定义属性
+			2.当vue加载成功并进行处理的时候，会按照相关的规则解析和宣传视图，遇到对应的指令实现对应的功能
+		v-model一般给表单元素设置的，实现表单元素和数据之间的相互绑定
+			1）先把数据绑定给表单元素 ，一般把数据赋值给表单元素的value、
+			2）监听表单元素的内容改变
+			3）内容改变后，会把对应的数据也改变
+			4）对应的数据改变，视图中所有用到数据的地方都会重新渲染
+			视图 <=> 数据
+			在vue框架中给表单元素设置value等属性是没有意义的
+
+		v-html/v-text：给非表单元素设置内容，v-html支持对于标签的自动识别，v-text会把所有内容分都当做文本
+			传统的胡子语法，在vue没有加载完成之前，会把{{xxx}}展示在页面中，当vue加载完才会出现真正的内容，这样体验不好
+
+		v-bind：给元素的内置属性动态绑定数据，例如：给img绑定动态的图片路径地址
+			可以简写成为 :，也就是 v-bind:src 等价于 :src
+		
+		v-once：绑定的数据是一次性的，后面不论数据怎么改变，视图也都不会重新渲染
+
+		v-if：如果对应的值是TRUE，当前元素会在结构中显示，如果是FALSE，当前元素会在结构中移除（它控制的是组件的加载和卸载的操作 =>DOM的增加和删除）；还有对应的 v-else-if / v-else 等指令；
+		v-show：和v-if类似，只不过它是控制元素样式的显示隐藏（display的操作）
+			1）v-if是控制组件存不存在，对于结果是FALSE，不存在的组件来说，视图渲染的时候无需渲染这部分内容；而v-show则不行，因为不管是显示还是隐藏，结构都在，所以视图渲染的时候这部分也要渲染；
+			2）在过于频繁的切换操作中，v-if明显要比v-show要低一些
+	 -->
+	<div id="app">
+		<button v-html='msg' @click='handle'></button>
+		<br>
+		<img :src="pic" alt="" v-if='show'>
+		<!-- <span v-html='msg'></span>
+		<span v-once v-html='msg'></span> -->
+		<!-- <input type="text" v-model="msg">
+		<span v-html='msg'></span>
+		<img :src="pic" alt="">
+		<img v-bind:src="pic" alt="">
+		<span>{{msg}}</span> -->
+	</div>
+	<!-- IMPORT JS -->
+	<script src="./node_modules/vue/dist/vue.js"></script>
+	<script>
+		let vm = new Vue({
+			el: '#app',
+			data: {
+				//=>这里的数据最后都会作为实例的属性挂载到实例上vm.show...
+				msg: '隐藏图片',
+				show: true,
+				pic: '1.png'
+			},
+			methods: {
+				//=>这里的方法最后也会挂载到实例的私有属性上
+				handle() {
+					//=>this:vm
+					this.show = !this.show;
+					this.msg = this.show ? '隐藏图片' : '显示图片';
+				}
+			}
+		});
+		/* setTimeout(() => {
+			vm.msg = '哈哈哈哈';
+		}, 1000); */
+	</script>
+</body>
+
+</html>

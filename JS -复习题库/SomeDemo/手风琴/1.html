@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Jquery实现手风琴的切换效果</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <script src=""></script>
+  <style type="text/css">
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    li {
+      list-style: none;
+    }
+    p {
+      text-align: center;
+      padding-top: 30px;
+      font-size: 18px;
+      color: orange;
+    }
+    .menu_tab {
+      margin: 10px auto;
+      width: 300px;
+      height: auto;
+      border: 1px solid #000000;
+    }
+    label {
+      display: block;
+      color: #fff;
+      background: #728bbb;
+      font-size: 14px;
+      padding: 10px 0 10px 25px;
+      border-bottom: 0.5px solid #97bdf4;
+    }
+    label::after {
+      content: "+";
+      font-size: 14px;
+      float: right;
+      margin-right: 15px;
+    }
+    label.selected::after {
+      content: '-';
+    }
+    .tab_content {
+      display: none;
+      font-size: 15px;
+      padding: 10px 20px;
+      color: #35c628;
+      text-align: center;
+    }
+  </style>
+  
+</head>
+<body>
+  <p>Jquery简单的手风琴样式切换</p>
+  <div class="menu_tab">
+    <ul>
+      <li>
+        <label class="tab selected">内容显示 1</label>
+        <div class="tab_content">
+          长大以后 现在的我 常常会寂寞 <br> 
+          偶尔缱绻 星星闪烁 剩最亮一颗 <br>
+          往事如风 划过夜空 你的歌 <br>
+          跳动音符 熟悉旋律 谁来合 <br>
+        </div> 
+      </li>
+      <li>
+        <label class="tab">内容显示 2</label>
+        <div class="tab_content" style="color:red;">
+          长大以后 现在的我 忘记了快乐 <br>
+          人来人去 留在身边 的朋友不多 <br>
+          那些天真 纯纯的笑 哪去了 <br>
+          洁白翅膀 美丽天使 不见了 <br>
+        </div> 
+      </li>
+      <li>
+        <label class="tab">内容显示 3</label>
+        <div class="tab_content" style="color:blue;">
+          曾经以为 世界很美 没人流眼泪 <br>
+          吹熄蜡烛 许个心愿 全都会实现 <br>
+          原来的我 怀念从前 是因为太留恋 <br>
+          懵懂的岁月中 只收藏了简单的笑脸 <br>
+        </div> 
+      </li>
+    </ul>
+  </div>
+</body>
+</html>
+<script src="../类库/jquery-3.3.1.js"></script>
+<script type="text/javascript">
+    // 导航栏menu_tab切换
+      $('.menu_tab').find('ul li:last-child').children('.tab_content').show(); //首行内容默认显示
+      $(".menu_tab > ul > li label").on("click", function() {
+        $(this).next('.tab_content').slideToggle(500);
+        $(this).parent().siblings().children('.tab_content').slideUp(500);
+        $(this).parent().siblings().children('label').removeClass('selected');
+
+        $("html,body").animate({scrollTop:0}, 500); // 切换menu_tab，整块内容移动到顶部
+      });
+  </script>

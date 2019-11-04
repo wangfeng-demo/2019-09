@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>减少DOM回流-珠峰培训</title>
+	<style>
+		.box {
+			margin: 20px auto;
+			width: 100px;
+			height: 100px;
+			background: red;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="box">
+
+	</div>
+
+	<script>
+		/* for (let i = 0; i < 10; i++) {
+			let span = document.createElement('span');
+			span.innerHTML = i;
+			box.appendChild(span);
+		} */
+		/* let str = ``;
+		for (let i = 0; i < 10; i++) {
+			str += `<span>${i}</span>`;
+		}
+		box.innerHTML = str; */
+		//=>文档碎片：存储文档的容器
+		/* let frg = document.createDocumentFragment();
+		for (let i = 0; i < 10; i++) {
+			let span = document.createElement('span');
+			span.innerHTML = i;
+			frg.appendChild(span);
+		}
+		box.appendChild(frg);
+		frg = null; */
+	</script>
+
+
+	<script>
+		/* 批量设置样式 */
+		// box.className = 'box';
+		// box.style.cssText = "margin: 20px auto;width: 100px;height: 100px;background: red;";
+	</script>
+
+	<script>
+		/* DOM操作的读写分离 */
+		//=>现代版浏览器都有“渲染队列”机制：发现某一行要修改元素的样式，不立即渲染，而是看看下一行，如果下一行也会改变样式，则把修改样式的操作放到“渲染队列中”...一直到不在是修改样式的操作后，整体渲染一次，引发一次回流
+		//=>offsetTop、offsetLeft、offsetWidth、offsetHeight、clientTop、clientLeft、clientWidth、clientHeightscrollTop、scrollLeft、scrollWidth、scrollHeight、getComputedStyle、currentStyle....会刷新渲染队列  
+
+		// box.style.width = '100px';
+		// box.style.height = '100px';
+		// box.style.background = 'red';
+		// box.style.margin = '20px auto';
+
+		// box.style.width = '100px';
+		// box.style.height = '100px';
+		// box.style.background = 'red';
+		// box.style.margin = '20px auto';
+		// console.log(box.offsetWidth);
+		// console.log(box.offsetHeight);
+	</script>
+</body>
+
+</html>

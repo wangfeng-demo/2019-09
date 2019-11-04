@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>珠峰培训-事件委托</title>
+	<!-- IMPORT CSS -->
+	<link rel="stylesheet" href="css/reset.min.css">
+	<style>
+		.box {
+			margin: 20px auto;
+			width: 200px;
+		}
+
+		.newsList {
+			box-sizing: border-box;
+			padding: 5px;
+			border: 2px solid lightcoral;
+		}
+
+		.newsList li {
+			line-height: 35px;
+			border-bottom: 1px dashed #BBB;
+		}
+
+		.createBtn {
+			box-sizing: border-box;
+			margin-top: 10px;
+			width: 80px;
+			height: 30px;
+			border: 1px solid #AAA;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="box">
+		<ul class="newsList">
+			<li>我是第1个LI</li>
+			<li>我是第2个LI</li>
+			<li>我是第3个LI</li>
+			<li>我是第4个LI</li>
+			<li>我是第5个LI</li>
+		</ul>
+		<button class="createBtn">新增</button>
+	</div>
+
+	<!-- IMPORT JS -->
+	<script src="js/jquery.min.js"></script>
+	<script>
+		let $newsList = $('.newsList'),
+			$createBtn = $('.createBtn'),
+			count = 5;
+		$newsList.click(function (ev) {
+			let target = ev.target,
+				$target = $(target);
+			if (target.tagName === 'LI') {
+				alert(`我是第${$target.index()+1}个LI`);
+			}
+		});
+
+		$createBtn.click(function () {
+			let str = ``;
+			for (let i = 0; i < 5; i++) {
+				count++;
+				str += `<li>我是第${count}个LI</li>`;
+			}
+			$newsList.append(str);
+		});
+	</script>
+
+
+	<script>
+		/* let $newsList = $('.newsList'),
+			$createBtn = $('.createBtn'),
+			$lis = null;
+
+		function handle() {
+			$lis = $newsList.children('li');
+			$lis.each(function (index, item) {
+				$(item).click(function () {
+					alert(`我是第${index+1}个LI`);
+				});
+			});
+		}
+		handle();
+
+		let count = 5;
+		$createBtn.click(function () {
+			let str = ``;
+			for (let i = 0; i < 5; i++) {
+				count++;
+				str += `<li>我是第${count}个LI</li>`;
+			}
+			$newsList.append(str);
+			handle();
+		}); */
+	</script>
+</body>
+
+</html>

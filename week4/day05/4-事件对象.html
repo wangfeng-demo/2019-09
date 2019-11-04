@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box {
+            width: 200px;
+            height: 200px;
+            background: red;
+            margin: 50px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="" id="box">纪莹是王八
+        <span>
+            666666
+        </span>
+    </div>
+    <input type="text" name="" id="inp">
+    <textarea id="txt"></textarea>
+</body>
+
+</html>
+<script>
+    box.onclick = function (ev) {
+        ev = ev || window.event;
+        var tar = ev.target || ev.srcElement;
+        console.log(ev);
+        //ev.clientY  鼠标点击的位置相对于当前浏览器可视窗口的 上偏移值;
+        //ev.pageY    鼠标点击位置相对于body上边缘的偏移值
+        //ev.target 触发事件的元素（点击事件中是点击的元素）对象，称为事件源
+    }
+    inp.oninput = function (e) {
+        console.log(e.target.value);
+    }
+
+    inp.onkeydown = function (e) {
+        if (e.keyCode == 13) {
+            // alert('提交成功')
+            this.blur() //失焦
+            this.focus() 
+        }
+    }
+</script>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+	<title>珠峰培训 - 微信：18310612838</title>
+	<!-- IMPORT CSS -->
+	<link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+	<style>
+		.container {
+			box-sizing: border-box;
+			margin: 20px auto;
+			padding: 10px;
+			width: 300px;
+			border: 1px solid #AAA;
+		}
+
+		.container h3 {
+			font-size: 16px;
+			font-weight: bold;
+			line-height: 40px;
+			border-bottom: 1px dashed #AAA;
+		}
+
+		.red {
+			color: red !important;
+		}
+	</style>
+</head>
+
+<body>
+	<!-- 
+		父组件把信息传递给子组件：props属性传递
+			- 默认传递给子组件的属性值都是字符串格式的，如果需要传递数据的格式是数据本身应该具备的格式，我们需要基于v-bind实现传递（哪怕传递的属性值还是固定）
+			- 可以把子组件当做一个标签，我们可以设置ID/CLASS/STYLE等内置属性值，这些属性也会传递给子组件，VUE帮我们处理好的，该合并的合并，该覆盖的覆盖，无需我们在PROPS中注册处理
+	 -->
+	<div id="app">
+		<my-vote title="朱春亮长得很丑！" :aaa="10"></my-vote>
+		<my-vote title="张欢很漂亮！"></my-vote>
+		<my-vote></my-vote>
+	</div>
+
+	<!-- TEMPLATE -->
+	<template id="MyVoteTemplate">
+		<div class="container">
+			<h3><span v-text='title'></span>（<span>0</span>）</h3>
+			{{aaa}}
+			<vote-content></vote-content>
+			<vote-button></vote-button>
+		</div>
+	</template>
+
+	<template id="VoteContentTemplate">
+		<div class="content">
+			<p>支持人数：<span>0</span></p>
+			<p>反对人数：<span>0</span></p>
+			<p>支持率：<span>0%</span></p>
+		</div>
+	</template>
+
+	<template id="VoteButtonTemplate">
+		<div class="footer">
+			<button type="button" class="btn btn-primary">支持</button>
+			<button type="button" class="btn btn-danger">反对</button>
+		</div>
+	</template>
+
+	<!-- IMPORT JS -->
+	<script src="./node_modules/vue/dist/vue.js"></script>
+	<script>
+		const VoteContent = {
+			template: '#VoteContentTemplate',
+			data() {
+				return {}
+			}
+		};
+
+		const VoteButton = {
+			template: '#VoteButtonTemplate',
+			data() {
+				return {}
+			}
+		};
+
+		const MyVote = {
+			template: '#MyVoteTemplate',
+			//=>子组件设置PROPS用来接收父组件基于属性传递进来的信息：在PROPS中注册的属性，和DATA一样，也会挂载到实例上 this.title/{{title}}
+			// 1.父组件传递的属性名是kebab-case格式，子组件在注册的时候应该按照camelCase/PasalCase格式来接收和使用；属性名传递的是大写的，其实也是按照小写的来传递的，所以PROPS中注册和使用的时候都按照小写的来处理即可；
+			// props: ["title", "aaa"],
+			// 2.注册属性的校验（不符合校验格式的，依然可以在组件中使用，只不过控制台会抛出异常信息）
+			/* props: {
+				title: String,
+				aaa: [Number, Array]
+			}, */
+			props: {
+				title: {
+					type: String,
+					//=>设置默认值
+					default: '我是设定的属性默认值'
+				},
+				aaa: {
+					//=>数据格式
+					type: [Number, Array],
+					//=>是否为必传 TRUE必须传递
+					// required: true
+					//=>自定义验证规则  val传递的属性值  在函数中，根据自己的规则，返回TRUE和FALSE来验证传递的值是否符合规则
+					validator(val) {
+						return val >= 0;
+					}
+				}
+			},
+			data() {
+				return {}
+			},
+			components: {
+				VoteContent,
+				VoteButton
+			}
+		};
+
+		let vm = new Vue({
+			el: '#app',
+			data: {
+
+			},
+			components: {
+				MyVote
+			}
+		})
+	</script>
+</body>
+
+</html>

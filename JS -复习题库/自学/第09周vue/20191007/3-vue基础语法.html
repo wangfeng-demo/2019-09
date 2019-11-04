@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+	<title>珠峰培训 - 微信：18310612838</title>
+	<meta name="keyword"
+		content="技术体系：HTML5、CSS3、JAVASCRIPT、ES6、AJAX、NODE、VUE、REACT、小程序、FLUTTER等；课程体系：零基础就业课、在线框架课、全栈架构课；学前端就选珠峰，十年专注做前端！">
+	<!-- IMPORT CSS -->
+</head>
+
+<body>
+	<div id="app">
+		{{obj}}
+		<br>
+		{{arr}}
+		<br>
+		{{'name' in obj?'OK':'no'}}
+	</div>
+	<!-- IMPORT JS -->
+	<!-- 开发的时候尽可能引用未压缩版本，这样有错误会抛出异常 -->
+	<script src="./node_modules/vue/dist/vue.js"></script>
+	<script>
+		let obj = {
+			// name: ''
+		};
+		let arr = [10];
+		let vm = new Vue({
+			//=>基于querySelector获取视图容器：指定的容器不能是HTML和BODY
+			el: '#app',
+			data: {
+				/*
+				 * 在胡子语法中绑定的数据值是对象类型，会基于JSON.stringify把其编译为字符串再呈现出来（而不是直接toString处理的）
+				 * 
+				 * 并不是所有的数据更改最后都会通知视图重新渲染 
+				 *   1.初始数据是一个对象，对象中没有xxx键值对，后期新增的键值对是不会让视图重新渲染的，解决办法：
+				 *     + 最好在初始化数据的时候，就把视图需要的数据提前声明好（可以是空值，但是要有这个属性） =>原理：只有DATA中初始化过的属性才有GET/SET
+				 *     + 不要修改某个属性名，而是把对象的值整体替换（指向新的堆内存）
+				 *     + 可以基于vm.$set内置方法修改数据：vm.$set(obj,key,value)
+				 * 
+				 *   2.如果数据是一个数组，我们修改数据基于ARR[N]=xxx或者ARR.length--等操作方式，是无法让视图重新渲染的；需要基于：
+				 *     + push/pop等内置的方法
+				 *     + 重新把ARR的值重写（指向新的堆内存）
+				 *     + vm.$set
+				 */
+				obj,
+				arr
+			}
+		});
+		setTimeout(() => {
+			// vm.arr[1] = 20;
+			// vm.arr.length--;
+			// vm.arr.push(20);
+			vm.$set(vm.arr, 1, 20);
+
+
+			// vm.obj.name = "珠峰培训";
+			// vm.obj = {
+			// 	...obj,
+			// 	name: '珠峰培训'
+			// };
+			// vm.$set(vm.obj, 'name', '珠峰培训');
+		}, 1000);
+	</script>
+</body>
+
+</html>

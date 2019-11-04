@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .block {
+            width: 300px;
+            height: 300px;
+            margin: 100px auto;
+            background: palevioletred; 
+            position: relative; 
+            left:0;   
+        }
+        .b{
+            width: 300px;
+            height: 300px; 
+            position: absolute;
+            left: -300px;
+            background: blue; 
+        }
+    </style>
+</head>
+
+<body>
+    <button id="left">👈</button>
+    <button id="right">👉</button>
+    <div class="block">
+        <div class="b"></div>
+    </div>
+</body>
+
+</html>
+<script src="./类库/jquery-3.3.1.js"></script>
+<script>
+    $("#right").click(function () {
+        $(".b").animate({
+            left: '0px'
+        }, "slow");
+    });
+
+    $("#left").click(function () {
+        $(".b").animate({
+            left: '-300px'
+        }, "slow");
+    });
+</script>

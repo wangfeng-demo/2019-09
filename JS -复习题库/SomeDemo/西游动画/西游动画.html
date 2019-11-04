@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body,
+        html {
+            width: 100%;
+            height: 100%;
+        }
+
+        .footer {
+            width: 100%;
+            height: 100%;
+            background: url(1.jpg) no-repeat center;
+            background-size: cover;
+            overflow: hidden;
+        }
+        .cat>div{
+            float: left;
+        }
+        .footer .cat {
+            width:780px;    
+            margin:300px auto;
+        }
+        .west01 {
+            width: 200px;
+            height: 180px;
+            background: url(2.png) no-repeat;
+            animation: west01 1.4s steps(8) infinite;
+        }
+        @keyframes west01 {
+            0% {
+                background-position: 0, 0;
+            }
+
+            100% {
+                background-position: -1600px, 0;
+            }
+        }
+        .west02 {
+            width: 200px;
+            height: 180px;
+            background: url(3.png) no-repeat;
+            animation: west02 1.4s steps(8) infinite;
+        }
+        @keyframes west02 {
+            0% {
+                background-position: 0, 0;
+            }
+
+            100% {
+                background-position: -1600px, 0;
+            }
+        }
+        .west03 {
+            width: 170px;
+            height: 240px;
+            background: url(4.png) no-repeat;
+            animation: west03 1.4s steps(8) infinite;
+        }
+        @keyframes west03 {
+            0% {
+                background-position: 0, 0;
+            }
+
+            100% {
+                background-position: -1360px, 0;
+            }
+        }
+        .west04 {
+            width: 210px;
+            height: 200px;
+            background: url(5.png) no-repeat;
+            animation: west04 1.4s steps(8) infinite;
+        }
+        @keyframes west04 {
+            0% {
+                background-position: 0, 0;
+            }
+
+            100% {
+                background-position: -1680px, 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="footer">
+        <div class="cat">
+        <div class="west01"></div>
+        <div class="west02"></div>
+        <div class="west03"></div>
+        <div class="west04"></div>
+    </div>
+    </div>
+ <audio src="west.mp3" autoplay></audio>
+</body>
+
+</html>

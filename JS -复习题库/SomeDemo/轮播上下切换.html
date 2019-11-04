@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box {
+            width: 200px;
+            height: 50px;
+            border: 1px solid #aaa;
+            overflow: hidden;
+            margin: 100px auto;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .swiper {
+            width: 100%;
+            height: 150px;
+            position: absolute;
+            top: 0;
+            left: 0;
+
+        }
+
+        .people {
+            width: 200px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            box-sizing: border-box;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="box">
+        <div class="swiper">
+            <div class="people">
+                <a href="" class="fadeIn">精品课123456</a>
+            </div>
+            <div class="people">
+                <a href="" class="fadeIn">品牌热卖</a>
+            </div>
+            <div class="people">
+                <a href="" class="fadeIn">精品课123456</a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script src="../自学/渐隐渐现轮播图周/jquery/jquery-1.11.3.min.js"></script>
+<script>
+    let $container = $('#box'),
+        $wrapper = $container.find('.swiper');
+
+    let n = 0,
+        Interval = 4000,
+        aotuTimer = null;
+    aotuTimer = setInterval(aotuMove, Interval)
+
+    function aotuMove() {
+        n++;
+        if (n >= 3) {
+            $wrapper.css('top', 0);
+            n = 1;
+        }
+        $wrapper.stop().css({opacity:0}).animate({
+            top: -n * 50,opacity:1
+        }, 900)
+    }
+</script>

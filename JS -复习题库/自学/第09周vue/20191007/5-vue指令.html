@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+	<title>珠峰培训 - 微信：18310612838</title>
+	<meta name="keyword"
+		content="技术体系：HTML5、CSS3、JAVASCRIPT、ES6、AJAX、NODE、VUE、REACT、小程序、FLUTTER等；课程体系：零基础就业课、在线框架课、全栈架构课；学前端就选珠峰，十年专注做前端！">
+	<!-- IMPORT CSS -->
+</head>
+
+<body>
+	<!-- 
+		v-for：循环动态绑定数据
+			想循环谁就给谁设置v-for
+			循环类似for/for in的语法：v-for='(item,index) in arr'
+	 -->
+	<div id="app">
+		<table>
+			<thead>
+				<tr>
+					<th>编号</th>
+					<th>姓名</th>
+					<th>年龄</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr v-for='(item,index) in arr'>
+					<td v-html='item.id'></td>
+					<td v-html='item.name'></td>
+					<td v-html='item.age'></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<!-- IMPORT JS -->
+	<script src="./node_modules/vue/dist/vue.js"></script>
+	<script>
+		let vm = new Vue({
+			el: '#app',
+			data: {
+				arr: [{
+					id: 1,
+					name: '张三',
+					age: 25
+				}, {
+					id: 2,
+					name: '李四',
+					age: 24
+				}, {
+					id: 3,
+					name: '王五',
+					age: 26
+				}]
+			}
+		});
+	</script>
+
+	<script>
+		//JS中循环的几种方式：for循环、while循环、do while循环 | for in循环 | for of循环
+		let arr = [10, 20, 30, 40],
+			obj = {
+				name: '珠峰培训',
+				year: 10,
+				1: 100
+			};
+		Object.prototype.AA = 12;
+
+		//=>ES6新增for of循环
+		//1.获取的不是属性名是属性值
+		//2.不会遍历原型上公有的属性方法（哪怕是自定义的）
+		//3.只能遍历可被迭代的数据类型值（Symbol.iteratoer）：Array、String、Arguments、NodeList、Set、Map等，但是普通对象是不可被迭代的数据，所以不能用for of循环
+		/* for (let item of obj) {
+			console.log(item);
+		} */
+
+		/* for (let key in arr) {
+			if (!arr.hasOwnProperty(key)) break;
+			console.log(key, arr[key]);
+		} */
+
+		/* for (let key in obj) {
+			//=>KEY遍历的属性名
+			//=>OBJ[KEY]属性值
+			//=>优先遍历属性名为数字的
+			//=>会把所属类原型上自定义的属性方法也遍历到
+			if (!obj.hasOwnProperty(key)) break;
+			console.log(key);
+		} */
+	</script>
+</body>
+
+</html>

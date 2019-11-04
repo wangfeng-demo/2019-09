@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+	<title>珠峰培训</title>
+	<!-- IMPORT CSS -->
+</head>
+
+<body>
+	<!-- IMPORT JS -->
+	<script src="js/axios.min.js"></script>
+	
+	<script>
+		/* AXIOS：基于PROMISE封装的AJAX库 */
+		/* //=>1.配置默认项 axios.defaults.xxx=xxx
+		axios.defaults.baseURL = 'http://127.0.0.1:5500';
+		axios.defaults.withCredentials = true;
+		axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded';
+		axios.defaults.transformRequest = function (data) {
+			//=>DATA:用户需要传递给服务器的JSON对象
+			if (!data) return data;
+			let result = ``;
+			for (let attr in data) {
+				if (!data.hasOwnProperty(attr)) break;
+				result += `&${attr}=${data[attr]}`;
+			}
+			return result.substring(1);
+		};
+		/!* axios.defaults.transformResponse = [function onFulfilled(response) {
+			return response.data;
+		}, function onRejected(reason) {
+			return Promise.reject(reason);
+		}]; *!/
+		axios.interceptors.response.use(function onFulfilled(response) {
+			return response.data;
+		}, function onRejected(reason) {
+			return Promise.reject(reason);
+		});
+		axios.defaults.validateStatus = function (status) {
+			return /^(2|3)\d{2}$/.test(status);
+		}
+
+		//=>2.发送各种请求以及使用axios.all处理并行
+		axios.get(URL, {
+			params: {
+
+			}
+		}).then(data => {
+
+		}).catch(reason => {
+
+		});
+
+		axios.post(URL, DATA, {}).then(data => {
+
+		}).catch(reason => {
+
+		});
+
+		// axios.all([promise1, promise2, ...]).then(results => {
+
+		// });
+
+		// let spread = axios.spread(function (value1,value2,...) {
+
+		// });
+		// axios.all([promise1, promise2, ...]).then(spread); */
+	</script>
+
+	<script>
+		/*
+		 * PROMISE 
+		 */
+		/* new Promise(function executor(resolve, reject) {
+			//执行异步操作代码
+			// resolve(x); //=>把PROMISE实例的状态更改为FULFILLED
+			reject(y); //=>把PROMISE实例的状态更改为REJECTED  把X/Y赋值给PROMISE的VALUE
+		}).then(function onFulfilled(x) {
+			//=>代码执行不报错会把.THEN形成的这个PROMISE实例的状态改为FULFILLED,反之报错改为REJECTED,RETURN的值是其VALUE值
+			return 100;
+		}, function onRejected(y) {
+			//=>如果方法中返回的是一个新的PROMISE实例，它会按照这个实例最终的状态和结果，决定下一个THEN中执行谁（它的状态影响.THEN形成的这个PROMISE实例的状态改）
+			// return new Promise();
+			throw new Error('');
+		}).then(null, null).then(function onFulfilled(x) {
+			//=>因为上一个THEN中没有onFulfilled，PROMISE内部会帮我们自动创建一个onFulfilled函数，让其执行后的状态还是FULFILLED
+		}, function onRejected() {
+
+		}); */
+
+		//=>创建一个状态为FULFILLED/REJECTED，VALUE为'AA'的PROMISE实例
+		// Promise.resolve('AA');
+		// Promise.reject('AA');
+
+		/* Promise.reject('AA').catch(function onRejected() {
+
+		}); */
+
+		//=>ALL:所有PROMISE的状态都为FULFILLED，整体才是FULFILLED
+		//=>RACE:看PROMISE实例中谁先得到最后的状态，最后的结果就以谁为主
+		/* Promise.all([promise1, promise2, ...]).then(function (results) {	
+			//=>按照顺序存储每一个PROMISE的VALUE值
+			//[value1,value2,...]
+		});	 */
+	</script>
+</body>
+
+</html>

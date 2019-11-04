@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+	<title>珠峰培训 - 微信：18310612838</title>
+	<!-- IMPORT CSS -->
+	<link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+	<style>
+		.container {
+			box-sizing: border-box;
+			margin: 20px auto;
+			padding: 10px;
+			width: 300px;
+			border: 1px solid #AAA;
+		}
+
+		.container h3 {
+			font-size: 16px;
+			font-weight: bold;
+			line-height: 40px;
+			border-bottom: 1px dashed #AAA;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="app">
+		<my-vote v-for='item in voteList' :title="item.title"></my-vote>
+	</div>
+
+	<!-- TEMPLATE -->
+	<template id="MyVoteTemplate">
+		<div class="container">
+			<h3>
+				<span v-text='title'></span>
+				（<span v-text='num'></span>）
+				<button type="button" class="btn btn-primary" @click='handle'>点着玩</button>
+			</h3>
+			<vote-button ref='button'></vote-button>
+		</div>
+	</template>
+
+	<template id="VoteButtonTemplate">
+		<div class="footer" v-show='flag'>
+			<button type="button" class="btn btn-primary" @click="handle('support')">支持</button>
+			<button type="button" class="btn btn-danger" @click="handle('oppose')">反对</button>
+		</div>
+	</template>
+
+	<!-- IMPORT JS -->
+	<script src="./node_modules/vue/dist/vue.js"></script>
+	<script>
+		const VoteButton = {
+			template: '#VoteButtonTemplate',
+			methods: {
+				handle(type) {
+					// console.log(this.$parent);
+					this.$parent.num++;
+				}
+			},
+			data() {
+				return {
+					flag: true
+				}
+			}
+		};
+
+		const MyVote = {
+			template: '#MyVoteTemplate',
+			props: ["title"],
+			data() {
+				return {
+					num: 0
+				}
+			},
+			components: {
+				VoteButton
+			},
+			methods: {
+				handle() {
+					// console.log(this.$children);
+					// this.$children[0].flag = !this.$children[0].flag;
+
+					this.$refs.button.flag = !this.$refs.button.flag;
+				}
+			}
+		};
+
+		let vm = new Vue({
+			el: '#app',
+			data: {
+				voteList: [{
+					id: 1,
+					title: '朱春亮很丑！'
+				}, {
+					id: 2,
+					title: '张欢很漂亮！'
+				}]
+			},
+			components: {
+				MyVote
+			}
+		});
+
+		// vuex：公共状态管理
+	</script>
+</body>
+
+</html>

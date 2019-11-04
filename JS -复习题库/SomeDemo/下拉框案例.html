@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            width: 10%;
+            height: 20px;
+            background: red;
+            position: relative;
+        }
+
+        .box1 {
+            width: 1000%;
+            height: 0px;
+            position: absolute;
+            top: 20px;
+            background: blue;
+            overflow: hidden;
+            left: 0;
+        }
+
+        .big_box {
+            height: 500px;
+            transition:all .3s linear;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+            <div class="box1">
+                    <ul>
+                        <li>1</li>
+                        <li>2</li>
+                        <li>3</li>
+                        <li>4</li>
+                        <li>5</li>
+                    </ul>
+                </div>
+    </div>
+</body>
+
+</html>
+<script>
+    let box = document.getElementsByClassName('box')[0],
+        box1 = document.getElementsByClassName('box1')[0];
+
+    box.onmouseenter = box1.onmouseenter = function () {
+        box1.classList.add('big_box');
+    }
+    box1.onmouseleave  = box.onmouseleave = function(){
+        box1.classList.remove('big_box')
+    }
+</script>

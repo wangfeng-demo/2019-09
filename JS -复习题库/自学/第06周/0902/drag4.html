@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>珠峰培训</title>
+	<link rel="stylesheet" href="css/reset.min.css">
+	<style>
+		html,
+		body {
+			height: 100%;
+			overflow: hidden;
+		}
+
+		#box {
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: 10;
+			width: 100px;
+			height: 100px;
+			background: red;
+			cursor: move;
+		}
+
+		#container {
+			position: relative;
+			box-sizing: border-box;
+			margin: 30px auto;
+			width: 300px;
+			height: 200px;
+			border: 2px solid lightseagreen;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="box" draggable="true"></div>
+	<!-- <div id="container"></div> -->
+
+	<script>
+		let css = function (curEle, attr) {
+			return parseFloat(window.getComputedStyle(curEle, null)[attr]);
+		};
+
+		box.ondragstart = function (ev) {
+			this.startX = ev.pageX;
+			this.startY = ev.pageY;
+			this.startL = css(this, 'left');
+			this.startT = css(this, 'top');
+		}
+
+		box.ondrag = function (ev) {
+			let curL = ev.pageX - this.startX + this.startL,
+				curT = ev.pageY - this.startY + this.startT;
+			let minL = 0,
+				minT = 0,
+				maxL = document.documentElement.clientWidth - this.offsetWidth,
+				maxT = document.documentElement.clientHeight - this.offsetHeight;
+			curL = curL < minL ? minL : (curL > maxL ? maxL : curL);
+			curT = curT < minT ? minT : (curT > maxT ? maxT : curT);
+			this.style.left = curL + 'px';
+			this.style.top = curT + 'px';
+		}
+
+		document.ondragover = function (ev) {
+			ev.preventDefault();
+		}
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #dialog{
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            top:0;
+            left: 0;
+        }
+        .center{
+            width: 400px;
+            background: #fff;
+            padding: 20px;
+            /* position: relative;
+            margin: auto;
+            top: 50%;
+            transform: translateY(-50%); */
+            position: absolute;
+            top:0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            max-height: 400px;
+        }
+    </style>
+</head>
+
+<body>
+  
+
+    <button id="btn">按钮</button>
+
+    <!-- <div id="dialog" >
+            <div class="center">
+                    你好
+                    <div>
+                            <button >取消</button>
+                            <button>确定</button>
+                    </div>
+                    
+                </div>
+        </div> -->
+</body>
+
+</html>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script>
+  
+
+    $('#btn').on('click',function(){
+        let div = document.createElement('div');
+        div.id = 'dialog';
+        div.innerHTML = `<div class="center">
+                你好
+                <div id='btnBox'>
+                        <button id='cancel'>取消</button>
+                        <button id='sure'>确定</button>
+                </div>
+                
+            </div>`;
+        document.body.appendChild(div);   
+        var $btns = $('#btnBox button');
+        $btns.on('click',function(){
+            document.body.removeChild(div);   
+        })
+    });
+    
+</script>

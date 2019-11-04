@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+	<title>珠峰培训 - 微信：18310612838</title>
+	<meta name="keyword"
+		content="技术体系：HTML5、CSS3、JAVASCRIPT、ES6、AJAX、NODE、VUE、REACT、小程序、FLUTTER等；课程体系：零基础就业课、在线框架课、全栈架构课；学前端就选珠峰，十年专注做前端！">
+	<!-- IMPORT CSS -->
+</head>
+
+<body>
+	<div id="app">
+		<span v-html='msg' class="AAA" @click='msg=10'></span>
+	</div>
+	<!-- IMPORT JS -->
+	<script src="./node_modules/vue/dist/vue.js"></script>
+	<script>
+		/*
+		 * 生命周期函数（钩子函数）
+		 * 	 beforeCreate  创建vue实例之前
+		 *   created 创建实例成功（一般在这里实现数据的异步请求）
+		 *   beforeMount 渲染DOM之前（加载组件第一次渲染）
+		 *   mounted 渲染DOM完成（加载组件第一次渲染）
+		 *   beforeUpdate 重新渲染之前（数据更新等操作控制DOM重新渲染）
+		 *   updated 重现渲染完成
+		 *   beforeDestroy 销毁之前
+		 *   destroyed 销毁完成
+		 */
+		let vm = new Vue({
+			el: '#app',
+			/* beforeMount() {
+				console.log(document.getElementById('app'));
+			},
+			mounted() {
+				console.log(document.getElementById('app'));
+			}, */
+			data: {
+				msg: '你好世界'
+			}
+		});
+		// vm.$mount('#app');  //=>el:'#app' 
+		//=>指定当前vm所关联的视图
+
+		// vm.$destroy();
+		//=>销毁之后，再去修改响应式数据值，视图也不会在重新的渲染了
+
+		console.dir(vm);
+	</script>
+</body>
+
+</html>

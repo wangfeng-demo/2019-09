@@ -1,0 +1,266 @@
+* {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.hide {
+  display: none;
+}
+html,
+body {
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+  overflow: hidden;
+}
+html > section,
+body > section {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+html section.loadingBox,
+body section.loadingBox {
+  width: 100%;
+  height: 100%;
+  background: #333;
+  color: #fff;
+  text-align: center;
+  z-index: 30;
+  transition: opacity 0.3s;
+}
+html section.loadingBox h1,
+body section.loadingBox h1 {
+  position: relative;
+  font-size: 0.5rem;
+  top: 25%;
+}
+html section.loadingBox h2,
+body section.loadingBox h2 {
+  position: relative;
+  font-size: 0.26rem;
+  top: 30%;
+}
+html section.loadingBox .btn,
+body section.loadingBox .btn {
+  position: absolute;
+  top: 20%;
+  left: 44%;
+}
+html section.loadingBox .progressBox,
+body section.loadingBox .progressBox {
+  width: 4.6rem;
+  height: 0.3rem;
+  background: #fff;
+  border-radius: 0.06rem;
+  position: relative;
+  overflow: hidden;
+  margin: auto;
+  top: 45%;
+}
+html section.loadingBox .progressBox .progress,
+body section.loadingBox .progressBox .progress {
+  width: 40%;
+  height: 0.3rem;
+  background: linear-gradient(45deg, #6faa6d 0%, #6faa6d 25%, #77c570 25%, #77c570 50%, #6faa6d 50%, #6faa6d 75%, #77c570 75%, #77c570 100%);
+  background-size: 0.5rem 0.5rem;
+}
+html section.phoneBox,
+body section.phoneBox {
+  width: 100%;
+  height: 100%;
+  background: url('../images/phone-bg.jpg');
+  background: cover;
+  color: #fff;
+  position: relative;
+  z-index: 20;
+  transition: transform 0.8s;
+}
+html section.phoneBox header,
+body section.phoneBox header {
+  text-align: center;
+  height: 1.25rem;
+  position: relative;
+  top: 0.5rem;
+}
+html section.phoneBox header h1,
+body section.phoneBox header h1 {
+  font-size: 0.5rem;
+  margin-bottom: 0.2rem;
+}
+html section.phoneBox header h2,
+body section.phoneBox header h2 {
+  font-size: 0.26rem;
+}
+html section.phoneBox header h3,
+body section.phoneBox header h3 {
+  height: 0.3rem;
+  font-size: 0.3rem;
+  top: 1.2rem;
+  position: relative;
+}
+html section.phoneBox footer,
+body section.phoneBox footer {
+  width: 5.2rem;
+  height: 3.6rem;
+  position: absolute;
+  bottom: 0.3rem;
+  left: 0.6rem;
+  background: url('../images/phone-listen.png') no-repeat;
+  background-size: contain;
+}
+html section.phoneBox footer .cirlce,
+body section.phoneBox footer .cirlce {
+  width: 1.6rem;
+  height: 1.6rem;
+  border: 0.02px solid #77c570;
+  border-radius: 50%;
+  position: absolute;
+  right: -0.065rem;
+  bottom: 0.47rem;
+  animation: move 0.4s infinite linear;
+}
+html section.phoneBox .callOver,
+body section.phoneBox .callOver {
+  width: 5.2rem;
+  height: 6.59rem;
+  background: url('../images/phone-key.png') no-repeat;
+  background-size: contain;
+  position: absolute;
+  bottom: 0.3rem;
+  left: 0.65rem;
+  transition: all 0.3s;
+}
+html section.phoneBox .callOver .overBtn,
+body section.phoneBox .callOver .overBtn {
+  width: 1.6rem;
+  height: 1.6rem;
+  position: absolute;
+  bottom: 0.3rem;
+  left: 1.8rem;
+}
+html section.phoneBox .bot,
+body section.phoneBox .bot {
+  transform: translateY(110%);
+}
+html section.chatBox,
+body section.chatBox {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: plum;
+  z-index: 10;
+}
+html section.chatBox .chatMsgBox,
+body section.chatBox .chatMsgBox {
+  padding: 0.25rem;
+}
+html section.chatBox .chatMsgBox li,
+body section.chatBox .chatMsgBox li {
+  overflow: hidden;
+  margin-bottom: 0.25rem;
+}
+html section.chatBox .chatMsgBox li > div,
+body section.chatBox .chatMsgBox li > div {
+  float: left;
+}
+html section.chatBox .chatMsgBox li .imgBox,
+body section.chatBox .chatMsgBox li .imgBox {
+  width: 0.82rem;
+  height: 0.82rem;
+  overflow: hidden;
+  border-radius: 50%;
+}
+html section.chatBox .chatMsgBox li .imgBox img,
+body section.chatBox .chatMsgBox li .imgBox img {
+  width: 100%;
+  height: 100%;
+}
+html section.chatBox .chatMsgBox li .msg,
+body section.chatBox .chatMsgBox li .msg {
+  max-width: 3.6rem;
+  padding: 0.25rem;
+  margin-left: 0.25rem;
+  border: 0.02rem solid #cacaca;
+  background: #fff;
+  border-radius: 0.1rem;
+  word-break: break-all;
+  box-sizing: border-box;
+}
+html section.chatBox .chatMsgBox li .msg::before,
+body section.chatBox .chatMsgBox li .msg::before {
+  content: '';
+  width: 0.1rem;
+  height: 0.2rem;
+  background: url('../images/message-arrow1.png') no-repeat;
+  background-size: contain;
+  position: absolute;
+  left: 1.24rem;
+}
+html section.chatBox .chatMsgBox li.right,
+body section.chatBox .chatMsgBox li.right {
+  overflow: hidden;
+}
+html section.chatBox .chatMsgBox li.right > div,
+body section.chatBox .chatMsgBox li.right > div {
+  float: right;
+}
+html section.chatBox .chatMsgBox li.right .msg,
+body section.chatBox .chatMsgBox li.right .msg {
+  max-width: 3.6rem;
+  padding: 0.25rem;
+  margin-right: 0.25rem;
+  border: 0.02rem solid #96b474;
+  background: #8ae91d;
+}
+html section.chatBox .chatMsgBox li.right .msg::before,
+body section.chatBox .chatMsgBox li.right .msg::before {
+  background: url('../images/message-arrow2.png') no-repeat;
+  background-size: contain;
+  position: absolute;
+  left: 5.07rem;
+}
+html section.chatBox .chatMsgBox li.opa,
+body section.chatBox .chatMsgBox li.opa {
+  opacity: 0;
+  transform: translateY(0.5rem);
+}
+html section.chatBox .keyboard,
+body section.chatBox .keyboard {
+  width: 100%;
+  height: 5.16rem;
+  position: absolute;
+  bottom: 0;
+  transition: all 0.3s;
+  background: url('../images/message-keyboard.png') no-repeat;
+  background-size: contain;
+}
+html section.chatBox .keyboard p,
+body section.chatBox .keyboard p {
+  width: 4rem;
+  height: 0.4rem;
+  margin: 0.38rem 0 0 0.9rem;
+  font-size: 0.25rem;
+}
+html section.chatBox .keyboard .chatBtn,
+body section.chatBox .keyboard .chatBtn {
+  width: 1.47rem;
+  height: 0.74rem;
+  position: absolute;
+  right: 0.1rem;
+  bottom: 0.6rem;
+  background: url('../images/message-chatBtn.png') no-repeat;
+  background-size: contain;
+}
+html section.chatBox .bot,
+body section.chatBox .bot {
+  transform: translateY(5.3rem);
+}
+@keyframes move {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+	<title>珠峰培训 - 微信：18310612838</title>
+	<meta name="keyword"
+		content="技术体系：HTML5、CSS3、JAVASCRIPT、ES6、AJAX、NODE、VUE、REACT、小程序、FLUTTER等；课程体系：零基础就业课、在线框架课、全栈架构课；学前端就选珠峰，十年专注做前端！">
+	<!-- IMPORT CSS -->
+</head>
+
+<body>
+	<!-- 
+		v-on（简写 @）：用来实现事件绑定的指令
+			v-on:click='xxx'
+			@click='xxx'
+
+		1.事件触发的时候，需要传递参数信息，把方法加小括号，$event是事件对象
+			v-on:click='sum($event,10,20)'
+		
+		2.事件修饰符
+		  常规修饰符：@click.prevent/stop = 'xxx'
+		  按键修饰符：@keydown.enter/space/delete/up/right/down/left...='xxx'
+		  键盘码：@keydown.13 = 'xxx'
+		  组合按键：@keydown.alt.67 = 'xxx'  //=>ALT+C
+	 -->
+	<div id="app">
+		<!-- <a href="http://www.zhufengpeixun.cn/" @click.prevent.stop='func'>
+			珠峰培训
+		</a> -->
+		<!-- <button v-on:click='func'></button> -->
+		<!-- <button v-on:click='sum($event,10,20)'></button> -->
+
+		<input type="text" placeholder="请输入搜索内容" v-model='text' @keydown.alt.67='func'>
+	</div>
+	<!-- IMPORT JS -->
+	<script src="./node_modules/vue/dist/vue.js"></script>
+	<script>
+		let vm = new Vue({
+			el: '#app',
+			data: {
+				text: ''
+			},
+			methods: {
+				func(ev) {
+					alert('珠峰培训');
+					/* if (ev.keyCode === 13) {
+						alert('珠峰培训');
+					} */
+				},
+				sum(ev, n, m) {
+					console.log(arguments);
+				}
+			}
+		});
+	</script>
+</body>
+
+</html>

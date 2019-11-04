@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .hide {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <ul id="box">
+        <li>
+            <span>一级菜单1</span>
+            <ul>
+                <li>
+                    <span>二级菜单1</span>
+                    <ul>
+                        <li>
+                            <span>三级菜单1</span>
+                        </li>
+                        <li>
+                            <span>三级菜单2</span>
+                        </li>
+                        <li>
+                            <span>三级菜单3</span>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <span>二级菜单2</span>
+                </li>
+                <li>
+                    <span>二级菜单3</span>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <span>一级菜单2</span>
+            <ul>
+                <li>
+                    <span>二级菜单4</span>
+                    <ul>
+                        <li>
+                            <span>三级菜单4</span>
+                        </li>
+                        <li>
+                            <span>三级菜单5</span>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <span>二级菜单5</span>
+                    <ul>
+                        <li>
+                            <span>三级菜单6</span>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <span>二级菜单6</span>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <span>一级菜单3</span>
+            <ul>
+                <li>
+                    <span>二级菜单7</span>
+                    <ul>
+                        <li>
+                            <span>三级菜单7</span>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</body>
+
+</html>
+<script src="./渐隐渐现轮播图-1/jquery/jquery-1.11.3.min.js"></script>
+<script>
+    let box = document.getElementById('box')
+    box.onclick = function (e) {
+        e = e || window.event;
+        var tar = e.target || e.srcElement; //点击的那个元素
+        if (tar.nodeName.toLowerCase() == 'span') {
+            let nextE = tar.nextElementSibling; //span对用的那个兄弟  ul
+            nextE && nextE.classList.toggle('hide');
+            if (nextE && nextE.classList.contains('hide')) {
+                let uls = nextE.getElementsByTageName('li');
+                for (let i = 0; i < uls.length; i++) {
+                    uls[i].classList.add('hide')
+                }
+            }
+        }
+    }
+    // let $box = $('#box');
+    // $box.on('click', function (e) {
+    //     let $tar = $(e.target),
+    //     tar = e.target;
+    //     if (tar.nodeName.toLowerCase() == 'span') {
+    //         let $nextE = $tar.Siblings('ul');
+    //         $nextE.toggleClass('hide');
+    //         if ($nextE.hasClass('hide')) {
+    //             $nextE.find('ul').addClass('hide')
+    //         }
+    //     }
+    // })
+</script>

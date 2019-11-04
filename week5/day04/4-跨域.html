@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    //跨域：  协议  域名  端口  三者有一个不一样就是跨域
+    //同源策略 浏览器的安全机制 ===>>> 导致跨域(只存在前端)
+
+   /* 解决跨域的几种方式？？？
+   ajax 请求时会出现跨域问题
+
+   jsonp 利用script 标签的 src 属性 不存在跨域
+
+   cors 
+   Proxy
+
+   
+   postMessage 
+   
+   */
+  var abc = 123456;
+  window.onmessage = function(){
+      console.log('跨域',e);
+  }
+</script>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        body {
+            width: 1920px;
+            height: 786px;
+            background: url(1.jpg) no-repeat center;
+         background-size: cover; 
+        }
+
+        .dead {
+            width: 200px;
+            height: 312px;
+            background: url(1.png) no-repeat;
+            animation: dead 1s steps(10) infinite;
+        }
+
+        @keyframes dead {
+            0% {
+                background-position: 0, 0;
+            }
+
+            100% {
+                background-position:-2000px,0;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="dead">
+
+    </div>
+</body>
+
+</html>

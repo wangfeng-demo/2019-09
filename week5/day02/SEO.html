@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" name="" id="inp">
+    <div id="box"></div>
+</body>
+
+</html>
+<script>
+    let timer = null;
+    inp.oninput = function () {
+        clearTimeout(timer)
+        timer = setTimeout(() => {
+            $.ajax({
+                url: 'https://www.baidu.com/sugrec?pre=1&p=3&ie=utf-8&json=1&prod=pc&from=pc_web&sugsid=1430,21098,20697,29568,29699,29221&wd=' +
+                    this.value,
+                dataType: 'jsonp',
+                success(data) {
+                    console.log(data)
+                    let str = '';
+                    data.g = data.g || []
+                    data.g.forEach(item => {
+                        str += `<h2>${item.q}<h2/>`
+                    });
+                    box.innerHTML = str;
+                }
+            })
+        }, 400)
+    }
+</script>
+<script src="../week4/day04/swipper轮播图/jquery/jquery-1.11.3.min.js"></script>

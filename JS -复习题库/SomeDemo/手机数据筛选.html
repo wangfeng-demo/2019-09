@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./1.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        #box {
+            width: 800px;
+
+            margin: 200px auto;
+            border: 1px solid #eee;
+            box-sizing: border-box;
+        }
+
+        .header {
+            height: 70px;
+            background: rgb(212, 239, 245);
+            line-height: 70px;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .header div {
+            float: left;
+            font-size: 20px;
+            color: black;
+            width: 100px;
+            user-select: none;
+        }
+
+        .header span {
+            float: left;
+            width: 100px;
+            height: 50px;
+            border: 1px solid palevioletred;
+            line-height: 50px;
+            margin-top: 10px;
+            text-align: center;
+            font-size: 20px;
+            cursor: pointer;
+            user-select: none;
+            display: none;
+            margin-left: 30px;
+
+        }
+
+        .body {
+            overflow: hidden;
+            padding: 0 30px;
+        }
+
+        .body .first_list,
+        .body .second_list,
+        .body .third_list,
+        .body .fourth_list {
+            height: 80px;
+            overflow: hidden;
+            line-height: 80px;
+            font-size: 20px;
+            border-bottom: 1px dashed #ccc;
+            user-select: none;
+        }
+
+        .body .first_list .brand_list,
+        .body .second_list .size_list,
+        .body .third_list .system_list,
+        .body .fourth_list .internet_list {
+            width: 50px;
+            height: 50px;
+            float: left;
+            color: #ccc;
+            margin-right: 20px;
+        }
+
+        .body .first_list li,
+        .body .second_list li,
+        .body .third_list li,
+        .body .fourth_list li {
+            float: left;
+            text-align: center;
+            margin-right: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <div class="header">
+            <div>你的选择:</div>
+            <span class="one">X</span>
+            <span class="tow">X</span>
+            <span class="three">X</span>
+            <span class="four">X</span>
+        </div>
+        <div class="body">
+            <div class="first_list">
+                <div class="brand_list">
+                    <span>品牌</span>
+                </div>
+                <ul>
+                    <li class="tab" type="logo">苹果</li>
+                    <li class="tab" type="logo">小米</li>
+                    <li class="tab" type="logo">锤子</li>
+                    <li class="tab" type="logo">华为</li>
+                    <li class="tab" type="logo">三星</li>
+                    <li class="tab" type="logo">魅族</li>
+                </ul>
+            </div>
+            <div class="second_list">
+                <div class="size_list">
+                    <span>尺寸</span>
+                </div>
+                <ul>
+                    <li class="tab1" type="big">3.0</li>
+                    <li class="tab1" type="big">4.0</li>
+                    <li class="tab1" type="big">5.0</li>
+                    <li class="tab1" type="big">6.0</li>
+                    <li class="tab1" type="big">7.0</li>
+                    <li class="tab1" type="big">8.0</li>
+                </ul>
+            </div>
+            <div class="third_list">
+                <div class="system_list">
+                    <span>系统</span>
+                </div>
+                <ul>
+                    <li class="tab2" type="system">安卓</li>
+                    <li class="tab2" type="system">苹果</li>
+                    <li class="tab2" type="system">微软</li>
+                    <li class="tab2" type="system">麒麟</li>
+                    <li class="tab2" type="system">鸿蒙</li>
+                    <li class="tab2" type="system">无</li>
+                </ul>
+            </div>
+            <div class="fourth_list">
+                <div class="internet_list">
+                    <span>网络</span>
+                </div>
+                <ul>
+                    <li class="tab3" type="dube">联通1G</li>
+                    <li class="tab3" type="dube">双卡2G</li>
+                    <li class="tab3" type="dube">单卡3G</li>
+                    <li class="tab3" type="dube">单卡4G</li>
+                    <li class="tab3" type="dube">移动5G</li>
+                    <li class="tab3" type="dube">移动6G</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+    let box = document.getElementById('box'),
+        header = box.getElementsByClassName('header')[0],
+        HP = header.getElementsByTagName('span'),
+        one = box.getElementsByClassName('one')[0],
+        tow = box.getElementsByClassName(' tow')[0],
+        three = box.getElementsByClassName('three')[0],
+        four = box.getElementsByClassName('four')[0];
+    box.onclick = function (e) {
+        let tar = e.target || e.srcElement;
+        if (tar.nodeName.toLowerCase() === 'li') { 
+            switch (tar.getAttribute('type')) {
+                case 'logo':
+                    one.style.display = 'block';
+                    one.innerHTML = tar.innerText;
+                    break;
+                case 'big':
+                    tow.style.display = 'block';
+                    tow.innerHTML = tar.innerText;
+                    break;
+                case 'system':
+                    three.style.display = 'block';
+                    three.innerHTML = tar.innerText;
+                    break;
+                default:
+                    four.style.display = 'block';
+                    four.innerHTML = tar.innerText;
+            }
+        }   
+    }
+    for (let i = 0; i < HP.length; i++) {
+        HP[i].onclick = function () {
+            if (HP[i].tagName = 'span') {
+                HP[i].style.display = 'none';
+            }
+        }
+    }
+</script>

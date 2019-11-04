@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../交互简历2/css/index.css">
+</head>
+<script>
+    let w = document.documentElement.clientWidth || document.body.clientWidth;
+    document.documentElement.style.fontSize = w * 100 / 750 + 'px';
+    window.onresize = function () {
+        let w = document.documentElement.clientWidth || document.body.clientWidth;
+        document.documentElement.style.fontSize = w * 100 / 750 + 'px';
+    }
+</script>
+
+<body>
+    <section class="loadingBox">
+        <h1>珠峰</h1>
+        <h2>h5珠峰的交互简历</h2>
+        <div class="progressBox">
+            <div class="progess"></div>
+        </div>
+        <button id="btn">进入h5</button>
+    </section>
+    <section class="phoneBox">
+        <header>
+            <h1>纪莹大宝贝</h1>
+            <h2>臭猪</h2>
+            <h3 class="hide"> 00:00</h3>
+        </header>
+
+        <div class="footer">
+            <div class="circle"></div>
+        </div>
+
+        <div class="overBox bot">
+            <div class="overBtn"></div>
+        </div>
+    </section>
+    <section class="chatBox">
+        <ul class="chatMsgBox">
+            <li class="opa">
+                <div class="imgBox">
+                    <img src="./images/message-head1.png" alt="">
+                </div>
+                <div class="msg">
+                    今天去吃啥？
+                </div>
+            </li>
+            <li class="right opa">
+                <div class="imgBox">
+                    <img src="./images/message-head1.png" alt="">
+                </div>
+                <div class="msg">
+                   我想吃虾吃虾涮
+                </div>
+            </li>
+            <li class="opa">
+                <div class="imgBox">
+                    <img src="./images/message-head1.png" alt="">
+                </div>
+                <div class="msg">
+                    那玩意不好吃、、、
+                </div>
+            </li>
+            <li class="right opa">
+                <div class="imgBox">
+                    <img src="./images/message-head1.png" alt="">
+                </div>
+                <div class="msg">
+                    我们是祖国的花朵sddvd'
+                </div>
+            </li>
+            <li class="opa">
+                <div class="imgBox">
+                    <img src="./images/message-head1.png" alt="">
+                </div>
+                <div class="msg">
+                   去吃小龙虾把？
+                </div>
+            </li>
+            <li class="right opa">
+                <div class="imgBox">
+                    <img src="./images/message-head1.png" alt="">
+                </div>
+                <div class="msg">
+                   吃个鸡
+                </div>
+            </li>
+        </ul>
+        <div class="keyboard bot">
+            <p></p>
+            <div class="chatBtn hide"></div>
+        </div>
+    </section>
+     <!-- 
+         bell.play()播放音频
+        preload：   none 不预加载
+                    auto 预加载
+                    metadata 预加载元数据（大小，总时间）
+        autoplay：  是自动播放的
+    -->
+    
+    <audio src="./audio/bell.mp3" preload="metadata" autoplay="true" id="bell"></audio>
+    <audio src="./audio/say.mp3" preload="none" id="say"></audio>
+    <audio src="./audio/music.mp3" preload="none" loop="true" id="bgm"></audio>
+
+</body>
+</html>
+<script src="./index.js"></script>

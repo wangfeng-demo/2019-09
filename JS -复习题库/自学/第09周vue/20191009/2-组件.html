@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+	<title>珠峰培训 - 微信：18310612838</title>
+	<meta name="keyword"
+		content="技术体系：HTML5、CSS3、JAVASCRIPT、ES6、AJAX、NODE、VUE、REACT、小程序、FLUTTER等；课程体系：零基础就业课、在线框架课、全栈架构课；学前端就选珠峰，十年专注做前端！">
+	<!-- IMPORT CSS -->
+</head>
+
+<body>
+	<div id="app">
+		<h3 v-text='title'></h3>
+		<my-button>
+			<template v-slot:before><em>我是调取组件的时候，在组件模板外单独写的内容</em></template>
+			<template #after><strong>哈哈哈</strong></template>
+		</my-button>
+	</div>
+	<!-- TMPLATE：创建TMPLATE标签用来构建组件渲染的视图 -->
+	<template id="MyButtonTemplate">
+		<div>
+			<!-- slot插槽：把调取组件时候，写在组件中间部分的内容获取到，放置到组件的某个位置（具体位置根据需求来），依托这种方式，可以让当前组件具备更强的扩展性 -->
+			<slot name='before'></slot>
+			<button @click='handle'>组件中的按钮==={{title}}</button>
+			<slot name='after'></slot>
+		</div>
+	</template>
+
+	<!-- IMPORT JS -->
+	<script src="./node_modules/vue/dist/vue.js"></script>
+	<script>
+		Vue.component('MyButton', {
+			//=>必须设置template或者render函数：来规定当前组件的渲染视图
+			//1.只能有一个根元素节点
+			//2.template的值可以是字符串（包裹需要的结构），也可以把结构单独分离出来，放置到<template></template>标记中，然后和当前组件关联
+			template: '#MyButtonTemplate',
+			//=>DATA必须是一个函数：相当于形成一个闭包，让返回的对象（需要的响应式数据）是当前实例的私有的
+			data() {
+				return {
+					title: '珠峰哈哈哈'
+				}
+			},
+			//=>其余的操作和NEW VUE的情况基本类似了
+			methods: {
+				handle() {
+					this.title = '珠峰呵呵呵';
+				}
+			}
+		});
+
+		let vm = new Vue({
+			el: '#app',
+			data: {
+				title: '珠峰培训'
+			},
+			methods: {
+				handle() {
+					this.title = '@@@';
+				}
+			}
+		});
+	</script>
+</body>
+
+</html>

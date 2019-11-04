@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>珠峰培训</title>
+	<link rel="stylesheet" href="css/reset.min.css">
+	<style>
+		html,
+		body {
+			height: 100%;
+			overflow: hidden;
+		}
+
+		#box {
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: 10;
+			width: 100px;
+			height: 100px;
+			background: red;
+			cursor: move;
+		}
+
+		#container {
+			position: relative;
+			box-sizing: border-box;
+			margin: 30px auto;
+			width: 300px;
+			height: 200px;
+			border: 2px solid lightseagreen;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="box"></div>
+	<div id="container"></div>
+
+	<script src="js/drag-plugin.js"></script>
+	<script>
+		new Drag('#box', {
+			dragend: function (examp, ev) {
+				//=>this:Drag example
+				let _element = this._element;
+				let minL = container.offsetLeft,
+					minT = container.offsetTop,
+					maxL = minL + container.offsetWidth - _element.offsetWidth,
+					maxT = minT + container.offsetHeight - _element.offsetHeight,
+					curL = Drag.queryCss(_element, 'left'),
+					curT = Drag.queryCss(_element, 'top');
+				if ((curL >= minL && curL <= maxL) && (curT >= minT && curT <= maxT)) {
+					//=>在指定的范围内
+					container.appendChild(_element);
+					_element.style.left = 0;
+					_element.style.top = 0;
+					return;
+				}
+				//=>没有拖动到指定的范围内
+				_element.style.left = this.startL + 'px';
+				_element.style.top = this.startT + 'px';
+			}
+		});
+	</script>
+
+	<script>
+		/* let css = function (curEle, attr) {
+			return parseFloat(window.getComputedStyle(curEle, null)[attr]);
+		};
+
+		let down = function (ev) {
+			this.startX = ev.pageX;
+			this.startY = ev.pageY;
+			this.startL = css(this, 'left');
+			this.startT = css(this, 'top');
+
+			this._MOVE = move.bind(this);
+			this._UP = up.bind(this);
+			document.addEventListener('mousemove', this._MOVE);
+			document.addEventListener('mouseup', this._UP);
+		};
+		let move = function (ev) {
+			let curL = ev.pageX - this.startX + this.startL,
+				curT = ev.pageY - this.startY + this.startT;
+			let minL = 0,
+				minT = 0,
+				maxL = document.documentElement.clientWidth - this.offsetWidth,
+				maxT = document.documentElement.clientHeight - this.offsetHeight;
+			curL = curL < minL ? minL : (curL > maxL ? maxL : curL);
+			curT = curT < minT ? minT : (curT > maxT ? maxT : curT);
+			this.style.left = curL + 'px';
+			this.style.top = curT + 'px';
+		};
+		let up = function (ev) {
+			document.removeEventListener('mousemove', this._MOVE);
+			document.removeEventListener('mouseup', this._UP);
+
+			//=>继续做的事情：放到指定容器中
+			let minL = container.offsetLeft,
+				minT = container.offsetTop,
+				maxL = minL + container.offsetWidth - this.offsetWidth,
+				maxT = minT + container.offsetHeight - this.offsetHeight,
+				curL = css(this, 'left'),
+				curT = css(this, 'top');
+			if ((curL >= minL && curL <= maxL) && (curT >= minT && curT <= maxT)) {
+				//=>在指定的范围内
+				container.appendChild(this);
+				this.style.left = 0;
+				this.style.top = 0;
+				this.removeEventListener('mousedown', down);
+				return;
+			}
+			//=>没有拖动到指定的范围内
+			this.style.left = this.startL + 'px';
+			this.style.top = this.startT + 'px';
+		};
+		box.addEventListener('mousedown', down); */
+	</script>
+</body>
+
+</html>

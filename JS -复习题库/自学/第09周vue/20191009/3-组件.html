@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+	<title>珠峰培训 - 微信：18310612838</title>
+	<meta name="keyword"
+		content="技术体系：HTML5、CSS3、JAVASCRIPT、ES6、AJAX、NODE、VUE、REACT、小程序、FLUTTER等；课程体系：零基础就业课、在线框架课、全栈架构课；学前端就选珠峰，十年专注做前端！">
+	<!-- IMPORT CSS -->
+</head>
+
+<body>
+	<div id="app">
+		<h3 v-text='title'></h3>
+		<my-button></my-button>
+	</div>
+
+	<!-- TMPLATE-->
+	<template id="MyButtonTemplate">
+		<div>
+			<button>组件中的按钮 === {{title}}</button>
+		</div>
+	</template>
+
+	<!-- IMPORT JS -->
+	<script src="./node_modules/vue/dist/vue.js"></script>
+	<script>
+		//=>创建局部组件
+		const MyButton = {
+			template: '#MyButtonTemplate',
+			data() {
+				return {
+					title: '珠峰前端就业班'
+				}
+			}
+		};
+
+		let vm = new Vue({
+			el: '#app',
+			data: {
+				title: '珠峰培训'
+			},
+			//=>注册当前组件（视图中）需要使用的局部组件
+			components: {
+				//MyButton:MyButton
+				MyButton
+				// 'aaa': MyButton
+			}
+		});
+	</script>
+</body>
+
+</html>

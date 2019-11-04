@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+	<title>珠峰培训 - 微信：18310612838</title>
+	<meta name="keyword"
+		content="技术体系：HTML5、CSS3、JAVASCRIPT、ES6、AJAX、NODE、VUE、REACT、小程序、FLUTTER等；课程体系：零基础就业课、在线框架课、全栈架构课；学前端就选珠峰，十年专注做前端！">
+	<!-- IMPORT CSS -->
+</head>
+
+<body>
+	<div id="app">
+		人民币：￥ <input type="text" v-model="priceRMB">
+		<br>
+		美元：$ <span>{{priceRMB/7.1477}}</span>
+	</div>
+
+	<!-- IMPORT JS -->
+	<script src="./node_modules/vue/dist/vue.min.js"></script>
+	<script>
+		//=>v-model先实现把数据绑定到视图层（给INPUT设置VALUE值），然后监听文本框内容的改变，一旦改变，会把数据也跟着改变；数据一变，视图会重新的渲染；
+		let vm = new Vue({
+			el: '#app',
+			data: {
+				priceRMB: 0
+			}
+		});
+	</script>
+</body>
+
+</html>

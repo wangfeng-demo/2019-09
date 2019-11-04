@@ -94,6 +94,6 @@ function tipClass() {
         let m = $(this).index();
         n = m;
         n--;
-        move()
+        move()  
     })
 }

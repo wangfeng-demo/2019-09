@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+	<title>珠峰培训 - 微信：18310612838</title>
+	<!-- IMPORT CSS -->
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<style>
+		.container {
+			box-sizing: border-box;
+			margin: 20px auto;
+			padding: 10px;
+			width: 400px;
+			border: 1px solid #AAA;
+		}
+
+		.container h3 {
+			font-size: 16px;
+			font-weight: bold;
+			line-height: 40px;
+			border-bottom: 1px dashed #AAA;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="app">
+		<vote-plugin v-for='item in votes' :title='item.title'></vote-plugin>
+	</div>
+	<!-- TEMPLATE -->
+	<template id='VotePluginTemplate'>
+		<div class="container">
+			<h3>
+				<span v-text='title'></span>
+				&nbsp;&nbsp;
+				参与人数：<span v-text='num'>0</span>
+			</h3>
+			<vote-content :eventbus='eventbus'></vote-content>
+			<vote-button :eventbus='eventbus' @changenum='change'></vote-button>
+		</div>
+	</template>
+	<!-- IMPORT JS -->
+	<script src="js/vue.js"></script>
+	<script>
+		const VoteContent = {
+			template: `<div class="content">
+				<p>支持人数：<span v-text='supNum'></span></p>
+				<p>反对人数：<span v-text='oppNum'></span></p>
+				<p>支持率：<span v-text='ratio'></span></p>
+			</div>`,
+			props: ['eventbus'],
+			data() {
+				return {
+					supNum: 0,
+					oppNum: 0
+				}
+			},
+			computed: {
+				ratio() {
+					let total = this.supNum + this.oppNum;
+					return total === 0 ? '0%' : (this.supNum / total * 100).toFixed(2) + '%';
+				}
+			},
+			mounted() {
+				this.eventbus.$on('changecontent', type => {
+					type === 'support' ? this.supNum++ : this.oppNum++;
+				});
+			}
+		};
+
+		const VoteButton = {
+			template: `<div class="footer">
+				<button type="button" 
+					class="btn btn-primary" 
+					@click="handle('support')
+				">支持</button>
+				<button type="button" 
+					class="btn btn-danger" 
+					@click="handle('oppose')
+				">反对</button>
+			</div>`,
+			props: ['eventbus'],
+			data() {
+				return {}
+			},
+			methods: {
+				handle(type) {
+					//=>触发父组件中的方法执行
+					this.$emit('changenum');
+					//=>触发兄弟组件中的方法执行
+					this.eventbus.$emit('changecontent', type);
+				}
+			}
+		};
+
+		Vue.component('VotePlugin', {
+			template: '#VotePluginTemplate',
+			props: ['title'],
+			components: {
+				VoteContent,
+				VoteButton
+			},
+			data() {
+				return {
+					num: 0,
+					eventbus: new Vue
+				}
+			},
+			methods: {
+				change() {
+					this.num++;
+				}
+			}
+		});
+
+		//=>把内容渲染到视图中
+		let vm = new Vue({
+			data: {
+				votes: [{
+					id: 1,
+					title: '朱春亮跑得快！嗯！'
+				}, {
+					id: 2,
+					title: '吴振宇该去下一期了！啊？'
+				}]
+			}
+		});
+		vm.$mount('#app');
+	</script>
+</body>
+
+</html>

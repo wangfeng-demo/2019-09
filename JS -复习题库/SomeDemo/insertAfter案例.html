@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+        <ul id="box">
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+            </ul>
+        
+            <button id="btn">Message Button</button>
+</body>
+
+</html>
+<script>
+    /* JS中有一个insertBefore方法，目的是实现把新元素插入到指定元素之前，现在你实现一个 insertAfter 方法，把新元素插入到指定元素之后！ */
+    var box = document.getElementById('box');
+    let li = document.createElement('li');
+    li.innerHTML = 4;
+    // box.appendChild(li);
+    // box.insertBefore(li,box.querySelector('li:nth-child(2)'));
+    // 封装一个insertAfter===>insertBefore
+    // 这里就是我们新创建了一个元素，放在了第三个li的前面；
+    Element.prototype.insertAfter = insertAfter;
+
+    function insertAfter(newEle, originEle) {
+        let next = originEle.nextElementSibling;
+        if (next) {
+            this.insertBefore(newEle, next);    
+        } else {
+            this.appendChild(newEle)
+        }
+    }
+    box.insertAfter(li, box.querySelector('li:nth-child(1)'));
+
+
+    // 这个就是让刚刚创建好的数组翻转 了
+   /*  var box = document.getElementById('box'),
+        olis = box.querySelectorAll('li');
+    var ary = [...olis].reverse();
+    var frag = document.createDocumentFragment(); //文档碎片
+    ary.forEach(item => {
+        frag.appendChild(item)
+    });
+    box.appendChild(frag) */
+</script>

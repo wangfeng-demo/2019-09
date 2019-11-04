@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>推盒子小游戏</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        body {
+            background: rgb(231, 223, 150);
+        }
+
+        #box {
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            background: rgb(240, 157, 185);
+            left: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box"></div>
+</body>
+
+</html>
+<script>
+    var box = document.getElementById('box');
+    var l = 0,
+        t = 0;
+    window.onkeydown = function (e) {
+        console.log(e.keyCode); //38 40 37 39
+        switch (e.keyCode) {
+            case 38:
+                t -= 10;
+                break;
+            case 40:
+                t += 10;
+                break;
+            case 37:
+                l -= 10;
+                break;
+            case 39:
+                l += 10;
+                break;
+        }
+        box.style.left = l + 'px';
+        box.style.top = t + 'px'
+    }
+    // box.onclick = function () {
+    //     box.style.left = '300px'
+    //     box.style.transition = 'none'
+    //     var l = box.clientHeight;                                                                    
+    //     box.style.left = '400px'
+    //     box.style.transition = 'left 1s'
+    // }
+</script>

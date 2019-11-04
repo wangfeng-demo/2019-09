@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        #box,
+        #box1,
+        #box2 {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            cursor: move;
+            position: absolute;
+            background: rgb(248, 47, 255);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box"></div>
+    <div id="box1"></div>
+    <div id="box2"></div>
+</body>
+
+</html>
+<script src="./even.js"></script>
+
+<script src="./drag.js"></script>
+<script>
+    var n = 0;
+    var box = document.getElementById('box');
+    var box = document.getElementById('box1');
+    var box = document.getElementById('box2');
+
+    new Drag('box',{
+        range:[0,0,300,300], //可以拖动的区间  默认整个document
+        count:10// 可以拖动的次数 默认无限次
+    })
+    on(box,'myIndex',addIndex);
+    new Drag('box1')
+    on(box1,'myIndex',addIndex);
+    new Drag('box2')
+    on(box2,'myIndex',addIndex);
+
+    function addIndex(ele) {
+        ele.style.zIndex = ++n;
+    }
+</script>

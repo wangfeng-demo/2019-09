@@ -51,7 +51,7 @@ function render(data) {
     tipBox.innerHTML = tipStr;
     ul.innerHTML = str;
     ul.style.width = data.length * 590 + 'px'; //更新盒子的宽度
-}
+}   
 
 let n = 0;
 let timer = null;

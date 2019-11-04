@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        #box {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            cursor: move;
+            position: absolute;
+            background: rgb(248, 47, 255);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box"></div>
+</body>
+
+</html>
+<script>
+    let box = document.getElementById('box');
+    /* function move(e) {
+        let curL = e.pageX - this.startPX + this.statX,
+            curT = e.pageY - this.startPY + this.statY,
+            minL = 0,
+            minT = 0,
+            maxL = document.documentElement.clientWidth - this.offsetWidth,
+            maxT = document.documentElement.clientHeight - this.offsetHeight;
+            curL = curL < minL ? minL : (curL > maxL ? maxL : curL);
+            curT = curT < minT ? minT : (curT > maxT ? maxT : curT);
+            this.style.left = curL + 'px'
+            this.style.top = curT + 'px'
+    }
+
+    function up() {
+        document.onmousemove = null;
+        document.onmouseup = null;
+    }
+    box.onmousedown = function (e) {
+        this.statX = this.offsetLeft;
+        this.statY = this.offsetTop;
+        this.startPX = e.pageX;
+        this.startPY = e.pageY;
+        document.onmousemove = move.bind(this);
+        document.onmouseup = up.bind(this);
+    } */
+    box.addEventListener('mousedown', down, false);
+
+    function down(e) {
+        this.statX = this.offsetLeft;
+        this.statY = this.offsetTop;
+        this.startPX = e.pageX;
+        this.startPY = e.pageY;
+        this.MOVE = move.bind(this);
+        this.UP = up.bind(this)
+        document.addEventListener('mousemove',this.MOVE,false)
+        document.addEventListener('mouseup',this.UP,false)
+    }
+    function move(e) {
+        let curL = e.pageX - this.startPX + this.statX,
+            curT = e.pageY - this.startPY + this.statY,
+            minL = 0,
+            minT = 0,
+            maxL = document.documentElement.clientWidth - this.offsetWidth,
+            maxT = document.documentElement.clientHeight - this.offsetHeight;
+            curL = curL < minL ? minL : (curL > maxL ? maxL : curL);
+            curT = curT < minT ? minT : (curT > maxT ? maxT : curT);
+            this.style.left = curL + 'px'
+            this.style.top = curT + 'px'
+    }
+    function up(e) {
+        document.removeEventListener('mousemove',this.MOVE,false);
+        document.removeEventListener('mouseup',this.UP,false);
+    }
+</script>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+	<title>珠峰培训 - 微信：18310612838</title>
+	<!-- IMPORT CSS -->
+	<link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+	<style>
+		.container {
+			box-sizing: border-box;
+			margin: 20px auto;
+			padding: 10px;
+			width: 300px;
+			border: 1px solid #AAA;
+		}
+
+		.container h3 {
+			font-size: 16px;
+			font-weight: bold;
+			line-height: 40px;
+			border-bottom: 1px dashed #AAA;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="app">
+		<my-vote v-for='item in voteList' :title="item.title"></my-vote>
+	</div>
+
+	<!-- TEMPLATE -->
+	<template id="MyVoteTemplate">
+		<div class="container">
+			<h3><span v-text='title'></span>（<span v-text='queryNum()'></span>）</h3>
+			<vote-content></vote-content>
+			<vote-button></vote-button>
+		</div>
+	</template>
+
+	<template id="VoteContentTemplate">
+		<div class="content">
+			<p>支持人数：<span v-text='supNum'></span></p>
+			<p>反对人数：<span v-text='oppNum'></span></p>
+			<p>支持率：<span v-text='ratio'></span></p>
+		</div>
+	</template>
+
+	<template id="VoteButtonTemplate">
+		<div class="footer">
+			<button type="button" class="btn btn-primary" @click="handle('support')">支持</button>
+			<button type="button" class="btn btn-danger" @click="handle('oppose')">反对</button>
+		</div>
+	</template>
+
+	<!-- IMPORT JS -->
+	<script src="./node_modules/vue/dist/vue.js"></script>
+	<script>
+		const VoteContent = {
+			template: '#VoteContentTemplate',
+			//=>会把注入的信息挂载到实例上
+			inject: ['supNum', 'oppNum', 'eventbus'],
+			computed: {
+				ratio() {
+					let total = this.supNum + this.oppNum;
+					if (total === 0) {
+						return '0%';
+					}
+					return (this.supNum / total * 100).toFixed(2) + '%';
+				}
+			}
+		};
+
+		const VoteButton = {
+			template: '#VoteButtonTemplate',
+			inject: ['change'],
+			methods: {
+				handle(type) {
+					this.change(type);
+				}
+			}
+		};
+
+		const MyVote = {
+			template: '#MyVoteTemplate',
+			props: ["title"],
+			provide: {
+				num: 0,
+				supNum: 0,
+				oppNum: 0,
+				change: null
+			},
+			components: {
+				VoteContent,
+				VoteButton
+			},
+			methods: {
+				change(type) {
+					this._provided.num++;
+					type === 'support' ? this._provided.supNum++ : this._provided.oppNum++;
+					//=>只有挂载到实例上的数据(DATA/PROPS)改变才会让视图重新渲染，因为实现了GETTER/SETTER
+					this.$forceUpdate();
+				},
+				queryNum() {
+					return this._provided.num;
+				}
+			},
+			created() {
+				//=>provide比methods先处理：需要在实例创建完后，在把methods中值赋值给它
+				this._provided.change = this.change;
+			}
+		};
+
+		let vm = new Vue({
+			el: '#app',
+			data: {
+				voteList: [{
+					id: 1,
+					title: '朱春亮很丑！'
+				}, {
+					id: 2,
+					title: '张欢很漂亮！'
+				}]
+			},
+			components: {
+				MyVote
+			}
+		});
+	</script>
+</body>
+
+</html>

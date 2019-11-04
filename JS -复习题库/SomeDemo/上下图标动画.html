@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            text-decoration: none;
+        }
+
+        .part-icon {
+            width: 1400px;
+            height: 460px;
+            position: relative;
+            top: 100px;
+            left: 0;
+            float: left;
+            margin-right: 20px;
+           }
+
+        .col-box {
+            overflow: hidden;
+            width: 190px;
+            margin-right: 20px;
+            float:left;
+        }
+
+        .btn-a {
+            width: 100%;
+            height: 80px;
+            display: block;
+            position: relative;
+            font-size: 18px;
+            color: #fefefe;
+            text-align: center;
+            overflow: hidden;
+            background: url(https://xyq.res.netease.com/pc/gw/20170118103441/img/btn_dl_01_0423a1a.png) #d43742 no-repeat;
+        }
+
+        .btn-a .desc {
+            position: absolute;
+            left: 76px;
+            top: 15px
+        }
+
+        .btn-a .tixt {
+            display: inline-block;
+            line-height: 18px;
+            margin-left: 47px;
+            margin-top: 21px;
+        }
+
+        .btn-two .tixt .tixt-dec {
+            color: #f7b0b4;
+            font-size: 12px;
+        }
+
+        .btn-a .btn-icon {
+            position: absolute;
+            display: inline-block;
+            background-image: url(https://xyq.res.netease.com/pc/gw/20170118103441/img/spriter/index_z_670b19d.png);
+            background-repeat: no-repeat;
+        }
+
+        .btn-one .btn-icon {
+            width: 50px;
+            height: 44px;
+            background-position: -380px -221px;
+            top: 18px;
+            left: 18px;
+        }
+
+        .btn-two .btn-icon {
+            background-position: -380px -174px;
+            top: 16px;
+            left: 43px;
+            width: 35px;
+            height: 47px;
+            margin-left: -17px;
+        }
+
+        .btn-three .arrow-box {
+            width: 41px;
+            height: 41px;
+            display: block;
+            line-height: 18px;
+            top: 22px;
+            left: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-three .i-arrow {
+            background-position: -93px -328px;
+            width: 41px;
+            height: 41px;
+            position: absolute;
+            left: 12px;
+        }
+
+        .btn-three .i-arrow::after {
+            width: 41px;
+            height: 41px;
+            position: absolute;
+            background-position: -93px -328px;
+            transition: all ease-in-out 0.3s;
+        }
+
+        .btn-three:hover .i-arrow {
+            transform: translateY(23px)
+        }
+
+        .btn-one .arrow-box {
+            top: 22px;
+        }
+
+        .btn-two .arrow-box {
+            top: 28px;
+        }
+
+        .btn-one .arrow-box,
+        .btn-two .arrow-box {
+            width: 32px;
+            height: 24px;
+            position: absolute;
+            overflow: hidden;
+            left: 28px;
+        }
+
+        .i-arrow {
+            display: inline-block;
+            width: 22px;
+            height: 24px;
+            background-image: url(https://xyq.res.netease.com/pc/gw/20170118103441/img/spriter/index_z_670b19d.png);
+            background-position: -54px -371px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateY(-50%);
+            margin-left: -12px;
+            transition: all ease-in-out 0.3s;
+        }
+
+        .i-arrow::after {
+            display: inline-block;
+            width: 22px;
+            height: 24px;
+            content: '';
+            background-image: url(https://xyq.res.netease.com/pc/gw/20170118103441/img/spriter/index_z_670b19d.png);
+            background-position: -54px -371px;
+            bottom: 100%;
+            left: 0;
+            position: absolute;
+        }
+
+        .btn-one:hover .i-arrow,
+        .btn-two:hover .i-arrow {
+            transform: translateY(13px);
+        }
+
+        .btns-zc {
+            background: #3b8bed;
+            position: relative;
+            width: 100%;
+            height: 100px;
+        }
+
+        .btns-zc a {
+            display: block;
+            width: 100%;
+            height: 50px;
+            border-bottom: 1px solid #6b60e2;
+            line-height: 50px;
+            color: #fff;
+            font-size: 14px;
+            padding-left: 35px;
+            position: relative;
+
+        }
+
+        .btns-zc a span {
+            display: inline-block;
+            width: 25px;
+            height: 33px;
+            position: relative;
+            left: -10px;
+            top: 8px;
+            overflow: hidden;
+        }
+
+        .btns-zc a i {
+            display: inline-block;
+            width: 25px;
+            height: 33px;
+            background-image: url(https://xyq.res.netease.com/pc/gw/20170118103441/img/spriter/index_z_670b19d.png);
+            background-position: -415px -174px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            transition: all ease-in-out 0.3s;
+        }
+
+        .btns-zc a i::before {
+            content: '';
+            display: inline-block;
+            width: 25px;
+            height: 33px;
+            background-image: url(https://xyq.res.netease.com/pc/gw/20170118103441/img/spriter/index_z_670b19d.png);
+            background-position: -415px -174px;
+            position: absolute;
+            bottom: -39px;
+        }
+
+        .btns-zc .btns-1:hover i {
+            transform: translateY(-34px)
+        }
+
+        .btns-zc .btns-2:hover i {
+            transform: translateY(-34px)
+        }
+
+        .comment {
+            display: inline-block;
+            width: 100%;
+            height: 38px;
+            background: #2973ce;
+            position: relative;
+            padding: 17px 10px 5px 62px;
+            line-height: 18px;
+            font-size: 14px;
+            color: #fff;
+        }
+
+        .comment span {
+            display: inline-block;
+            width: 24px;
+            height: 27px;
+            position: absolute;
+            top: 20px;
+            left: 25px;
+            overflow: hidden;
+        }
+
+        .comment span i {
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: inline-block;
+            width: 24px;
+            height: 27px;
+            background-image: url(https://xyq.res.netease.com/pc/gw/20170118103441/img/spriter/index_z_670b19d.png);
+            background-position: -400px -328px;
+            transition: all ease-in-out 0.3s;
+        }
+
+        .comment span i::before {
+            content: '';
+            display: inline-block;
+            width: 24px;
+            height: 27px;
+            background-image: url(https://xyq.res.netease.com/pc/gw/20170118103441/img/spriter/index_z_670b19d.png);
+            background-position: -400px -328px;
+            position: absolute;
+            bottom: -29px;
+        }
+
+        .comment:hover i {
+            transform: translateY(-27px)
+        }
+
+        .SVIP {
+            display: inline-block;
+            height: 48px;
+            width: 100%;
+            background: url(https://xyq.res.netease.com/pc/gw/20170118103441/img/hy_bg_4433a14.webp) no-repeat;
+            background-size: 100% 100%;
+            color: #ffe2a3;
+            line-height: 14px;
+            font-size: 10px;
+            padding: 12px 0 0 66px;
+            position: relative;
+        }
+
+        .SVIP span {
+            width: 31px;
+            height: 40px;
+            display: inline-block;
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            overflow: hidden;
+        }
+
+        .SVIP span i {
+            display: inline-block;
+            width: 31px;
+            height: 40px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: url(https://xyq.res.netease.com/pc/gw/20170118103441/img/hy_icon_4a1ee4a.png) no-repeat;
+            background-size: 100% 100%;
+            transition: all ease-in-out 0.3s;
+        }
+
+        .SVIP span i::before {
+            content: '';
+            display: inline-block;
+            width: 31px;
+            height: 40px;
+            background: url(https://xyq.res.netease.com/pc/gw/20170118103441/img/hy_icon_4a1ee4a.png) no-repeat;
+            background-size: 100% 100%;
+            position: absolute;
+            bottom: -43px;
+        }
+
+        .SVIP:hover i {
+            transform: translateY(-44px)
+        }
+
+        .SVIP em {
+            display: block;
+            width: 54px;
+            height: 17px;
+            background: url(https://xyq.res.netease.com/pc/gw/20170118103441/img/hy_btn1_68ac751.png) no-repeat;
+            background-size: 100% 100%;
+            margin-top: 3px;
+        }
+        #box {
+            overflow: hidden;
+            width: 462px;
+            height: 462px;
+            margin-right:20px;
+            position: relative;
+            float:left;
+        }
+
+        .container {
+            width: 462px;
+            height: 462px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container-1 {
+            width: 462px;
+            height: 462px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display:none;
+        }
+
+        .container .wriper,
+        .container-1 .wriper-1 {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .container .wriper .silde,
+        .container-1 .wriper-1 .silde-1 {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+        }
+
+        .container .wriper .silde img,
+        .container-1 .wriper-1 .silde-1 img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .footer {
+            width: 100%;
+            height: 40px;
+            display: flex;
+            position: absolute;
+            bottom: 0;
+            box-sizing: border-box;
+            background: rgba(0, 0, 0, .8);
+            user-select: none;
+        }
+
+        .footer span {
+            flex: 1;
+            display: inline-block;
+            width: 95.5px;
+            height: 40px;
+            margin: auto;
+            border-right: 1px solid #ccc;
+            text-align: center;
+            line-height: 40px;
+            font-size: 12px;
+            color: #8b8989;
+        }
+
+        .click {
+            width: 110px;
+            height: 30px;
+            display: flex;
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: #333e50;
+            z-index: 999;
+        }
+
+        .click a {
+            flex: 1;
+            display: inline-block;
+            text-align: center;
+            line-height: 30px;
+            width: 50px;
+            height: 30px;
+            color: #fff;
+            text-decoration: none;
+            z-index: 3
+        }
+
+        .click a.on {
+            background: #3b8bed;
+        }
+
+        .footer span.active {
+            background: #3b8bed;
+
+            color: #fff;
+        }
+
+        .footer span:hover {
+            cursor: pointer;
+        }
+
+        .footer span:nth-child(4) {
+            border-right: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="part-icon">
+        <div class="col-box">
+            <a href="javascript:;" class="btn-a btn-one">
+                <i class="btn-icon"></i>
+                <span class="arrow-box">
+                    <i class="i-arrow"></i>
+                </span>
+                <p class="desc">
+                    PC版客户端
+                    <br>
+                    下载
+                </p>
+            </a>
+            <a href="javascript:;" class="btn-a btn-two">
+                <i class="btn-icon"></i>
+                <span class="arrow-box">
+                    <i class="i-arrow"></i>
+                </span>
+                <span class="tixt">
+                    互通版下载
+                    <br>
+                    <i class="tixt-dec">手机电脑时实互通</i>
+                </span>
+            </a>
+            <a href="javascript:;" class="btn-a btn-three">
+                <span class="arrow-box">
+                    <i class="i-arrow"></i>
+                </span>
+                <p class="desc">
+                    《梦幻西游》
+                    <br>
+                    助手下载
+                </p>
+            </a>
+            <div class="btns-zc">
+                <a class="btns-1" href="http://xyq.163.com/reg/">
+                    <span>
+                        <i></i>
+                    </span>
+                    立即注册
+                </a>
+                <a class="btns-2" href="http://ecard.163.com/news/intro/dy/2015/10/12/20637_573394.html">
+                    <span>
+                        <i></i>
+                    </span>
+                    快速充值
+                </a>
+            </div>
+            <a class="comment" href="">
+                <span>
+                    <i></i>
+                </span>
+                客服中心
+                <br>
+                95163999
+            </a>
+            <a class="SVIP" href="">
+                <span>
+                    <i></i>
+                </span>
+                支持网易游戏超级会员
+                <br>
+                <em></em>
+            </a>
+        </div>
+        <div id="box">
+                <section class="container">
+                    <div class="wriper">
+                        <div class="silde">
+                            <a href="http://xyq.163.com/news/20191017/4905_841222.html"><img src="./img/10.jpg" alt=""></a>
+                        </div>
+                        <div class="silde">
+                            <a href="http://xyq.163.com/2019/xmhz/"> <img src="./img/12.jpg" alt=""></a>
+                        </div>
+                        <div class="silde">
+                            <a href="http://xyq.163.com/2019/jinyi/yllsys.html"><img src="./img/13.jpg" alt=""></a>
+                        </div>
+                        <div class="silde">
+                            <a href="http://xyq.163.com/bcswpk/"> <img src="./img/14.jpg" alt=""></a>
+                        </div>
+                    </div>
+                    <div class="footer">
+                        <span class="active">10.25新服</span>
+                        <span>群雄逐鹿冠军</span>
+                        <span>驭龙猎手</span>
+                        <span>百城兽王赛</span>
+                    </div>
+                </section>
+                <div class="container-1">
+                    <div class="wriper-1">
+                        <div class="silde-1 active">
+                            <a href="http://id5.163.com/fab/"><img src="./img/15.jpg" alt=""></a>
+                        </div>
+                        <div class="silde-1">
+                            <a href="http://stzb.163.com/"><img src="./img/16.jpg" alt=""></a>
+                        </div>
+                        <div class="silde-1">
+                            <a href="http://qiyu.163.com/"><img src="./img/17.jpg" alt=""></a>
+                        </div>
+                    </div>
+                    <div class="footer">
+                        <span class="tab active">第五人格</span>
+                        <span class="tab">率士之滨</span>
+                        <span class="tab">超级会员</span>
+                    </div>
+                </div>
+                <div class="click">
+                    <a href="javascript:;" class="on" type = "ok">官方</a>
+                    <a href="javascript:;" class="" type = "key" >合作</a>
+                </div>
+            </div>
+    </div>
+</body>
+</html>
+<script src="../自学/渐隐渐现轮播图周/jquery/jquery-1.11.3.min.js"></script>
+<script>
+let bannerMoudle = (function () {
+        let idSelector='';
+        let $box = null,
+        $container =null,
+        $containerQ = null,
+        $sildeT = null,
+        $footer = null,
+        $spanL = null,
+        $wriper = null,
+        $silde = null,
+        $span = null,
+        $click = null;
+        
+    let n = 0,
+        Interval = 2000,
+        aotuTimer = null;
+//节流
+function throttle(fn, wait = 300) {
+        let timer = null
+        return function () {
+            clearTimeout(timer)
+            timer = setTimeout(() => {
+                fn.apply(this, ...arguments)
+            }, wait)
+        }
+    }
+//获取元素
+    function initEle(id) {
+        $box = $(id);
+        $container = $('.container');
+        $containerQ = $('.container-1');
+        $sildeT = $containerQ.find('.silde-1');
+        $footer = $containerQ.find('footer');
+        $spanL = $containerQ.find('span');
+        $wriper = $container.find('.wriper');
+        $silde = $container.find('.silde');
+        $span = $container.find('span');
+        $click = $box.find('a');
+        $silde.eq(0).siblings().hide();
+    }
+//自动轮播   
+    function autoMove() {
+        aotuTimer = setInterval(move, Interval)
+    }
+
+    function move() {
+        n++;
+        if (n >= $silde.length){
+            n = 0;
+        }
+        $silde.eq(n).css({
+            opacity: 0
+        }).show().animate({
+            opacity: 1
+        }, 300).siblings().animate({
+            opacity: 0
+        }, 300, function () {
+            $silde.eq(n).siblings().hide()
+        })
+    }
+ //绑定事件
+ function evenBind(){
+    $container.on('mouseenter', function () {
+        clearInterval(aotuTimer)
+    })
+    $container.on('mouseleave', function () {
+        autoMove();
+    })
+    $span.on('mouseenter', throttle(function () {
+        let index = $(this).index();
+        n = index;
+        n--;
+        move();
+        $span.eq(n).addClass('active').siblings().removeClass('active')
+    }))
+    $click.on('click', function (e) {
+        let tar = e.target || e.srcElement;
+        if(tar.nodeName.toLowerCase() === 'a'){
+        if(tar.getAttribute('type') === 'ok'){
+            $(this).addClass('on').siblings().removeClass('on')
+            $container.css({display:'block'});
+            $containerQ.css({display:'none'})
+        }else{
+            $container.css({display:'none'});
+            $containerQ.css({display:'block'});
+            $(this).addClass('on').siblings().removeClass('on');
+        }
+       } 
+    })    
+    $spanL.on('mouseenter',function(){
+        let n = $(this).index();
+        $sildeT.eq(n).show().siblings().hide()
+        $spanL.eq(n).addClass('active').siblings().removeClass('active')
+    })
+ }
+
+    return {
+        init(id) {
+            idSelector=id;
+            initEle(id);
+            autoMove();
+            evenBind();
+        }
+    }
+})()
+bannerMoudle.init('#box');
+</script>

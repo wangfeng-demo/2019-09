@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .listImg {
+            width: 200px;
+            height: 100px;
+            display: block;
+            margin: 50px;
+        }
+
+        .bigImg {
+            width: 400px;
+            height: 200px;
+            position: absolute;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="listImgBox">
+        <img src="../day05/渐隐渐现轮播图/img/1.jpg" alt="" class="listImg">
+        <img src="../day05/渐隐渐现轮播图/img/3.jpg" alt="" class="listImg">
+    </div>
+    <div class="bigImgBox">
+        <img src="../day05/渐隐渐现轮播图/img/1.jpg" alt="" class="bigImg">
+        <img src="../day05/渐隐渐现轮播图/img/3.jpg" alt="" class="bigImg">
+    </div>
+</body>
+
+</html>
+<script>
+    let listImgs = document.getElementsByClassName('listImg'),
+        bigImgs = document.getElementsByClassName('bigImg')
+    for (let i = 0; i < listImgs.length; i++) {
+        listImgs[i].onmouseenter = function () {
+            bigImgs[i].style.display = 'block';
+            listImgs[i].onmousemove = function (e) {
+                let {
+                    pageY,
+                    pageX
+                } = e;
+            bigImgs[i].style.left = pageX + 100 + 'px';
+            bigImgs[i].style.top = pageY + 100 +'px'
+            }
+        }
+        listImgs[i].onmouseleave = function () {
+            bigImgs[i].style.display = 'none';
+        }
+    }
+</script>

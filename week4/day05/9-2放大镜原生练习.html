@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        #box {
+            width: 1200px;
+            margin: 100px auto;
+        }
+
+        .lettleBox {
+            width: 200px;
+            height: 200px;
+            float: left;
+            position: relative;
+        }
+
+        .lettleBox img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .mask {
+            display: none;
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: rgba(78, 42, 76, 0.5);
+            cursor: move;
+        }
+
+        .bigBox {
+            width: 400px;
+            height: 400px;
+            position: relative;
+            margin-left: 30px;
+            float: left;
+            overflow: hidden;
+            display: none;
+        }
+
+        .bigBox img {
+            width: 800px;
+            height: 800px;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <div class="lettleBox">
+            <img src="./1.jpg" alt="">
+            <div class="mask"></div>
+        </div>
+        <div class="bigBox">
+            <img src="./1.jpg" alt="">
+        </div>
+    </div>
+</body>
+
+</html>
+<script src="./渐隐渐现轮播图/jquery/jquery-1.11.3.min.js"></script>
+<script>
+    let lettleBox = document.getElementsByClassName('lettleBox')[0],
+        bigBox = document.getElementsByClassName('bigBox')[0],
+        mask = document.getElementsByClassName('mask')[0],
+        bigImg = bigBox.getElementsByTagName('img')[0];
+    lettleBox.onmouseenter = function () {
+        mask.style.display = 'block';
+        bigBox.style.display = 'block';
+    }
+    lettleBox.onmouseleave = function () {
+        mask.style.display = 'none';
+        bigBox.style.display = 'none';
+    }
+    lettleBox.onmousemove = function (e) {
+        let {pageX,pageY} = e;
+        let o = offset(this);
+
+        let l = pageX - o.l - mask.clientWidth / 2,
+         t = pageY - o.t - mask.clientHeight / 2;
+
+        let maxT = this.clientHeight - mask.clientHeight,
+            maxL = this.clientWidth - mask.clientWidth;
+
+        l = l <= 0 ? 0 : (l > maxL ? maxL : l);
+        t = t <= 0 ? 0 : (t > maxT ? maxT : t);
+
+        mask.style.left = l + 'px';
+        mask.style.top = t + 'px';
+
+        let n = mask.offsetWidth / bigBox.offsetWidth;
+        bigImg.style.left = -l / n + 'px';
+        bigImg.style.top = -t / n + 'px';
+    }
+
+    function offset(ele) {
+        let l = ele.offsetLeft,
+            t = ele.offsetTop,
+            temp = ele.offsetParent;
+        while (temp) {
+            l += temp.offsetLeft + temp.clientLeft;
+            t += temp.offsetTop + temp.clientTop;
+            temp = temp.offsetParent;
+        }
+        return {
+            l,
+            t
+        }
+    }
+</script>

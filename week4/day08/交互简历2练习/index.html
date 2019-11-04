@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+<script>
+    let w = document.documentElement.clientWidth || document.body.clientWidth;
+    document.documentElement.style.fontSize = w * 100 / 640 + 'px';
+    window.onscroll = function () {
+        let w = document.documentElement.clientWidth || document.body.clientWidth;
+        document.documentElement.style.fontSize = w * 100 / 640 + 'px';
+    }
+</script>
+
+<body>
+    <section class="loadingBox">
+        <h1>珠峰培训</h1>
+        <h2>H5场景的交互简历</h2>
+        <div class="progressBox">
+            <div class="progress"></div>
+        </div>
+        <button class="btn hide">进入H5</button>
+    </section>
+    <section class="phoneBox">
+        <header>
+            <h1>珠峰培训</h1>
+            <h2>www.zhufengpeixun.cn</h2>
+            <h3 class="hide">00:00</h3>
+        </header>
+        <footer>
+            <div class="cirlce"></div>
+        </footer>
+        <div class="callOver bot">
+            <div class="overBtn"></div>
+        </div>
+    </section>
+    <section class="chatBox">
+        <ul class="chatMsgBox">
+            <li class="opa">
+                <div class="imgBox">
+                    <img src="./images/message-head1.png" alt="">
+                </div>
+                <div class="msg">
+                    今天去吃啥？
+                </div>
+            </li>
+            <li class="right opa">
+                <div class="imgBox">
+                    <img src="./images/message-head2.png" alt="">
+                </div>
+                <div class="msg">
+                    今天去吃啥？
+                </div>
+            </li>
+            <li class="opa">
+                <div class="imgBox">
+                    <img src="./images/message-head1.png" alt="">
+                </div>
+                <div class="msg">
+                    今天去吃啥？
+                </div>
+            </li>
+            <li class="right opa">
+                <div class="imgBox">
+                    <img src="./images/message-head2.png" alt="">
+                </div>
+                <div class="msg">
+                    今天去吃啥？
+                </div>
+            </li>
+            <li class="opa">
+                <div class="imgBox">
+                    <img src="./images/message-head1.png" alt="">
+                </div>
+                <div class="msg">
+                    今天去吃啥？
+                </div>
+            </li>
+            <li class="right opa">
+                <div class="imgBox">
+                    <img src="./images/message-head2.png" alt="">
+                </div>
+                <div class="msg">
+                    今天去吃啥？
+                </div>
+            </li>
+            <li class="opa">
+                <div class="imgBox">
+                    <img src="./images/message-head1.png" alt="">
+                </div>
+                <div class="msg">
+                    今天去吃啥？
+                </div>
+            </li>
+            <li class="right opa">
+                <div class="imgBox">
+                    <img src="./images/message-head2.png" alt="">
+                </div>
+                <div class="msg">
+                    今天去吃啥？
+                </div>
+            </li>
+            <li class="opa">
+                <div class="imgBox">
+                    <img src="./images/message-head1.png" alt="">
+                </div>
+                <div class="msg">
+                    今天去吃啥？
+                </div>
+            </li>
+            <li class="right opa">
+                <div class="imgBox">
+                    <img src="./images/message-head2.png" alt="">
+                </div>
+                <div class="msg">
+                    今天去吃啥？
+                </div>
+            </li>
+        </ul>
+        <div class="keyboard bot">
+            <p></p>
+            <div class="chatBtn hide"></div>
+        </div>
+    </section>
+    <audio src="../交互简历素材/audio/bell.mp3" preload="metadata" autoplay="true" id="bell"></audio>
+    <audio src="../交互简历素材/audio/say.mp3" preload="none" id="say"></audio>
+    <audio src="../交互简历素材/audio/music.mp3" preload="none" loop="true" id="bgm"></audio>
+</body>
+
+</html>
+<script src="./index.js"></script>

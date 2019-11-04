@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        #box {
+            width: 1519px;
+            height: 8756px;
+            margin:auto;
+        }
+
+        .list_box .list {
+            width: 800px;
+            height: 600px;
+            margin: auto;
+            border: 1px dashed palevioletred;
+            margin-top: 60px;
+            background: plum;
+        }
+
+        .nav {
+            width: 107px;
+            height: 580px;
+            border: 1px dashed lightsalmon;
+            position: fixed;
+            display: none;
+            top: 200px;
+            left: 150px;
+        }
+
+        .nav_list:nth-child(2n) {
+            background: #fff;
+        }
+
+        .nav_list:nth-child(2n+1) {
+            background: rgba(0, 0, 0, 0.1)
+        }
+
+        .nav .nav_list {
+            width: 107px;
+            height: 58px;
+            text-align: center;
+            line-height: 58px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .nav .nav_list.active {
+            background: greenyellow;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <div class="list_box">
+            <div class="list">1</div>
+            <div class="list">2</div>
+            <div class="list">3</div>
+            <div class="list">4</div>
+            <div class="list">5</div>
+            <div class="list">6</div>
+            <div class="list">7</div>
+            <div class="list">8</div>
+            <div class="list">9</div>
+            <div class="list">10</div>
+        </div>
+    </div>
+    <div class="nav">
+        <div class="nav_list active">1</div>
+        <div class="nav_list">2</div>
+        <div class="nav_list">3</div>
+        <div class="nav_list">4</div>
+        <div class="nav_list">5</div>
+        <div class="nav_list">6</div>
+        <div class="nav_list">7</div>
+        <div class="nav_list">8</div>
+        <div class="nav_list">9</div>
+        <div class="nav_list">10</div>
+    </div>
+</body>
+
+</html>
+<script>
+    let box = document.getElementById('box'),
+        listBox = document.getElementsByClassName('list'),
+        nav = document.getElementsByClassName('nav')[0],
+        navList = nav.getElementsByClassName('nav_list');
+
+    function offset(ele) {
+        let l = ele.offsetLeft,
+            t = ele.offsetTop,
+            temp = ele.offsetParent;
+        while (temp) {
+            l += temp.offsetLeft + temp.clientLeft;
+            t += temp.offsetTop + temp.clientTop;
+            temp = temp.offsetParent;
+        }
+        return {
+            l,
+            t
+        }
+    }
+    window.onload = function () {
+
+
+        let winH = document.documentElement.clientHeight || document.body.clientHeight;
+        let ary = [];
+        let timer = null;
+        for (let i = 0; i < listBox.length; i++) {
+            let item = listBox[i];
+            ary.push(offset(item).t);
+        }
+        console.log(ary);
+
+        window.onscroll = function () {
+            if (document.documentElement.scrollTop  >= +winH / 2) {
+                nav.style.display = 'block'
+            } else {
+                nav.style.display = 'none'
+            }
+            for (let n = 0; n < ary.length; n++) {
+                if (document.documentElement.scrollTop + winH/2 > +ary[n]) {
+                    for (let m = 0; m < ary.length; m++) {
+                        navList[m].className = "nav_list";
+                    }
+                    navList[n].className = "nav_list active"
+                }
+            }
+        }
+
+        for (let j = 0; j < navList.length; j++) {
+            let temp = navList[j];
+            temp.addEventListener('click', function () {
+                clearInterval(timer);
+                timer = setInterval(() => {
+                    if (document.documentElement.scrollTop <= ary[j]) {
+                        clearInterval(timer);
+                        document.documentElement.scrollTop = ary[j]
+                    }
+                    document.documentElement.scrollTop -= 20;
+                }, 17)
+            }, false)
+        }
+    }
+</script>
