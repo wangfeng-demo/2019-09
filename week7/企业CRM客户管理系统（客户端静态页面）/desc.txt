@@ -1,0 +1,27 @@
+client 
+客户端才用的技术栈：
+- HTML5/CSS3(字体图标库)
+- JEQUERY
+- AXIOS
+- 辅助插件：JEQUERY.COOKIE / MD5 /自己写的一些方法
+- 基于IFRAME 构建最初版本的SPA单页面应用开发
+
+后台才用的技术栈
+- NODE 
+- EXPRESS / EXPRESS-ROUTER
+- 本应基于数据存储 为了方便 当前项目采用JSON存储数据
+-SESSION
+-----------------
+本地存储 VS 服务器存储
+>本都存储 ： 把信息存储在客户端本地
+- cookie
+- H5 中WebStorage: localStorage / seccionStorage
+- 本地数据库存储 IndexDB
+- 本地缓存存储：mainfest
+
+> 服务器存储： 把数据存储在服务器端
+- 数据库存储:SQLSERVER / MYSQL / ORACLE / Mongod...
+- REDIS 
+- SECCION 
+- ···
+================================

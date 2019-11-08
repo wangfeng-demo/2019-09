@@ -13,7 +13,9 @@
             list-style: none;
         }
 
-        #tab_box {
+        #tab_box,
+        #tab_box1
+         {
             width: 400px;
             border: 1px dashed rgb(181, 181, 218);
             margin: 0 auto
@@ -56,6 +58,16 @@
 
 <body>
     <div id="tab_box">
+        <ul>
+            <li class="tab current">1</li>
+            <li class="tab">2</li>
+            <li class="tab">3</li>
+        </ul>
+        <div class="body current">1</div>
+        <div class="body">2</div>
+        <div class="body">3</div>
+    </div>
+    <div id="tab_box1">
         <ul>
             <li class="tab current">1</li>
             <li class="tab">2</li>
@@ -171,4 +183,5 @@
         }
     }
     new Tab('#tab_box')
+    new Tab('#tab_box1')
 </script>

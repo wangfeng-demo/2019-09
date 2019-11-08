@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="link">点我</button>
+</body>
+
+</html>
+<script>
+    /* 请求的地址中出现非有效UNICODE 现代版浏览器会默认的进行编码 
+
+    1  基于 encodeURI编码，我们可以基于decodeURI进行解码，我们一般用encodeURI编码的是整个URL，这样整个URL中的特殊字符都会自动编译
+
+    2. encodeURIComponent/decodeURIComponent它相对于encodeURI来说，不用于给整个URL编码，而是给URL部分信息进行编码（一般都是问号传参的值编码）
+    
+    3. 客户端和服务器端进行信息传输的时候，如果需要把请求的地址和信息编码，我们则基于以上两种方式处理，服务器端也存在这些方法，这样就可以统一编码解码了
+    
+    4.客户端还存在一种方式，针对于中文编码方式 escape / unescape，这种方式一般只应用于客户端页面之间自己的处理  例如：从列表跳转到详情，我们可以把传递的中文信息基于这个编码，详情页获取编码后的信息再解码，再比如我们在客户端种的cookie信息，如果信息是中文，我们也基于这种方法编码....
+     */
+    link.onclick = function () {
+        let url = window.location.href; //当前页面URL 地址
+        // window.location.href = 'http://www.zhufengpeixun.com'//当前窗口打开
+        window.open('http://www.zhufengpeixun.com') //新窗口打开
+    }
+</script>

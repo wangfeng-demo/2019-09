@@ -1,40 +1,43 @@
 $(function () {
-    //当dom结构加载完成之后执行该函数
-    $('.submit').on('click', function () {
-        let account = $('input[type=text]').val()
-        let password = $('input[type=password]').val();
-        if (!account || !password) {
-            alert('用户名或密码不能为空')
-            return
+    //DOM 结构加载完了
+    let $userName = $('.userName'),
+        $userPass = $('.userPass'),
+        $submit = $('.submit');
+    $submit.click(function () {
+        let userName = $userName.val().trim(), //获取文本框内容
+            userPass = $userPass.val().trim();
+        //=>表单校验
+        if (userName === '' || userPass === '') {
+            alert('用户名密码不能为空~~')
+            return;
         }
-        password = md5(password); //对密码进行md5加密
+        //=>密码加密MD5
+        userPass = md5(userPass); //32为字符串
+        //发送请求 看登录的接口文档
         axios.post('/user/login', {
-            account,
-            password
-        }).then((data) => {
-            //登录成功  1.跳转到首页 2.存储权限信息
-            // console.log(data);
-            if (data.code == 0) {
-                //密码正确
-                alert('登录成功', {
+            account: userName,
+            password: userPass
+        }).then(result => {
+            let {
+                code,
+                codeText,
+                power
+            } = result;
+            if (parseFloat(code) === 0) {
+                //登陆成功
+                alert('恭喜您登录成功', {
+                    //当弹出框消失的时候就会触发handled回调函数执行
                     handled: function () {
-                        // 点击关闭按钮的时候进行
-                        location.href = './index.html';
+                        //=>把用户权限校验码存储在本地
+                        localStorage.setItem('power', encodeURIComponent(power));
+                        //=>跳转到首页即可
+                        window.location.href = 'index.html'
                     }
                 })
-                // 吧正确信息存储起来(存到本地)
-                localStorage.setItem('power', data.power);
-                //把用户名存储到本地
-                localStorage.setItem('username',account);
-            } else {
-                // 密码错误
-                alert('账号或密码错误')
+                return;
             }
-        }
-, (err) => {
-            //登陆失败
-            // console.log(err);
-            alert('系统繁忙,请稍后重试')
+            //=>登陆失败
+            alert('当前用户名和密码不匹配，请重试')
         })
     })
 })

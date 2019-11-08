@@ -1,138 +1,150 @@
+//=>在所有的操作之前 我们可以先做权限校验
 $(function () {
-    let $nameBox = $('.baseBox span'),
-        $outBtn = $('.baseBox a'),
-        $iframe = $('iframe'),
-        $menuBox = $('.menuBox'), //菜单盒子
-        $as = $menuBox.find('a')
-    $nameBox.html('您好:' + localStorage.getItem('username'));
-    // 点击退出的时候要做的事
-    $outBtn.on('click', function () {
-        alert('确定退出?', {
-            confirm: true,
-            handled: function (type) {
-                // 当 type 为 confirm时，才会执行退出操作
-                if (type == 'CONFIRM') {
-                    axios.get('/user/signout').then(() => {
-                        localStorage.removeItem('power') //移除权限信息
-                        location.href = './login.html';
-                    }).catch(() => {
-                        alert('系统繁忙，请稍后重试')
-                    })
-                }
+    let power = localStorage.getItem('power'); 
+    power = decodeURIComponent(power);
+    if (!power === null) {
+        alert('当操作属于非法进入 ，清重新登陆', {
+            handled: () => {
+                window.location.href = 'login.html'
             }
         })
+        return
+    }
+    //userhandle|departhandle|jobhandle|departcustomer|allcustomer|resetpassword
+    let str = `
+    <div class="itemBox">
+    <h3>
+        <i class="iconfont icon-yuangong"></i>
+        员工管理
+    </h3>
+    <nav class="item">
+        <a href="./page/userlist.html" target="iframeBox">员工列表</a>
+        ${power.includes('userhandle')?`<a href="./page/useradd.html" target="iframeBox">新增员工</a>`:``}
+    </nav>
+</div>
+<div class="itemBox">
+    <h3>
+        <i class="iconfont icon-guanliyuan"></i>
+        部门管理
+    </h3>
+    <nav class="item">
+        <a href="./page/departmentlist.html" target="iframeBox">部门列表</a>
+        ${power.includes('departhandle')?`<a href="./page/departmentadd.html" target="iframeBox">新增部门</a>`:``}
+    </nav>
+</div>
+<div class="itemBox">
+    ${power.includes('jobhandle')?`<h3>
+    <i class="iconfont icon-zhiwuguanli"></i>
+    职务管理
+</h3>
+<nav class="item">
+    <a href="./page/joblist.html" target="iframeBox">职务列表</a>
+    <a href="./page/jobadd.html" target="iframeBox">新增职务</a>
+</nav>`:``}
+</div>
+<div class="itemBox">
+    <h3>
+        <i class="iconfont icon-kehuguanli"></i>
+        客户管理
+    </h3>
+    <nav class="item">
+        <a href="./page/customerlist.html" target="iframeBox">我的客户</a>
+        ${power.includes('departcustomer')||power.includes('allcustomer')?`<a href="./page/customerlist.html" target="iframeBox">全部客户</a>`:``}
+        <a href="./page/departmentadd.html" target="iframeBox">新增客户</a>
+    </nav>
+</div>`
+    $('.menuBox').html(str)
+
+})
+
+
+$(function () {
+    let $header = $('.headerBox'),
+        $baseBox = $header.find('.baseBox'),
+        $spanName = $baseBox.find('span'),
+        $sigoutBtn = $baseBox.find('a'),
+        $menuBox = $('.menuBox'),
+        $itemBox = $menuBox.find('.itemBox'),
+        $navList = $('.navBox a'),
+        $iframeBox = $('.iframeBox');
+
+    //=>每次进入首页都要验证用户是否登录
+    //Promise串行
+    axios.get('/user/login').then(result => {
+        if (parseFloat(result.code) === 0) {
+            //已经登录过的：我们需要获取登录用户的基本信息
+            return axios.get('/user/info');
+        }
+        alert('您还没有登录,请登录', {
+            handled: function () {
+                window.location.href = 'login.html'
+            }
+        });
+        return Promise.reject();
+    }).then(result => {
+        //已经从服务器端获取到当前用户的基本信息
+        if (parseFloat(result.code) === 0) {
+            let data = result.data;
+            $spanName.html(`欢迎:${data.name}`)
+        }
     })
-    // 检测是否登录了每次进到首页都要安验证
-    axios.get('/user/login').then((data) => {
-        if (data.code != 0) {
-            alert('当前登录不合法，请重新登录', {
-                handled() {
-                    location.href('./login.html')
-                }
+    //=>安全退出
+    $sigoutBtn.click(function () {
+        axios.get('/user/signout').then(result => {
+            if (parseFloat(result.code) === 0) {
+                //=>把本地的存储的POWER信息清除
+                localStorage.removeItem('power');
+                window.location.href = 'login.html'
+                return
+            }
+            alert('当前操作失败，请稍后重试')
+        })
+    })
+
+    //=>基于事件委托折叠菜单
+
+    $menuBox.click(function (ev) {
+        let target = ev.target,
+            tarTag = target.tagName,
+            $target = $(target);
+        tarTag === 'I' ? ($target = $target.parent(), tarTag = 'H3') : null;
+        if (tarTag === 'H3') {
+            $target.next().stop().slideToggle(300)
+        }
+    })
+
+    //=>点击导航实现menu的切换
+
+    let $organize = $itemBox.filter(':lt(3)'),
+        $customer = $itemBox.eq(3),
+        initIndex = 0;
+    HASH = window.location.href.queryURLParams()['HASH'] || 'organize';
+    HASH === 'customer' ? initIndex = 1 : null;
+
+    function change(index) { //分装函数 去除荣冗余代码
+        $navList.eq(index).addClass('active').siblings().removeClass('.active')
+        if (index === 0) {
+            $organize.css({
+                display: 'block'
             })
+            $customer.css({
+                display: 'none'
+            })
+            $iframeBox.attr('src', 'page/userlist.html')
+        } else {
+            $organize.css({
+                display: 'none'
+            })
+            $customer.css({
+                display: 'block'
+            })
+            $iframeBox.attr('src', 'page/customerlist.html')
         }
+    }
+    change(initIndex);
+    $navList.click(function () {
+        let index = $(this).index();
+        $(this).addClass('active').siblings().removeClass('active');
+        change(index)
     })
-
-    /* function initPage(n) {
-        var ary = [
-            './page/userlist.html',
-            './page/useradd.html',
-            './page/departmentlist.html',
-            './page/departmentadd.html',
-            './page/joblist.html',
-            './page/jobadd.html',
-            './page/customerlist.html',
-            './page/customeradd.html'
-        ]
-        $iframe.attr('src', ary[n])
-    }
-    initPage(0) */
-    //权限分配
-    function role() {
-        let power = localStorage.getItem('power') || ''; // 从本地获取全县信息
-        //userhandle|departhandle|jobhandle|departcustomer|allcustomer|resetpassword
-        var str = `${
-                    //包不包含用户列表权限
-                      power.indexOf('userhandle')!=-1?
-                      `<div class="itemBox">
-                      <h3>
-                          <i class="iconfont icon-yuangong"></i>
-                          员工管理
-                      </h3>
-                      <nav class="item">
-                          <a href="./page/userlist.html" target='iframeBox'>员工列表</a>
-                          <a href="./page/useradd.html" target='iframeBox'>新增员工</a>
-                      </nav>
-                  </div>`:''
-                     }
-                     ${
-                         power.indexOf('departhandle')!=-1?
-                         ` <div class="itemBox">
-                         <h3>
-                             <i class="iconfont icon-guanliyuan"></i>
-                             部门管理
-                         </h3>
-                         <nav class="item">
-                             <a href="./page/departmentlist.html" target='iframeBox'>部门列表</a>
-                             <a href="./page/departmentadd.html" target='iframeBox'>新增部门</a>
-                         </nav>
-                     </div>`:''
-                     }   
-                   ${
-                    power.indexOf('jobhandle')!=-1?
-                        `<div class="itemBox">
-                        <h3>
-                            <i class="iconfont icon-zhiwuguanli"></i>
-                            职务管理
-                        </h3>
-                        <nav class="item">
-                            <a href="./page/joblist.html" target='iframeBox'>职务列表</a>
-                            <a href="./page/jobadd.html" target='iframeBox'>新增职务</a>
-                        </nav>
-                        </div>`:''
-                   }
-                    
-                    <div class="itemBox"  style= "display:none" >
-                        <h3>
-                            <i class="iconfont icon-kehuguanli"></i>
-                            客户管理
-                        </h3>
-                        <nav class="item">
-                               <a href="./page/customerlist.html" target='iframeBox'>我的客户<a>
-                            
-                            ${  
-                                power.indexOf('allcustomer')!=-1?
-                              `<a href="./page/customerlist.html" target='iframeBox'>全部客户</a>`:''
-                            }
-                            ${
-                                power.indexOf('departcustomer')!=-1?
-                              `<a href="./page/customeradd.html" target='iframeBox'>新增客户</a>`:''
-                            }
-                            
-                        </nav>
-                    </div>`
-        $menuBox.html(str)
-    }
-    role();
-    // $as = $menuBox.find('a'); // 渲染完成之后再去更新变量
-    // let url = $as.eq(0).attr('href')
-    // $iframe.attr('src', url) //跳到第一个 url；
-    //监听hash 的改变 去判断显示客户管理的组织结构
-    function hash() {
-        let $tar = $menuBox.find('.itemBox:last-child')
-        if(location.hash == '#customer'){
-            // 当前要展示客户管理
-            $tar.show().siblings('.itemBox').hide();
-            let url = $tar.find('a').eq(0).attr('href');
-            $iframe.attr('src',url)
-        }else{
-            $tar.hide().siblings('.itemBox').show()
-            $as = $menuBox.find('a');// 渲染完成之后再去更新变量
-            let url = $as.eq(0).attr('href')
-            $iframe.attr('src',url);// 跳转到第一个url
-        }
-    }
-    hash();
-    window.addEventListener('hashchange',hash)
-
 })

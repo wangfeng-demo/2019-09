@@ -8,9 +8,7 @@ RESULT：{
 	code:0  //=>0成功 1失败
 	codeText:'OK',  //=>CODE状态码描述
 	power:'xxx|xxx' //=>用户权限
-}
-
-
+}  
 ----
 检测是否登录
 URL：/user/login
@@ -35,7 +33,7 @@ URL：/user/list
 METHOD：GET
 PARAMS：departmentId=0&search=''
 RESULT：{
-	code:0  	
+	code:0  
 	codeText:'OK',
 	data:[{
 		id: 1,
@@ -46,7 +44,7 @@ RESULT：{
 		departmentId: 1,
 		department: '总裁办',
 		jobId: 1,
-		job: '管理员',
+		job: '管理员',	
 		desc: "珠峰培训最高管理员账户"
 	},...]
 }

@@ -6,7 +6,7 @@ const CONFIG = require('./config'),
 const express = require('express'),
 	app = express();
 app.listen(CONFIG.PORT, () => {
-	console.log(`当前服务 起于${CONFIG.PORT}端口`);
+	console.log(`THE WEB SERVICE IS CREATED SUCCESSFULLY AND IS LISTENING TO THE PORT：${CONFIG.PORT}`);
 });
 
 /*-MIDDLE WARE-*/

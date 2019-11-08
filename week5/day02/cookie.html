@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    /* 
+        为什么要本地处存储？
+        真实项目中经常需要在一个网站的多个页面间共享数据，如登录状态，购物车信息等
+        但是浏览器打开页面时首先形成一个顶层的作用域 window，每次页面打开都会形成一个单独的作用域，页面之间是不可以互通访问变量的；但是项目中经常会用到页面间传递数据的要求；
+        每个页面又都是在浏览器中打开的，如果可以把值存储到浏览器中，让浏览器作为一个中介， A页面把值存到浏览器中，B页面从从浏览器中把A存储的值取出来；*/
+    
+    /*  本地存储解决方案？
+        1.cookie
+
+        2.localStorage 
+        localStorage 永久存储（如果手动触发删除或者用户清除）
+        getItem(属性名) setItem(属性名，属性值) removeItem(属性名)  celar()全部清空
+        console.log(window.localStorage);
+        localStorage.setItem(key, value) 存储数据
+        localStorage 存储数据时键值的形式存储的；
+        key 键
+        value 值
+        key 和 value 都需要是字符串类型，如果不是字符串类型，浏览器会隐式调用 toString 将其转换为字符串；
+
+        3.sessionStorage
+    */
+        /*  sessionStorage 会话存储 和localStorage区别==>页面关闭自动清除
+         getCookie(属性名) 对应的属性值；
+         setcookie(属性名，属性值 ，过期日期) 
+         removeCooike(属性名)  //把日期设置成过期的日子
+         cookie是前端保存某些数据的 前后端都能操作 
+         存储用户的信息  大小5k左右
+         H5新增的两个前段存储的API 大显示在5m左右；
+        这两个只能由前端操作 */
+
+              
+         
+    
+    //获取
+    function getCookie(key) {
+        let str = document.cookie;
+        str+= '; ';//让组后一个能满足正则
+        let reg = new RegExp(`(^| )${key} = ([^; ]+); `);
+        return str.match(reg) ? str.match(reg)[2] : null;
+    }   
+    //设置
+        function setCookie(key,value,date){ 
+            if(date){
+                document.cookie = `${key} = ${value};expirse = ${new Date(date)}`
+            }else
+            {
+                document.cookie = `${key} = ${value}`;
+            }
+        }
+//  删除
+function removeCooike(key,domain){
+    let res = getCookie(key);
+    if(domain){
+        document.cookie =  `${key} = null;domain = ${domain};expirse = ${new Date(1999)}`
+    }else{
+        document.cookie =  `${key} = null;expirse = ${new Date(1999)}`
+    }
+    return res
+}
+</script>

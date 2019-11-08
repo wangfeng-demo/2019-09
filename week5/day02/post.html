@@ -22,7 +22,7 @@
     xhr.onreadystatechange = function () {
         if (xhr.readyState = 4) {
             if (/200|304/.test(xhr.status)) {
-                // let t = xhr.getResponseHeader('date');//获取指定响应头
+                // let t = xhr.getResponseHeaders('date');//获取指定响应头
                 // xhr.getAllResponseHeaders() 获取所有的响应头；
                 // console.log(new Date);
                 console.log(xhr.response);

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        #some_element {
+            width: 200px;
+            height: 200px;
+            background: pink;
+            position: absolute;
+            top:0;
+            left:0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="some_element"></div>
+</body>
+
+</html>
+<script src="..//SomeDemo/类库/zepto.js"></script>
+<script>
+    $("#some_element").animate({
+        opacity: 0.25,
+        left: '50px',
+        color: '#abcdef',
+        rotateZ: '45deg',
+        translate3d: '0,10px,0'
+    }, 500, 'ease-out')
+</script>
