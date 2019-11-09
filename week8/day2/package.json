@@ -1,0 +1,24 @@
+{
+  "name": "mytest",
+  "version": "1.0.0",
+  "description": "这是一个测试项目",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "myqqq": "lessc 1.less index.css"
+  },
+  "keywords": [
+    "测试"
+  ],
+  "author": "wangfeng",
+  "license": "ISC",
+  "dependencies": {
+    "jQuery": "^1.7.4",
+    "swiper": "^5.2.0",
+    "zepto": "^1.2.0"
+  },
+  "devDependencies": {
+    "less": "^3.10.3",
+    "less-loader": "^5.0.0"
+  }
+}

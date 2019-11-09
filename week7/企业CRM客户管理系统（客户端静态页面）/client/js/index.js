@@ -54,7 +54,6 @@ $(function () {
     </nav>
 </div>`
     $('.menuBox').html(str)
-
 })
 
 
