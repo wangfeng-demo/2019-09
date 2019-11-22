@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{name}}</h1>
+    </div>
+</body>
+
+</html>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            name: "珠峰"
+        }
+    })
+    let obj = {};
+    let val = 555
+    Object.defineProperty(obj, "qqq", {
+        // value: '王峰',
+        // enumerable: true, //可枚举
+        // configurable: true, //可删除
+        // writable: true ,//可改写
+
+        //get 和set 不能和上边的四条同时存在
+        //获取属性时触发get函数
+        //设置属性时触发set函数
+        get() {
+            console.log('get');
+            return val //必用
+        },
+        set(value) {
+            //vaule就是给对应的属性设置的值
+            console.log('s et', arguments);
+            val = value
+            return 'set' //没用
+        }
+
+    })
+    // for (var k in obj) {
+    //     console.log(k)
+    // }
+    // // delete obj.qqq
+    // obj.qqq = 666;
+
+
+    let obj2 = {a:12,b:13};
+    let o = new Proxy(obj2,{
+        get(...arg){
+            console.log(arg)
+        },
+        set(...arg){
+            console.log(arg)
+        }
+    });
+
+</script>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    img{
+        width: 380px;
+        height: 480px; 
+    }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <button @click = "handle" v-html = "msg"></button>
+        <br>
+        <br>
+        <img v-show = "show" :src="pic" alt="">
+        <!--  <span v-html="msg"></span>
+        <span v-once v-html="msg"></span> -->
+        <!-- <input type="text" v-model="msg">
+        <span>{{msg}}</span>
+        <span v-text="p"></span>
+        <span v-html="p"></span>
+        <img :src="pic" alt=""> -->
+    </div>
+</body>
+
+</html>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    /* v-model = 'vue变量'
+     v-text = "vue变量"
+     v-html = "vue变量" 可以识别字符串中的DOM结构类似innerhtml
+     v-bind 给元素的属性动态绑定数据  例如给img动态绑定图签路径地址
+     v-cloak 解决小胡子问题 渲染之前有元素有v-cloak属性 vue渲染完消失   
+     v-once 数据绑定是一次性的 后面无论数据怎么改变 都不会变
+     v-for  比v-if的优先级高 
+     v-if ：如果对应得值是TRUE，当前元素会在结构中显示，如果是false，当前元素会在结构中移除（它控制的是    组件的加载和卸载的操作=>DOM的增加和删除）；还有对应的v-else-if / v-else等指令
+        好处：v-if是控制组件的存不存在，对于结果是false，不存在的组件来说，视图渲染的时候无需渲染这部分内容；而v-show则不行，因为不管是显示还是隐藏，结构都在，所以视图渲染的时候这部分也要渲染
+        在过于频繁的切换操作中，v-if明显要比v-show要低一些
+     v-show：和v-if类似，只不过它是控制元素样式的显示隐藏（display的操作）
+     v-per 告诉vue有这个指令的标签以及后代标签都不进行编译，提高vue编译效率 */
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            msg: "纪莹是王八",
+            p: `<h3>hello world</h3>`,
+            show: true,
+            pic: "./1.jpg"
+        },
+        methods:{
+            handle(){
+             this.show = !this.show;
+             this.msg = this.show?"王八是纪莹":'纪莹是王八'
+            }
+        }
+    })
+    /*  setTimeout(() => {
+         vm.msg = "123456"
+     }, 1000) */
+</script>

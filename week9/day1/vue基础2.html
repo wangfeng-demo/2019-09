@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        人民币：￥<input type="text" v-model="priceRMB">
+        <br>
+        美元：$ <span>{{priceRMB/7.1477}}</span>
+    </div>
+</body>
+
+</html>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    //v-model实现把数据绑定到视图层（给input设置value）然后监听文本框内容的改变 一旦改变会把数据也跟着改变，数据改变 视图跟着改变   
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            priceRMB: 0
+        }
+    })
+</script>

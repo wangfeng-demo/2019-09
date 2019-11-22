@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h1>{{name}}</h1>
+        <qqq></qqq>
+        <!-- 组建的使用可以使用单标签 -->
+        <!--单标签的缺点 它下边的额组件不渲染了 -->
+        <!-- 组件的命名可以是 - 的方式 在vue中安全 -->
+        <el-qqq></el-qqq>
+    </div>
+    <div id="app2">
+        <qqq></qqq>
+    </div>
+</body>
+</html>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+   Vue.component('qqq', {
+       template:'<div>{{name}}</div>',
+       data(){
+           return{
+               name:'wowowo'
+           }
+       }
+   })
+   Vue.component('el-qqq', {
+       template:'<h2>这是一另一个全组件</h2>'
+   })
+    let vm = new Vue({
+        el:'#app',
+        data:{
+            name:"纪宝贝"
+        }
+    })
+    let vm2 = new Vue({
+        el:'#app2',
+        data:{
+            name:"纪宝贝"
+        }
+    })
+</script>

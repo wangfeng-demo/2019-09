@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1 v-color="'red'">{{name}}</h1>
+        <h2 v-color>{{name}}</h2>
+        <input type="text" v-focus='flag'>
+    </div>
+</body>
+
+</html>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    Vue.directive(('color'), function (el, obj) {
+        el.style.color = obj.value || 'blue'
+
+    })
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            name: "纪宝贝",
+            flag: true
+        },
+        directives: {
+            color(el, obj) {
+                el.style.color = obj.value || 'skyblue';
+                console.log(this);
+            },
+            focus(el, obj) {
+                if (obj.value) {
+                    setTimeout(() => {
+                        el.focus()
+                    }, 10)
+
+                } else {
+                    el.blur()
+                }
+            }
+        },
+    })
+</script>

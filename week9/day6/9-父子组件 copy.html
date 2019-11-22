@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{name}}</h1>
+        <mycount>
+            <mybutton></mybutton>
+            <myh1></myh1>
+        </mycount>
+    </div>
+</body>
+
+</html>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    let mybutton = {
+        template: '<div> <button @click = "add">增加</button><button @click = "minus">减少</button> </div>',
+        methods: {
+            add() {
+                this.$emit('qqqFn', 1)
+            },
+            minus() {
+                this.$emit('qqqFn', -1)
+            }
+        }
+    }
+    let myh1 = {
+        template: "<h1>{{qqq}}</h1>",
+        props: ['qqq']
+    }
+    let mycount = {
+        template: '<div>数字是<myh1 :qqq = "count"></myh1> <mybutton @qqqFn = "fn" /> </div>',
+        data() {
+            return { 
+                count: 0
+            }
+        },
+        components: {
+            mybutton,
+            myh1
+        },
+        methods: {
+            fn(n) {
+                console.log(n)
+                this.count += n;
+            }
+        }
+    }
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            name: "纪宝贝"
+        },
+        components: {
+            mycount
+        }
+    })
+</script>

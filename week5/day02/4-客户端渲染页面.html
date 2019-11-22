@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    /* 
+  ### A 客户端渲染页面
+- 遇到 link\img\audio\video等是异步去加载资源信息（浏览器分配一个新的线程去加载，主线程继续向下渲染页     面），如果遇到的是script或者@import，则让主线程去加载资源信息（同步），加载完成信息后，再去继续         渲染页面
+  ### B DOM的重绘和回流
+- 重绘：元素样式的改变（但宽高、大小、位置等不变）
+- 回流：元素的大小或者位置发生了变化（当页面布局和几何信息发生变化的时候），触发了重新布局，导致渲染树重新计算布局和渲染
+注意！！！！回流一定触发重绘 重绘不一定回流
+### C 避免DOM的回流
+- 放弃传统操作DOM的时代，基于vue/react开始数据影响视图模式
+- DOM操作的读写分离操作 （现代的浏览器都有渲染队列的机制：发现某一行要修改元素的样式，不立即渲染，而是看看下一行，如果下一行也会改变样式，则把修改样式的操作放到 “ 渲染队列中 ”....一直到不再是修改样式的操作后，整体渲染一次，引发一次回流 ）
+-  集中改变（字符串处理）  
+let str = ``;
+    for(let i=0,i<10,i++){
+        str += `<span>${i}</span>`
+    }
+    box.innerHTML = str;
+- 集中处理（文档碎片）
+ let frg = document.createDocumentFragment();
+ for(let i = 0, i < 10, i++0){
+     let span = document.createElement('span);
+     span.innerHTML = i
+     frg.appendChild(span);
+ }
+ box.appendChild(frg);
+ frg = null
+*/  
+</script>

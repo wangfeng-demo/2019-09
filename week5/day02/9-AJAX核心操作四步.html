@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    //1. 创建AJAX的实例
+    let xhr = new XMLHttpRequest; //IE低版本浏览器中用的是new ActiveXObject()  高程三种JS惰性编程思想，关于XHR的兼容处理
+
+    //2. 打开URL（配置发送请求的信息）
+    //method:HTTP请求方式
+    //URL:请求地址（API接口地址）
+    //ASYNC:设置同步或者异步，默认是TRUE异步，FALSE同步
+    //USER-NAME：传递给服务器的用户名
+    //USER-PASS:传递给服务器的密码
+    xhr.open('GET', './data.json', true)
+
+    //3. 监听AJAX的状态，在状态为x的时候，获取服务器响应的内容
+    //AJAX状态码  0 1 2 3 4
+    xhr.onreadystatechange = function () {
+        if (xhr.readystate === 4 && /^(2|3)\d{2}$/.test(xhr.status)) {
+            let result = xhr.responseText;
+            console.log(xhr.readyState);
+        }
+    }
+
+    //4. 发送请求
+    //send中放的是请求主体的内容
+    xhr.send(null);
+
+
+    //=>AJAX任务（发送一个请求给服务器，从服务器获取到对应的内容) 从send后开始，到xhr.readystate===4的时候算任务结束
+</script>

@@ -55,8 +55,6 @@ $(function () {
 </div>`
     $('.menuBox').html(str)
 })
-
-
 $(function () {
     let $header = $('.headerBox'),
         $baseBox = $header.find('.baseBox'),

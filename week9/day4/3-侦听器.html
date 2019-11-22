@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model="name">
+        <h1>{{name}}</h1>
+        <div v-show="name.length>=5">名字太长</div>
+        <div>{{msg}}</div>
+        <h2>{{watchMsg}}</h2>
+    </div>
+</body>
+
+</html>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            name: "纪宝贝",
+            watchMsg: '',
+            timer:null
+        },
+        computed: {
+            //计算属性不能监听异步
+            msg() {
+                return this.name.length >= 5 ? "太长" : ""
+            }
+        },
+        watch: {
+            name(newValue, oldValue) {
+                // this.name = 666
+                // this.name = Math.random()
+                clearTimeout(this.timer)
+                this.timer = setTimeout(() => {
+                    this.watchMsg = this.name.length >= 5 ? "太长l" : ""
+                }, 500);
+            }
+        }
+    })
+</script>

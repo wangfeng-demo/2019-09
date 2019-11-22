@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    /* 
+    (改变原有数组)push pop unshift shift reverse splice sort 
+    foreach map fillter some every find reduce include 
+*/
+    var ary=[1000,200,300,400,5000];
+    var arr=ary.filter(item=>{
+        return item>3
+    })
+    // some 只要有一个回调函数返回值是true 结果就是true，后边的回调函数就不在执行了，
+    // every 只要有一个回调函数返回值是false 结果就是false，后边的回到函数就不在执行了。
+  let res=  ary.reduce(function (prev,next) {
+        // prev 若第一次执行回调函数时，prev是reduce的第二个参数，若不存在第二个参数，则prev 就是数组中的第一项
+        // 在后面的回调prev就是上一个回调函数的返回值，next就是当前项。
+        // reduce的执行结果就是最后一个回调函数的返回值
+        console.log(arguments);
+        return 666
+    },10)
+    // 这个就能求出数组之和
+    let t =ary.reduce((prev,next)=>{
+        return prev+next
+    })
+    console.log(t);//6900
+
+    var ary=[{a:10},{a:20},{a:30},{a:40}];
+    let t1=ary.reduce((prev,next)=>{
+        return prev+next.a
+    },0)
+    console.log(t1);
+
+    /* find 
+        回调函数返回true  就把当前的这一项返给res2，后边的回调函数不在执行，返回都是false，则给res2一个undefined。
+    */
+
+    let res2=ary.find((item,naxt)=>{
+        console.log(6);
+        return item.a==11
+    })
+    console.log(res2);
+    
+    // 以上方法都属于声明式，还有一种是编程式写法
+    
+</script>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{name}}</h1>
+        <mycount>
+
+        </mycount>
+    </div>
+</body>
+
+</html>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    mybutton = {
+        template: "<div>峰峰小宝贝收到：{{qqq}} 块</br> 峰峰小宝贝觉得<button style = 'font-size:20px' @click = 'money'>钱太多</button></div>",
+        props: ['qqq'], //接收父组件写在行内的属性,
+        methods: {
+            money() {
+                this.$emit('doFn', -100)
+            }
+        }
+    }
+    let mycount = {
+        template: '<h1> 纪莹小宝贝给我：{{count}} 块<mybutton :qqq="count" @doFn="things"></mybutton> </h1>',
+        data() {
+            return {
+                count: 1000
+            }
+        },
+        components: {
+            mybutton
+        },
+        methods: {
+            things(val) {
+                this.count = this.count + val
+            }
+        }
+    }
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            name: "纪宝贝"
+        },
+        components: {
+            mycount
+        }
+    })
+</script>

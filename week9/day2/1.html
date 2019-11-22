@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div {
+            margin: 100px auto;
+            width: 100px;
+            height: 100px;
+            border: 1px solid #eee;
+            border-color: transparent transparent transparent black;
+            transform: rotate(45deg);
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+</body>
+
+</html>
+<script>
+    let str = 'this is a world.';
+    let ary = str.match(/(\w+\b)|(\.$)/g).reverse().join(' ').replace(/\.\s+/, '.')
+    console.log(ary);
+
+    let str1 = 'abcdefg';
+    let str2 = 'abcmlki';
+    let str3 = ''
+    for (let i = 0; i < str1.length; i++) {
+        let temp1 = str1[i]
+        for (let j = 0; j < str2.length; j++) {
+            let temp2 = str2[j]
+            if (temp1 === temp2) {
+                str3 += temp1
+                break;
+            }
+        }
+    }
+    console.log(str3);
+</script>

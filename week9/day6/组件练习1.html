@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{name}}</h1>
+        <mynum></mynum>
+    </div>
+    <template id="count">
+        <div>
+            <h2>{{count}}</h2>
+            <mybutton></mybutton>
+        </div>
+    </template>
+</body>
+
+</html>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    let mybutton = {
+        template: '<div> <button @click = "add">王峰</button> <button @click = "minus">纪莹</button> </div>',
+        methods: {
+            add() {
+                this.$parent.count++
+            },
+            minus() {
+                this.$parent.count--
+            }
+        }
+    }
+    let mynum = {
+        template: "#count",
+        components: {
+            mybutton
+        },
+        data() {
+            return {
+                count: 666
+            }
+        }
+    }
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            name: "纪宝贝"
+        },
+        components: {
+            mynum
+        }
+    })
+</script>

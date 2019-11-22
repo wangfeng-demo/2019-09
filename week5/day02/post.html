@@ -18,13 +18,11 @@
 <script>
     let xhr = new XMLHttpRequest();
     //post 不存在走缓存这一说
+    //POST系列传递给服务器信息的方式一般采用：设置请求主体
     xhr.open('post', './data.json', true);
     xhr.onreadystatechange = function () {
-        if (xhr.readyState = 4) {
+        if (xhr.readyState == 4) {
             if (/200|304/.test(xhr.status)) {
-                // let t = xhr.getResponseHeaders('date');//获取指定响应头
-                // xhr.getAllResponseHeaders() 获取所有的响应头；
-                // console.log(new Date);
                 console.log(xhr.response);
             } else if (/[45]\d{2}/.test(xhr.status)) {
                 console.log('失败');

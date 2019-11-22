@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{name}}</h1>
+        <input v-model="name" type="text">
+        <input v-model="age" type="number" @keydown.enter="kd">
+        <button @click.alt.exact="kd">点我</button>
+        <!-- 按键修饰符只有当按键是回车键的时候才触发kd 
+        // 键盘事件修饰符：
+        // .enter 回车
+        // .esc 退出
+        // .delete 退格
+        // .space 空格
+        // .tab tab键
+        // .left 左
+        // .right 右
+        // .up 上
+        // .middle
+        // .down 下
+        -->
+    </div>
+</body>
+
+</html>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            name: "珠峰",
+            age: 10
+        },
+        methods: {
+            kd(e) {
+                alert(this.name + this.age)
+            }
+        }
+    })
+</script>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+        v-for 循环绑定数据
+        想循环谁就就给谁设置v-for
+        循环类似for/for  in 的语法 v-for = '(item,index)in arr'   
+    -->
+    <div id="app">
+        <table>
+            <thead>
+                <th>编号</th>
+                <th>姓名</th>
+                <th>年龄</th>
+            </thead>
+            <tbody>
+                <tr v-for='(item,index) in arr'>
+                    <td v-html="item.id"></td>
+                    <td v-html="item.name"></td>
+                    <td v-html="item.age"></td>
+                </tr>
+            </tbody>
+        </table>
+        <button @click="arr.reverse()">点我啊</button>
+    </div>
+</body>
+
+</html>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            arr: [{
+                id: 1,
+                name: "张三",
+                age: 26
+            }, {
+                id: 2,
+                name: "李四",
+                age: 27
+            }, {
+                id: 3,
+                name: "王五",
+                age: 28
+            }, ]
+        }
+    })
+</script>

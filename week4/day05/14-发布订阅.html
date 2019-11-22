@@ -9,47 +9,39 @@
 </head>
 
 <body>
-<button id="btn">你好</button>
+    <button id="btn">你好</button>
 </body>
 
 </html>
 <script>
     //订阅的时候 把名字加入到订阅者清单
     // 发布时 按照清单去送期刊
-    var ary = []; //订阅者清单
+    let ary = [] //订阅者清单
     function on(f) {
-        //订阅函数 把对应的事件 放到清单里，ary.push(f)
-        ary.push(f);
+        ary.push(f) //将对应的事件放入事件池中
     }
+
     function fire() {
-        ary.forEach((f) => {
-            f.call(this,...arguments);  
-            console.log(this);  
+        ary.forEach(f => {
+            f.call(this, arguments)
+            console.log(this);
         })
     }
 
-    function off(f){
-        //取消订阅
-        let n = ary.indexOf(f)
-        ary.splice(n,1)
-    }
     function f1() {
-        console.log(1,this);    
+        console.log(1, this);
     }
 
     function f2() {
-        console.log(2,this);
-
+        console.log(1, this);
     }
 
     function f3() {
-        console.log(3,this);
-
+        console.log(1, this);
     }
-    on(f1);
-    on(f2);
-    on(f3);
-    fire();
-    off(f2)
+    on(f1)
+    on(f2)
+    on(f3)
+    fire()
     btn.onclick = fire;
 </script>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .box {
+            width: 500px;
+            margin: 20px auto;
+        }
+
+        .box .tab {
+            display: flex;
+            position: relative;
+            top: 1px;
+        }
+
+        .box .tab li {
+            box-sizing: border-box;
+            border: 1px solid #aaa;
+            width: 60px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            background: #eee;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .box .tab li.active {
+            background: #fff;
+            border-bottom: #fff;
+        }
+
+        .box .content {
+            display: none;
+            width: 400px;
+            border: 1px solid #aaa;
+            height: 200px;
+            box-sizing: border-box;
+            text-align: center;
+            line-height: 200px;
+        }
+
+        .box .content.active {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="box">
+            <ul class="tab">
+                <li v-for="(item,index) in data_ary" v-html="item.name" :class="{active:index==curIndex}" @click="curIndex=index"></li>
+            </ul>
+            <div v-for="(item,index) in data_ary" v-html="item.text" :class="{content:true,active:index==curIndex}">
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    let data_ary = [{
+            id: 1,
+            name: '音乐',
+            text: '音乐内容'
+        },
+        {
+            id: 1,
+            name: '歌手',
+            text: '歌手信息'
+        },
+        {
+            id: 1,
+            name: '相声',
+            text: '音乐人物'
+        }, {
+            id: 1,
+            name: '纪莹',
+            text: '大宝贝'
+        }
+
+    ]
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            data_ary,
+            curIndex: 0
+        }
+    })
+</script>

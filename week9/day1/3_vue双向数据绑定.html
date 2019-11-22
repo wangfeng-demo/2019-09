@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+</head>
+<style>
+    [v-cloak] {
+        display: none;
+    }
+</style>
+
+<body>
+    <div id="app" v-cloak>
+        <h1>姓名是：{{name}}</h1>
+        <input type="text" v-model="name1">
+        <div v-once>
+            {{name1}}
+            <i>{{age}}</i>
+        </div>
+
+        <h3 v-text="name1"></h3>
+
+       <!--  <input type="number" v-model="age">    
+        <h3>{{age>=18?'成年人':'未成年'}}</h3>
+        <div v-text="p"></div>
+        <div v-html="p"></div>
+ -->
+        <textarea v-model="n"></textarea>
+        <h1>{{n=100}}</h1>
+        <h1>{{n}}</h1>
+        <div v-per>
+            {{name}}
+            {{age}}
+            {{n}}
+        </div>
+        <div v-per>
+            <h2>hello</h2>
+            <ul>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+    </div>
+
+</body>
+
+</html>
+<script>
+    // 双向数据绑定
+    /* 
+     v-model = 'vue变量'
+     v-text = "vue变量"
+     v-html = "vue变量" 可以识别字符串中的DOM结构类似innerhtml
+     v-cloak 解决小胡子问题 渲染之前有元素有v-cloak属性 vue渲染完消失   
+     v-once 代表有这个属性的元素 里边的语法 vue值渲染一次
+     v-per 告诉vue有这个指令的标签以及后代标签都不进行编译，提高vue编译效率
+     */
+    let vm = new Vue({
+        el: "#app",
+        data: {
+            name: "王峰",
+            name1: "666",
+            age: 10,
+            p: `<h3>hello world</h3>`,
+            n: 0
+        }
+    })
+</script>

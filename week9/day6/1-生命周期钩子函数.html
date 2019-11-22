@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 生命周期钩子函数 是vue 提供的 几个对应的时间 执行的函数
+         我们可以再对应觉得函数中执行对应的事情
+     -->
+    <div id="app">
+        <h1 class="qqq">{{name}}</h1>
+    </div>
+</body>
+
+</html>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({//根实例 初始化会调用恩多方法（钩子函数）
+        data: {
+            name: "纪宝贝"
+        },
+        beforeCreate() {//此方法用不到
+            console.log('beforeCreate');
+        },
+        created() {//过去ajax
+            //初始化操作放到created钩子 第一次可以获取当前实例数据的 钩子函数
+            console.log('created');
+        },
+        beforeMount() {//没有实际意义
+            console.log('beforeMount');
+        },
+        mounted() {
+            // 获取DOM的操作一般都在mounted中
+            console.log('mounted');
+            console.log(this);
+            console.log(document.querySelector('.qqq'));
+        },
+        beforeUpdate() {
+            //在数据更新并且在触发了视图之后 会触发更新这两个钩子函数
+            console.log('beforeUpdate');
+            console.log(document.querySelector('.qqq'));
+        },
+        updated() {
+            //在updated 这个钩子中不能出发视图更新
+            console.log('updated');
+            console.log(document.querySelector('.qqq'));
+        },
+        beforeDestroy() {
+            console.log('beforeDestroy');
+        },
+        destroyed() {
+            console.log('destroyed');
+        },
+
+    }).$mount("#app")
+    vm.$destroy();//切断了数据更新视图的操作 视图更新数据没有改变
+</script>

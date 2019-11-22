@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        {{obj.name}}+{{arr}}
+    </div>
+</body>
+
+</html>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    let obj = {
+        name: ''
+    }
+    let arr = [];
+    let vm = new Vue({
+        // template: `<div>这是个魔板{{qqq}}</div>`,template存在会覆盖外部html内容
+        el: '#app',
+        //data中得属性就是vue的变量 最终被放到了当前这个实例身上
+        data: {
+            /*   并不是所有的数据更改都会通知视图重新渲染
+                1. 初始数据是一个对象，对象中没有xxx键值对，后期新增的键值对是不会让视图重新渲染的，解决办法：
+                ++ 最好在初始化数据的时候，就把视图中需要的数据提前声明好（可以是空值，但是要有这个属性）==>原理：只有data中初始化过的属性才 get \ set
+                ++ 不要修改某个属性名，而是把对象的值整体替换（指向新的堆内存）
+                ++可以基于vm.$set内置方法修改数据：vm.$set(vm.obj,key,value)
+                ++ vm.obj = JSON.parse(JSON.stringify(Object.assign(vm.obj,{b:12})));
+                ++ vm.obj = Object.assign({b:12},vm.obj)
+                2.2. 如果数据是一个数组，我们修改数据基于ARR[N]=xxx或者ARR.length--等操作方式，是无法让视图重新渲染的；需要基于：
+                ++ push\pop等内置方法 整个数组的替换（slice） 或splice（xx ，xx ，xx）
+                ++ vm.$set(vm.arr,索引，数据)
+            */
+            obj,
+            arr
+        }
+    })
+    setTimeout(() => {
+        vm.obj.name = "jiying"
+        vm.arr.push(30)
+    }, 1000)
+</script>

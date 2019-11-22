@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1 v-text = "name "></h1>
+        请输入问题 <input type="text" v-model="question">
+        <br>
+        答案是: 
+        <h2 v-text="answer"></h2>
+    </div>
+</body>
+
+</html>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script src="../node_modules/axios/dist/axios.min.js"></script>
+<script src="../node_modules/lodash/lodash.min.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            name: "纪宝贝",
+            question: '',
+            answer: '',
+            timer: null
+        },
+        created() {
+            this.getAnswerFn = _.debounce(this.getAnswer, 300)
+        },
+        methods: {
+            getAnswer() {
+                if (!/(\?|\？)$/.test(this.question)) {
+                    this.answer = "纪莹你说啥？我听不到"
+                    return
+                }
+                if (!this.question) return
+                this.answer = "正在思考···"
+                console.log(666);
+                axios.get('https://yesno.wtf/api').then(result => {
+                    console.log(result);
+                    this.answer = result.data.answer
+                })
+            }
+        },
+        watch: {
+            question(val) {
+                this.answer = "正在输入···"
+                this.getAnswerFn() //getAnswerFn   是使用debounce处理后的函数
+            }
+        }
+    })
+</script>

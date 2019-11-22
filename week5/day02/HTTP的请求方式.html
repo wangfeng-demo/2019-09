@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" placeholder="name">
+    <input type="text" placeholder="密码">
+    <button id="btn">提交</button>
+    <a href="http://www.baidu.com/s?wd=珠峰">搜索珠峰</a>
+</body>
+
+</html>
+<script>
+    /* 
+  ### GET系列请求
+- GET
+- DELETE 一般应用于告诉服务器，从服务器上删除点东西
+- HEAD 只想获取响应头内容，告诉服务器响应主体内容不要了
+- OPTIONS 试探性请求，发个请求给服务器，看看服务器能不能接收到，能不能返回
+====================================================================================
+  ### POST系列请求
+- POST
+- PUT  和DELETE对应，一般是想让服务器把我传递的信息存储到服务器上（一般应用于文件和大型数据内容）
+===================================================================================
+GET系列一般用于从服务器获取信息，POST系列一般用于给服务器推送信息，但是不论GET和POST都可以把信息传递给服务器，也能从服务器获取到结果，只不过是谁多谁少的问题
+- GET：给的少，拿的多
+- POST：给的多，拿的少
+==========================================================================================
+#### GET系列和POST系列的本质区别
+
+- GET系列传递给服务器信息的方式一般采用：问号传参
+- POST系列传递给服务器信息的方式一般采用：设置请求主体
+
+1. GET传递给服务器的内容比POST少，因为URL有最长大小限制（IE浏览器一般限制2KB，谷歌浏览器一般限制4~8KB，超过长度的部分自动被浏览器截取了)
+
+   请求主体中传递的内容理论上没有大小限制，但是真实项目中，为了保证传输的速度，我们会自己限制一些
+
+2. GET会产生缓存（缓存不是自己可控制的）：因为请求的地址（尤其是问号传参的信息一样），浏览器有时候会认为你要和上次请求的数据一样，拿的是上一次信息；这种缓存我们不期望有，我们期望的缓存时自己可控制的；所以真实项目中如果一个地址GET请求多次，我们要去除这个缓存；==>解决办法：设置随机数 _='+Math.random());
+
+3. GET相比较POST来说不安全：GET是基于问号传参传递给服务器内容，有一种技术叫做url劫持，这样别人可以获取或者篡改传递的信息；而POST基于请求主体传递信息，不容易被劫持。
+=================================================================================
+   ### 客户端怎么把信息传递给服务器
+- 问号传参 xhr.open('get','/getdata?xxx=xxx&xxx=xxx')
+- 设置请求头 xhr.setRequestHeaders([key],[value])
+- 设置请求主体 xhr.send(请求主体信息)
+    */
+    let inps = document.querySelectorAll('input');
+
+    function getData(obj) {
+        console.log(obj);
+        //GET系列传递给服务器信息的方式一般采用：问号传参
+        //query 传参: 把要给后台的参数 拼接成对应的search 字符串 放到接口后边；
+        //get请求怎么避免走缓存   ？？ 每次拼接一个不相同的字符串
+        var xhr = new XMLHttpRequest();
+        let str = ''
+        for (let key in obj) {
+            str += `${key} = ${obj[key]}&`;
+        }
+        str.replace(/&$/, '');
+        str += `t=` + Math.random();
+        xhr.open('get', `./data.json?${str}`, true);
+        xhr.setRequestHeader('AAA',encodeURIComponent('wangfeng'))
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && /200|304/.test(xhr.status)) {
+                 console.log(xhr.response);
+            }
+        }
+        // xhr.timeout = 2000;
+        // xhr.ontimeout = function () {
+        //      console.log('请求超时');
+        // }
+        // xhr.abort()//手动打断请求
+        // xhr.getAllResponseHeaders() //获取所有的响应头；
+        // let t = xhr.getResponseHeaders('date');//获取指定响应头
+        // xhr.withCredentials = true;//跨域请求种著否允许携（证书）带cookie；
+        xhr.send();
+    }
+
+    btn.onclick = function () {
+        let name = inps[0].value,
+            psw = inps[1].value;
+        let obj = {
+            name,
+            psw
+        }
+        getData(obj);
+    }
+</script>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+
+<body>
+    <div id="app">
+        <button @click="change">点我啊</button>
+        <input v-if="flag" type="text" placeholder="姓名" :key=1>
+        <input v-else type="text" placeholder="年龄" :key=2>
+    </div>
+</body>
+
+</html>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            name: "珠峰",
+            flag: true
+        },
+        methods: {
+            change() {
+                this.flag = !this.flag
+            }
+        }
+    })
+</script>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{name}}</h1>
+        <count></count>
+    </div>
+    <template id="mycount">
+        <!-- 组件魔板中只能有一个根元素  个人 transition标签类似 -->
+        <!-- options 中得属性 跟 根实例基本一致 只是组件的data属性必须是一个函数  保证组件的独立性 -->
+        <div>
+            hello world
+            {{name}}
+            <button @click="chengeName">app</button>
+            <h2>{{name2}}</h2>
+        </div>
+    </template>
+</body>
+
+</html>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    let obj = {
+        name:123
+    }
+    Vue.component('count', {
+        template: '#mycount',
+        data() { // data要求是函数==>保证数据的独立
+            return {
+                name: 666
+            }
+        },
+        methods: {
+            chengeName() {
+                this.name = Math.random()
+                //this全是当前的实例
+                //一个组件就是一个vue实例  
+                console.log(this);
+            }
+        },
+        computed: {
+            name2() {
+                return this.name + 'conputed'
+            }
+        }
+    })
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            name: "纪宝贝"
+        }
+    })
+</script>

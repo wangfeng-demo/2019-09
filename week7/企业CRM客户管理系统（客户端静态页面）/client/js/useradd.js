@@ -73,7 +73,7 @@ let useaddModule = (function () {
             selectBind().then(() => {
                 submitHandle()
             }).catch(() => {
-                alert('当前页面信息出现问题请稍后重试', {
+                alert('当前页面信息出现问题,请稍后重试', {
                     handled: () => {
                         window.location.href = 'userlist.html'
                     }

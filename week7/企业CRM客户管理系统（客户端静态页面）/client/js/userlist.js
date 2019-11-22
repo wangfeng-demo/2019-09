@@ -131,7 +131,6 @@ let userListModel = (function () {
                 })
                 return;
             }
-
             //=>删除
             if (tarTag === 'A' && tarval === '删除') {
                 let $grendpa = $target.parent().parent(), //=>tr

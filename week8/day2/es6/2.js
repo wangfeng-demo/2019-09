@@ -1,11 +1,10 @@
 /* var a = {
     q: 123
 }
-
 function f() {
     console.log(a);
-
 }
+
 导出
 export default{
     a,f

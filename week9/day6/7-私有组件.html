@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{name}}</h1>
+        <my-count></my-count>
+        <my-num></my-num>
+    </div>
+    <template id="mycount">
+        <div>
+            <h1>{{name}}</h1>
+            <qqq></qqq>
+            <qqq></qqq>
+        </div>
+    </template>
+    <template id="number">
+        <div>
+            <h2>这是一个私有组件</h2>
+            {{name}}
+            <!-- <my-count></my-count> -->
+        </div>
+    </template>
+</body>
+
+</html>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    /* 
+    局部组件三部曲
+    创建这个组件 
+    注册这个组件
+    使用这个组件
+     */
+    let myNumber = {
+        template: '#number',
+        data() {
+            return {
+                name: 'number组件'
+            }
+        }
+    }
+    Vue.component('my-count', {
+        template: '#mycount',
+        components: {
+            qqq: myNumber
+        },
+        data() { // data要求是函数==>保证数据的独立
+            return {
+                name: '纪莹小肉肉'
+            }
+        }
+    })
+    
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            name: "纪宝贝"
+        },
+        components: {
+            'my-num': myNumber
+        }
+    })
+</script>

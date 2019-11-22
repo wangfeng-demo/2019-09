@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{name}}</h1>
+    </div>
+    <div id="box">
+        <span>{{n}}</span>
+        <br>
+        <!-- <button @click = "handle">点我啊</button> -->
+        <button v-on:click = "handle">点我啊</button>
+    </div>  
+</body>
+
+</html>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            name: "珠峰"
+        }
+    })
+    setTimeout(() => {  
+        vm.name = "123456"
+    }, 1000)
+</script>
+<script>
+    let vm2 = new Vue({
+        el: "#box",
+        data: {
+            n: 0
+        },
+        methods: {//放视图中需要使用的方法
+            handle() {
+                //this => vm2
+            this.n++;
+            }
+        }
+    })
+</script>

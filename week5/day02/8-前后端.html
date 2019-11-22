@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            color: #333;
+            text-decoration: none;
+        }
+
+        a.current {
+            color: #fff;
+            background: sandybrown;
+        }
+
+        h2 {
+            display: none;
+            background: salmon;
+            color: #fff;
+            font-size: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="#css">css</a>
+    <a href="#js">js</a>
+    <a href="#html">html</a>
+    <h2>css</h2>
+    <h2>js</h2>
+    <h2>html</h2>
+</body>
+
+</html>
+<script>
+    
+    
+    let as = document.querySelectorAll('a'),
+        h2s = document.querySelectorAll('h2');
+
+    function tab(n) {
+        [...as].forEach((item, index) => {
+            if (index == n) {
+                item.classList.add('current');
+                h2s[index].style.display = 'block'
+            } else {
+                item.classList.remove('current');
+                h2s[index].style.display = 'none'
+            }
+        })
+    }
+
+    function init() {
+        switch (location.hash) {
+            case '#css':
+                tab(0)
+                break;
+            case '#js':
+                tab(1)
+                break;
+            case '#html':
+                tab(2)
+                break;
+        }
+    }
+    init()
+    window.addEventListener('hashchange', function () {
+        init()
+
+    })
+</script>

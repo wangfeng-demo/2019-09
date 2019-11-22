@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{name}}</h1>
+        <mycount></mycount>
+
+    </div>
+</body>
+
+</html>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<!-- A组件 中使用了 B组件 A组件就是父组件 B 就是子组件 -->
+<!-- 父组件 子组件 根 全局和私有组件没关系 -->
+<script>
+    let mybutton = {
+        template: `<div> <button @click = "add">增加</button><button @click = "minus">减少</button></div>`,
+        methods: {
+            add() {
+            this.$parent.count++
+            },
+            minus() {
+                this.$parent.count--
+            }
+        }
+    }
+    let mycount = {
+        template: `<h1>数字是{{count}} <mybutton/></h1>`,
+        components: {
+            mybutton
+        },
+        data() {
+            return {
+                count: 0
+            }
+        }
+    }
+
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            name: "纪宝贝"
+        },
+        components: {
+            mycount
+
+        }
+    })
+</script>

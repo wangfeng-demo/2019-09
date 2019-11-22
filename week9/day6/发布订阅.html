@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{name}}</h1>
+    </div>
+</body>
+
+</html>
+<!-- 发布emit订阅on({女孩失恋：['哭'，'吃'，'购物']}) -->
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    function Girl() {
+        this._events = {}
+    }
+    Girl.prototype.on = function (eventName, callback) {
+        if (this._events[eventName]) { //不是第一次
+            this._events[eventName].push(callback)
+        } else {
+            this._events[eventName] = [callback] //{失恋:[cry]}
+        }
+    }
+    Girl.prototype.emit = function (eventName, ...arg) {
+        if (this._events[eventName]) {
+            this._events[eventName].forEach(cb => cb(...arg))
+        }
+    }
+    let cry = (who) => {
+        console.log(who + '哭');
+    }
+    let eat = (who) => {
+        console.log(who + '购物');
+    }
+    let shopping = (who) => {
+        console.log(who + '吃');
+    }
+    let girl = new Girl();
+    girl.on('失恋', cry)
+    girl.on('失恋', eat)
+    girl.on('失恋', shopping)
+    girl.emit('失恋', "我", '你', '他')
+</script>
+<script src="">
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            name: "纪宝贝"
+        }
+    })
+</script>

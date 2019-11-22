@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css">
+    <style>
+        h2 {
+            width: 200px;
+            text-align: center;
+        }
+
+        .aaa-enter {
+            opacity: 0;
+        }
+
+        .aaa-enter-active {
+            transition: opacity 1s, transform 1s;
+            transform: translateX(200px);
+        }
+
+        .aaa-enter-to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .aaa-leave {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .aaa-leave-active {
+            transition: all 1s;
+        }
+
+        .aaa-leave-to {
+            opacity: 0;
+            transform: translateX(200px);
+        }
+
+        .qqq-enter {
+            opacity: 0;
+            transform: scale(0.2);
+        }
+
+        .qqq-enter-active {
+            transition: all 1s;
+        }
+
+        .qqq-enter-to {
+            /* reverse 动画方向相反 */
+            opacity: 1;
+            transform: scale(1)
+        }
+
+        .move-enter-active,
+        .move-leave-active {
+            animation: mov 1s;
+        }
+
+        @keyframes mov {
+            0% {
+                opacity: 0;
+                transform: scale(0.2);
+
+            }
+
+            50% {
+                transform: scale(1.3);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <button @click="fn">按钮</button>
+        <transition name="aaa">
+            <!-- 这里只能写一个根元素的标签 -->
+            <h1 v-show="flag">{{name}}</h1>
+        </transition>
+        <transition name="qqq">
+            <!-- 这里只能写一个根元素的标签 -->
+            <h1 v-show="flag">{{name}}</h1>
+        </transition>
+        <!-- 帧动画 -->
+        <transition name="move">
+            <h2 v-if="flag">
+                {{name}}{{name}}
+            </h2>
+        </transition>
+        <!-- 结合animate.css使用 -->
+        <transition enter-active-class="animated tada"> 
+           <h2 v-if="flag">
+                {{name}} {{name}}
+            </h2>
+        </transition>
+
+    </div>
+</body>
+
+</html>
+<script src="../NOde_modules/Vue/dist/Vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            name: "纪莹是猪",
+            flag: true
+        },
+        methods: {
+            fn() {
+                this.flag = !this.flag
+            }
+        }
+    });
+</script>

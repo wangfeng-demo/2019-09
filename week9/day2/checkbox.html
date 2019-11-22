@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{name}}</h1>
+        <input type="checkbox" @change="fn" id="all" v-model="all"><label for="all">全选</label>
+        <br>
+        <br>
+        <template v-for="v in  backAry">
+            <input type="checkbox" :id="v" :value="v" v-model="checklist">
+            <label :v-for="v">{{v}}</label>
+        </template>
+        <!-- template是vue内置的无用标签 避免增加无用标签 -->
+        <!-- 多个checkbox 绑定同一个数组 这是数组中的内容就是你选中的checkbox的value值 -->
+    </div>
+</body>
+
+</html>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    //v-bind :专门绑定行内属性 :
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            name: "水果栏目",
+            checklist: [],
+            all: false,
+            backAry: ['apple', 'banana', 'pear', 'orange', 'peach']
+        },
+        methods: {
+            fn() {
+                if (this.all) {
+                    this.checklist = ['apple', 'banana', 'pear', 'orange', 'peach']
+                } else {
+                    this.checklist = []
+                }
+            }
+        }
+    })
+</script>
