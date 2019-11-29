@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{name}}</h1>
+        <h1>{{$store.state.count}}</h1>
+        <my-btn></my-btn>
+    </div>
+</body>
+
+</html>
+<template id="mybtn">
+    <div>
+        <h3>{{count}}</h3>
+        <button @click="add">+</button>
+        <button @click="minus">-</button>
+    </div>
+</template>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script src="../node_modules/vuex/dist/vuex.js"></script>
+<script>
+    let store = new Vuex.Store({
+        state: {
+            count: 10
+        },
+        mutations: {
+            add(state) {
+                state.count++
+            },
+            minus(state) {
+                state.count--
+            }
+        }
+    })
+    Vue.component('my-btn', {
+        template: '#mybtn',
+        computed: {
+            ...Vuex.mapState(['count'])
+        },
+        methods: {
+            // add() {
+            //     this.$store.commit('add')
+            // },
+            // minus() {
+            //     this.$store.commit('minus')
+            // }
+            ...Vuex.mapMutations(['add', 'minus'])
+        }
+    })
+    let vm = new Vue({
+        el: '#app',
+        store,
+        data: {
+            name: "纪宝贝"
+        }
+    })
+</script>

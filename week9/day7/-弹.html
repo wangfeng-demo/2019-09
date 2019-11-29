@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .mask {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            background: rgba(0, 0, 0, .35);
+            top: 0;
+            left: 0
+        }
+
+        .dialog {
+            width: 400px;
+            height: 150px;
+            background: #fff;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate3d(-50%, -50%, 0)
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{name}}</h1>
+        <button @click = "flag = true">弹我</button>
+        <!-- 如果show值是true显示否则隐藏 点击dialog干什么事 -->
+        <modal :show="flag" @close="(val)=>flag=val"></modal>
+
+    </div>
+    <template id="dialog">
+        <div class="mask" v-show="show">
+            <div class="dialog">
+                <button @click="clo">关闭</button>
+            </div>
+        </div>
+    </template>
+</body>
+
+</html>
+
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    let modal = {
+        template: '#dialog',
+        props: ['show'],
+        methods: {
+            clo() {
+                this.$emit('close',false)
+            }
+        }
+    }
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            name: "纪宝贝",
+            flag: true
+        },
+        components: {
+            modal
+        }
+    })
+</script>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{name}}</h1>
+        <my></my>
+    </div>
+</body>
+
+</html>
+<template>
+</template>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    //把混入的 对象 中得data 合并到每一个组件的data中 则以组件中的data的属性为准
+    Vue.mixin({
+        data() {
+            return {
+                qqq: 123,
+                name:666
+            }
+        },
+        beforeCreated() {
+            console.log('mixin beforeCreate');
+        },
+        mounted(){
+            console.log('mixin mounted');
+        }
+    })
+    Vue.component('my', {
+        render(h) {
+            return h('h2', {
+                class: 'qqq'
+            }, 'hello')
+        },
+        beforeCreate() {
+            console.log('my boforeCreated');
+        },
+        mounted(){
+            console.log('my mounted');
+        }
+    })
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            name: "纪宝贝"
+        },
+        beforeCreate() {
+            console.log('vm boforeCreated');
+        },
+        mounted(){
+            console.log('vm mounted');
+        }
+    })
+</script>

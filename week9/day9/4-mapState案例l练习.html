@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{name}}</h1>
+        <my-btn></my-btn>
+    </div>
+</body>
+
+</html>
+<template id="mybtn">
+    <div>
+        <h2>{{myname}}</h2>
+        <h2>{{myage}}</h2>
+        <input type="text" v-model='name'>
+    </div>
+</template>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script src="../node_modules/vuex/dist/vuex.js"></script>
+<script>
+    let store = new Vuex.Store({
+        state: {
+            name: '莹莹',
+            age: 18
+        },
+        mutations: {
+            changeName(state, option) {
+                state.name = option.a
+            }
+        }
+    })
+    Vue.component('my-btn', {
+        template: '#mybtn',
+        computed: {
+            myname() {
+                return this.$store.state.name
+            },
+            ...Vuex.mapState({
+                myage: state => state.age + 2
+            }),
+            name: {
+                get() {
+                    return this.$store.state.name
+                },
+                set(newValue) {
+                    return this.$store.commit('changeName', {
+                        a: newValue
+                    })
+                }
+            }
+        }
+    })
+    let vm = new Vue({
+        el: '#app',
+        store,
+        data: {},
+        computed: {
+            name(){
+                return this.$store.state.name
+            },
+            /* ...Vuex.mapState(['name']) */
+            /* ...Vuex.mapState({
+                name: state => state.name + '峰峰'
+            }) */
+        }
+    })
+</script>

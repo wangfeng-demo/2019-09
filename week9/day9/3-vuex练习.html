@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{name}}</h1>
+        <my-btn></my-btn>
+    </div>
+</body>
+
+</html>
+<template id="mybtn">
+    <div>
+        <h1>数字是{{$store.state.count}}</h1>
+        <h1>数字是{{count}}</h1>
+        <h1>{{mycount}}</h1>
+        <h1>{{mycount1}}</h1>
+        <button @click='add'>加</button>
+        <button @click='minus'>减</button>
+    </div>
+</template>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script src="../node_modules/vuex/dist/vuex.js"></script>
+<script></script>
+<script>
+    let store = new Vuex.Store({
+        state: {
+            count: 10
+        },
+        mutations: {
+            change(state, option) {
+                state.count += option.a
+            }
+        }
+    })
+    Vue.component('my-btn', {
+        template: '#mybtn',
+        methods: {
+            add() {
+                this.$store.commit('change', {
+                    a: 10,
+                    b: 20
+                })
+            },
+            minus() {
+                this.$store.commit('change', {
+                    a: -10,
+                    b: -20
+                })
+            }
+        },
+        computed: {
+            mycount1() {
+                return this.$store.state.count
+            },
+        ...Vuex.mapState(['count']),
+        ...Vuex.mapState({
+            mycount: state => state.count + 90
+        })
+    }
+    })
+    let vm = new Vue({
+        el: '#app',
+        store,
+        data: {
+            name: "纪宝贝"
+        }
+    })
+</script>

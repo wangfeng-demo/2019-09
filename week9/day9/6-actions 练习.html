@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{name}}</h1>
+        <h2>当前的数字是：{{count}}</h2>
+        <my-btn></my-btn>
+    </div>
+</body>
+
+</html>
+<template id="mybtn">
+    <div>
+        <button @click="add">加</button>
+        <button @click="minus">减</button>
+
+        <button @click="asyncAdd">异步+</button>
+        <button @click="asyncMinus">异步-</button>
+    </div>
+</template>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script src="../node_modules/vuex/dist/vuex.js"></script>
+<script>
+    let store = new Vuex.Store({
+        state: {
+            count: 10
+        },
+        mutations: {
+            add(state) {
+                state.count++
+            },
+            minus(state) {
+                state.count--
+            }
+        },
+        actions: {
+            actionAdd(store, option) {
+                store.commit('add')
+            },
+            actionMinus(store) {
+                store.commit('minus')
+            }
+        }
+    })
+    Vue.component('my-btn', {
+        template: '#mybtn',
+        methods: {
+            ...Vuex.mapMutations(['add', 'minus']),
+            ...Vuex.mapActions({
+                'asyncAdd': "actionAdd",
+                'asyncMinus': "actionMinus"
+            }),
+            // asyncAdd() {
+            //     this.$store.dispatch('actionAdd')
+            // },
+            asyncMinus() {
+                this.$store.dispatch('actionMinus')
+            }
+        },
+
+    })
+    let vm = new Vue({
+        el: '#app',
+        store,
+        data: {
+            name: "纪宝贝"
+        },
+        computed: {
+            ...Vuex.mapState(['count'])
+        }
+    })
+</script>

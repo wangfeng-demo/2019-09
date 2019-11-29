@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .enter {
+            animation: enterMove .5s ease-in
+        }
+
+        .leave {
+            animation: leave .5s ease-in
+        }
+
+        @keyframes enterMove {
+            0% {
+                opacity: 0;
+                transform: translateX(-200px)
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateX(0)
+            }
+        }
+
+        @keyframes leave {
+            0% {
+                opacity: 1;
+                transform: translateX(0)
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateX(200px)
+            }
+
+
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{name}}</h1>
+        <!-- <button @click="home">首页</button>
+        <button @click="list">列表页</button> -->
+        <router-link to="/home">首页</router-link>
+        <router-link to="/list">列表页</router-link>
+        <keep-alive>
+            <router-view></router-view>
+        </keep-alive>
+    </div>
+</body>
+
+</html>
+
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script src="../node_modules/vue-router/dist/vue-router.js"></script>
+<script>
+    let home = {
+        template: "<h2>首页</h2>",
+        destroyed() {
+            console.log('首页销毁了');
+        },
+        activated() {
+            console.log('首页组件醒了');
+        },
+        deactivated() {
+            console.log('首页组件睡了');
+        }
+    }
+    let list = {
+        template: '<h2>列表页</h2>',
+        destroyed() {
+            console.log('列表销毁了');
+        },
+        activated() {
+            console.log('列表组件醒了');
+        },
+        deactivated() {
+            console.log('列表组件睡了');
+        }
+    }
+    let routes = [{
+            path: '/home',
+            component: home
+        },
+        {
+            path: '/list',
+            component: list
+        }
+    ]
+    let router = new VueRouter({
+        routes
+    })
+    let vm = new Vue({
+        el: '#app',
+        router,
+        data: {
+            name: "纪宝贝"
+        }
+    })
+</script>

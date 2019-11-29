@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{name}}</h1>
+        <ol>
+            <li ref="qqq">{{name}}</li>
+            <li ref="qqq">{{name}}</li>
+            <li ref="qqq">{{name}}</li>
+        </ol>
+        <ul>
+            <li v-for='item in ary' ref="www">{{name}}</li>
+        </ul>
+        <my-btn v-for='item in ary' :key="item" ref="qqq"></my-btn>
+    </div>
+    <template id="btn">
+        <div>
+            <button>吊我呀</button>
+        </div>
+    </template>
+</body>
+
+</html>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    let obj = {
+        template: '#btn',
+    }
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            name: "纪宝贝",
+            ary: [1, 2, 3, 4, 5]
+        },
+        mounted() {
+            this.ary.pop()
+            console.log(this.$refs.qqq);//获取组件
+            this.$nextTick(() => {
+                //nextTick 这个回调函数会在DoM更新完成之后触发
+                console.log(this.$refs.www.length);
+            })
+        },
+        components: {
+            'my-btn': obj
+        },
+    })
+</script>

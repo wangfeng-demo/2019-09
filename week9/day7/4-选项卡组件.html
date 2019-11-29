@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .tabBox {
+            display: flex;
+            width: 500px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            list-style: none;
+        }
+
+        .tabBox li {
+            flex: 1;
+            border: 1px solid palevioletred;
+            cursor: pointer;
+        }
+
+        .tabBox li.active {
+            background: plum
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{name}}</h1>
+        <my-tab :data="ary" v-model="index" @change="fn" @tab-remove="tabRm"></my-tab>
+    </div>
+    <template id="mytab">
+        <ul class="tabBox">
+            <li :value="value" v-for="(item,index) in data" :class="{active:index === value}"
+                @click="tabFn(index,item)">
+                <pre>{{item}}   <span @click = "delFn(index)">X</span></pre>
+            </li>
+        </ul>
+    </template>
+</body>
+
+</html>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    Vue.component("my-tab", {
+        template: '#mytab',
+        props: ['data', 'value'],
+        data() {
+            return {
+                // qqq: 0
+            }
+        },
+        methods: {
+            tabFn(n, str) {
+                // this.qqq = n;
+                this.$emit('input', n)
+                this.$emit('change', n, str)
+            },
+            delFn(index) {
+                this.$emit('tab-remove', index)
+            }
+        }
+    })
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            name: "纪宝贝",
+            ary: ['css', 'html', 'js', 'vue', 'node'],
+            index: 3
+        },
+        methods: {
+            fn(n, item) {
+                console.log(n, item);
+            },
+            tabRm(index) {
+                this.ary.splice(index, 1)
+            }
+        }
+    })
+</script>

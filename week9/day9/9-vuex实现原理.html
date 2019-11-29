@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{name}}</h1>
+        <h1>数字是：{{count}}</h1>
+        {{$store.getters.countType}}
+        <my-show></my-show>
+        <my-btn></my-btn>
+
+    </div>
+</body>
+
+</html>
+<template id="mybtn">
+    <div>
+        <h2>btn组件下的数字是{{$store.state.count}} </h2>
+        <button @click="add">+</button>
+        <button @click="minus">-</button>
+    </div>
+</template>
+<template id="myshow">
+    <div>
+        <h2>show组件下的数字是 {{$store.state.count}}</h2>
+
+    </div>
+</template>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<!-- <script src="../node_modules/vuex/dist/vuex.js"></script> -->
+<script src="./2-myvuex.js"></script>
+<script>
+    Vue.use(Vuex);
+    let store = new Vuex.Store({
+        state: {
+            count: 100
+        },
+        mutations: {
+            change(state, option) {
+                state.count += option.num
+            }
+        },
+        actions: {
+            change(store, option) {
+                setTimeout(() => {
+                    store.commit('change', option)
+                }, 1000)
+            }
+        },
+        getters: {
+            countType(state) {
+                return state.count % 2 == 0 ? "偶数" : "奇数"
+            }
+        }
+    })
+    Vue.component('my-btn', {
+        template: '#mybtn',
+        methods: {
+            add() {
+                // this.$store.commit('change', {
+                //     num: 100
+                // })
+                this.$store.dispatch('change', {
+                    num: 2
+                })
+            },
+            minus() {
+                // this.$store.commit('change', {
+                //     num: 100
+                // })
+                this.$store.dispatch('change', {
+                    num: -1
+                })
+            }
+        },
+        created() {
+            console.log('my-btn', this);
+        }
+    })
+    Vue.component('my-show', {
+        template: '#myshow',
+        created() {
+            console.log('my-show', this);
+        }
+    })
+    let vm = new Vue({
+        el: '#app',
+        store,
+        data: {
+            name: "纪宝贝"
+        },
+        computed: {
+            ...Vuex.mapState(['count'])
+        },
+        methods:{
+        ...Vuex.mapActions(['change'])
+        }
+    })
+</script>
