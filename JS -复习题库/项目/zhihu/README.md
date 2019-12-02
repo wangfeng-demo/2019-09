@@ -25,7 +25,7 @@ yarn run test
 yarn run lint
 ```
 
-npm i -g @vue/li 安装脚手架 一个电脑安装一次即可
+npm i -g @vue/cli 安装脚手架 一个电脑安装一次即可
 想用脚手架创建项目  进入对应的文件夹 运行 vue create 项目名称
                                 进入自选模式 vuex vue-rouer css预处理器 
                                 在往后一路回车 回车之后自动进行依赖安装
