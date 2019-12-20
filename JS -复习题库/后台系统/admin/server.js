@@ -8,7 +8,7 @@ const express = require('express'),
 app.listen(CONFIG.PORT, () => {
 	console.log(`当前服务 起于${CONFIG.PORT}端口`);
 });
-
+ 
 /*-MIDDLE WARE-*/
 app.use((req, res, next) => {
 	const {

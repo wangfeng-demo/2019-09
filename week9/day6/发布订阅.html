@@ -37,16 +37,16 @@
         console.log(who + '哭');
     }
     let eat = (who) => {
-        console.log(who + '购物');
+        console.log(who + '吃');
     }
     let shopping = (who) => {
-        console.log(who + '吃');
+        console.log(who + '购物');
     }
     let girl = new Girl();
     girl.on('失恋', cry)
     girl.on('失恋', eat)
     girl.on('失恋', shopping)
-    girl.emit('失恋', "我", '你', '他')
+    girl.emit('失恋','我', '你', '他')
 </script>
 <script src="">
     let vm = new Vue({

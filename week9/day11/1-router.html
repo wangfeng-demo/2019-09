@@ -39,10 +39,10 @@
             }
         },
         created() {
-            console.log(this.$route.query);
+            console.log(this.$route.query.a);
         },
         activated() {
-            this.ary.push(this.$route.query.q)
+            this.ary.push(this.$route.query)
         }
     }
     const routes = [{

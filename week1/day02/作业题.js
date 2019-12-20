@@ -5,7 +5,7 @@ function test() {
     var str= "哈哈哈";
     console.log(str);
 }
-test();
+test();1
 console.log(str);//undefined 'hahaha''woshiMT'
 
 //2、

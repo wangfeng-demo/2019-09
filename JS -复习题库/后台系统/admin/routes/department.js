@@ -14,7 +14,7 @@ const {
 //=>获取部门列表
 route.get('/list', (req, res) => {
 	let data = req.$departmentDATA;
-	data = data.map(item => {
+	data = data.map(item => 	{
 		return {
 			id: item.id,
 			name: item.name,

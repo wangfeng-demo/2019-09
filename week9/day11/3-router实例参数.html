@@ -17,12 +17,12 @@
                 2\ router-link-active
                1当前点击的两个类名都有
                2若路径一样 参数个数一样但是参数名不一样， 则两个类名都不加 否则加2
-               3若路径一样 当前点击的没有参数两个类名都有  其他都不加类名       
+               3若路径一样 当前点击的没有参数,两个类名都有  其他都不加类名       
 
         -->
-        <router-link to="/home?a=22">首页</router-link>
+        <router-link to="/home?a=22&c=15">首页</router-link>
         <router-link to="/home">首页</router-link>
-        <router-link to="/home??a=15">首页</router-link>
+        <router-link to="/home??b=15">首页</router-link>
         <router-link :to="{name:'list',query:obj}">列表页</router-link>
     </div>
 </body>

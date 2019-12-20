@@ -101,7 +101,7 @@ nav {
       width: 100%;
       height: 100%;
       i {
-        font-size: 6vw;
+        font-size: 4.5vw;
         font-weight: 800;
       }
       div {

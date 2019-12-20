@@ -1,10 +1,10 @@
 module.exports = {
 	//=>WEB服务端口号
-	PORT: 8888,
+	PORT: 3000,
 
 	//=>CROS跨域相关信息
 	CROS: {
-		ALLOW_ORIGIN: 'http://127.0.0.1:5500',
+		ALLOW_ORIGIN: 'http://127.0.0.1:8080',
 		ALLOW_METHODS: 'PUT,POST,GET,DELETE,OPTIONS,HEAD',
 		HEADERS: 'Content-Type,Content-Length,Authorization, Accept,X-Requested-With',
 		CREDENTIALS: true

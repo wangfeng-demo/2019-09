@@ -1,32 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+
 <body>
-    
+
 </body>
+
 </html>
 <script>
-/* 
+    /* 
    this 函数的执行主体
    1.事件绑定中的this 当前操作元素
    2.自执行函数的this  指向window
    3.一般函数执行时 看点  点前边是谁this就是谁
 */
-var ary=[
-         1,
-         2,
-         function(){console.log(this)},
-         ()=>{console.log(this)}
-         ];
-         let f=ary[2];
-         f();//window
-         ary[2]();//ary.2() ary
-         ary[3]();//ary.3   //window//找上级作用域
-
-
+    var ary = [
+        1,
+        2,
+        function () {
+            console.log(this)
+        },
+        () => {
+            console.log(this)
+        }
+    ];
+    let f = ary[2];
+    f(); //window
+    ary[2](); //ary.2() ary
+    ary[3](); //ary.3   //window//找上级作用域
 </script>

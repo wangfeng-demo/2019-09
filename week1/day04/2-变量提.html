@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+
 <body>
-    
+
 </body>
+
 </html>
 <script>
-/*  JS 代码执行之前 先把代码中带var 和 function 的 提前声明 var 只申明不定义 
+    /*  JS 代码执行之前 先把代码中带var 和 function 的 提前声明 var 只申明不定义 
         function 既生命又定义 若是在大括号内的function 只是声明不定义
         let const 暂时子那个死区  也就是在let 之前绝对不能调用对应的变量  调用就报错
                     var a  = 10
@@ -69,14 +72,21 @@
        obj1()
 
  */
-    f();//2
-    var f = ()=>{
-        console.log(1)
+    /*  f();//2
+     var f = ()=>{
+         console.log(1)
+     }
+     f();//1
+     function f(){
+         console,log(2)
+     }
+     f()//1 */
+    let ary = [2, 7, 11, 15] //9
+    for (let i = 0; i < ary.length; i++) {
+        for (let j = i + 1; j < ary.length; j++) {
+            if (ary[i] + ary[j] == 9) {
+                console.log(i, j);
+            }
+        }
     }
-    f();//1
-    function f(){
-        console,log(2)
-    }
-    f()//1
-    
 </script>

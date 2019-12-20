@@ -26,7 +26,7 @@ export default {
     components: {
         in:In,
         'un-in':Unin
-    },
+    },  
 
     computed: {
         ...mapState(['loginState'])
