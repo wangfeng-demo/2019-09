@@ -8,7 +8,7 @@ module.exports = {
     entry: './src/2.js',
     output: {
         filename: 'qqq.js', //默认是main.js
-        path: path.resolve(__dirname, 'qqq')//告诉webpack 把生成的文件放到那个路径下
+        path: path.resolve(__dirname, './dist')//告诉webpack 把生成的文件放到那个路径下
     },
     plugins:[
         new HtmlWebpackPllugin({template:'./public/index.html'})//制定该路径下的html作为模板

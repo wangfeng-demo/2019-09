@@ -1,0 +1,58 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-02-21 15:39:39
+ * @LastEditTime: 2020-02-21 15:48:44
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \JS进阶\week9\wf-demo\todolist.html
+ -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{name}}</h1>
+        <input type="text" @keydown.enter="add" v-model='todo'>
+        <ul>
+            <li v-for="(item,index) in todoList">
+                {{item}}
+                <button @click="changeFn(index)">删除</button>
+            </li>
+        </ul>
+    </div>
+</body>
+
+</html>
+<template id="">
+    <div>
+    </div>
+</template>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            name: "纪宝贝",
+            toto: '',
+            todoList: []
+        },
+        methods: {
+            add() {
+                if (this.todo) {
+                    this.todoList.unshift(this.todo)
+                }
+                this.todo = ''
+            },
+            changeFn(index) {
+                this.todoList.splice(index, 1)
+            }
+        },
+    })
+</script>

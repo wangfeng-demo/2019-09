@@ -29,7 +29,6 @@ export default {
     };
   },
   created() {
-    console.log(this.$route.query.id);
     let id = this.$route.query.id;
     let obj = this.$store.state.departmentList.filter(item => {
       return item.id == id;

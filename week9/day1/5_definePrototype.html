@@ -1,3 +1,11 @@
+<!--
+ * @Author: your name
+ * @Date: 2019-11-13 17:27:29
+ * @LastEditTime: 2020-03-04 18:23:48
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \JS进阶\week9\day1\5_definePrototype.html
+ -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -46,6 +54,7 @@
         }
 
     })
+    obj.qqq
     // for (var k in obj) {
     //     console.log(k)
     // }
@@ -53,14 +62,16 @@
     // obj.qqq = 666;
 
 
-    let obj2 = {a:12,b:13};
-    let o = new Proxy(obj2,{
-        get(...arg){
+    let obj2 = {
+        a: 12,
+        b: 13
+    };
+    let o = new Proxy(obj2, {
+        get(...arg) {
             console.log(arg)
         },
-        set(...arg){
+        set(...arg) {
             console.log(arg)
         }
     });
-
 </script>

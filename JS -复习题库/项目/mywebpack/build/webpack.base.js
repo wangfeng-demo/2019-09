@@ -22,7 +22,7 @@ const base = {
 }
 module.exports = (env)=>{
     if(env.production){
-        //生产环境 走build‘
+        //生产环境 走build
         return Object.assign(prod,base)
     }else{
         //开环境走serve

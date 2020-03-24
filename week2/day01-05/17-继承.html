@@ -14,7 +14,7 @@
 
 </html>
 <script>
-    // 原型继承      
+   /*  // 原型继承      
     function A() {
         this.x = 100
     }
@@ -82,14 +82,16 @@ function A() {
     //Child.prototype = Object.create(Person.prototype)  返回值是一个空对象  但是这个空对象的__proto__指向Person的原型的
     Child.prototype.sleep = function () { }
     var xm = new Child('小明', 20, '挖掘机');
-    console.log(xm);
+    console.log(xm); */
 
     //  重点 ===>>> 记住这种方式
     class Parent {
         constructor(name) {
             this.name
         }
-        eat() { }
+        eat() {
+            console.log(123);
+         }
         play() { }
         static getName() {} 
     }
@@ -97,11 +99,15 @@ function A() {
         constructor(toy) {
             super();//这个super就是Parent的constructor，相当于我们的call继承
             this.toy = toy
+            window.ll = this
+            return this
         }
         study() { }
     }
     //class 继承可以把私有的 共有的  静态  属性 全部继承过来 
-    var c1 = new Children('wajuejijishu');
-    console.log(c1);
 
+    var c1 = new Children('wajuejijishu');
+    // console.log(c1, ll, 'ttt')
+    // console.log(c1,c1.eat());
+    
 </script>

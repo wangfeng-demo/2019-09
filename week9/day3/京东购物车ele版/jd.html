@@ -8,9 +8,6 @@
     <title>Document</title>
     <link rel="stylesheet" href="../../node_modules/element-ui/lib/theme-chalk/index.css">
 </head>
-
-
-
 <body>
     <div id="app">
         <h1>{{name}}</h1>
@@ -18,9 +15,6 @@
             @selection-change="handleSelectionChange" border>
             <el-table-column type="selection" width="100" align='center'>
             </el-table-column>
-            <!-- <el-table-column label="全选" width="120">
-                <template slot-scope="scope">{{ scope.row.date }}</template>
-            </el-table-column> -->
             <el-table-column prop="name" label="商品名称" width="120" align='center'>
             </el-table-column>
             <el-table-column label="图片" show-overflow-tooltip align='center'>

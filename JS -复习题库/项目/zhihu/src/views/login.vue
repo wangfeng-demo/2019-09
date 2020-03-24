@@ -37,7 +37,7 @@ export default {
   methods: {
     close() {
       //d点击关闭按钮回到原来的页面
-      this.$router.go(-1);
+      //   this.$router.go(-1);
     },
     login() {
       if (!this.name || !this.psw) {
@@ -48,17 +48,17 @@ export default {
         name: this.name,
         password: this.psw
       }).then(data => {
-          //登陆成功之后 要把后台给的token 存储到localStorage中
-          console.log(data);
-          localStorage.setItem("token", "jiyingbaobei");
-          this.$store.commit('stateChange',{loginState:true})
-          this.$router.go(-1)
-        }).catch(err => {
-          console.log(err);
-          localStorage.setItem("token", "jiyingbaobei");
-           this.$store.commit('stateChange',{loginState:true})
-           this.$router.go(-1)
-        });
+        //登陆成功之后 要把后台给的token 存储到localStorage中
+        console.log(data);
+        localStorage.setItem("token", "jiyingbaobei");
+        this.$store.commit('stateChange', { loginState: true })
+        this.$router.go(-1)
+      }).catch(err => {
+        console.log(err);
+        localStorage.setItem("token", "jiyingbaobei");
+        this.$store.commit('stateChange', { loginState: true })
+        this.$router.go(-1)
+      });
     }
   },
   components: {}

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        .boss {
+            width: 100%;
+            height: 100%;
+            display: flex;
+        }
+
+        .hongbao {
+            width: 100px;
+            height: 150px;
+            background: red;
+            margin: auto;
+            align-items: center;
+            display: none;
+            position: relative;
+            top: 0;
+        }
+
+        .hongbao.active {
+            display: block
+        }
+
+        .somebox {
+            width: 50px;
+            height: 50px;
+            background: yellow;
+            margin: auto;
+            margin-top: 50px;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="boss">
+        主页面
+        <div class="hongbao">
+            <a href="https://www.baidu.com/" class="somebox">红包</a>
+        </div>
+    </div>
+</body>
+
+</html>
+<script src='./类库/jquery-1.11.3.min.js'></script>
+<script>
+    let $hongbao = $('.hongbao');
+    setTimeout(() => {
+        $hongbao.addClass('hongbao active').animate({
+            top: 300
+        }, 2000)
+    }, 500);
+</script>

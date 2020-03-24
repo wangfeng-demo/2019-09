@@ -10,7 +10,7 @@
             background-color="#545c64"
           >
             <!-- v-if="power.indexOf(item[0].meta.power)!=-1" -->
-            <el-submenu
+            <el-submenu 
               class="mycolor"
               v-for="(item,index) in menuList"
               :index="index+''"
@@ -24,22 +24,6 @@
                 <el-menu-item :route="v.path" :index="index+'-'+i">{{v.meta.til}}</el-menu-item>
               </router-link>
             </el-submenu>
-            <!-- <el-submenu index="2">
-                <template slot="title">
-                  <i class="el-icon-s-data"></i>
-                  <span>部门管理</span>
-                </template>
-                <el-menu-item index="1-1">选项1</el-menu-item>
-                <el-menu-item index="1-2">选项2</el-menu-item>
-              </el-submenu>
-              <el-submenu index="3">
-                <template slot="title">
-                  <i class="el-icon-grape"></i>
-                  <span>职务管理</span>
-                </template>
-                <el-menu-item index="1-1">选项1</el-menu-item>
-                <el-menu-item index="1-2">选项2</el-menu-item>
-            </el-submenu>-->
           </el-menu>
         </el-col>
       </el-row>

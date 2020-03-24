@@ -64,7 +64,6 @@
         .mybtn:hover {
             background: cornflowerblue;
         }
-
         .fade-enter-active,
         .fade-leave-active {
             transition: opacity 0.3s;
@@ -72,14 +71,12 @@
 
         .fade-enter,
         .fade-leave-to {
-            opacity: 0;
+            opacity: 0
         }
-
-        .fade-enter-to,
-        .fade-leave {
-            opacity: 1;
+        .fade-leave,
+        .fade-enter-to {
+            opacity: 1
         }
-
         .drop-enter,
         .drop-leave-to {
             transform: translateY(0);
@@ -103,7 +100,7 @@
         <my-button text="show dialog" @click="showFn"></my-button>
         <my-dialog :visible="isShow">
             <header>你管我</header>
-            <main>lalalalal</main>
+            <main>我管你</main>
             <footer>
                 <my-button class="mybtn" @click="sureFn" text="取消"></my-button>
                 <my-button class="mybtn" @click="calcelFn" text="确定"></my-button>
@@ -115,7 +112,7 @@
             <div class="dialogBox" v-show=visible>
                 <transition name='drop'>
                     <div class="contentBox" v-show=visible>
-                        <slot>123</slot>
+                        <slot>555</slot>
                     </div>
                 </transition>
             </div>
