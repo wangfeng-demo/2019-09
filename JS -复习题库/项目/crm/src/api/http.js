@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-let url = process.env.NODE_ENV !== 'production' ? '' : 'https://www.zhihu.com/api';
+let url = process.env.NODE_ENV !== 'production' ? '' : 'https://';
 // 根据当前到底是开发环境还是生产环境来决定 基础路径是哪个；开发环境下 不需要基础路径
 // 因为 开发环境下 我们就是让请求  去 localhost:8080   然后node换根据配置的 proxy代理 
 // 将请求 转接到 对应的远程地址；； proxy只在开发环境下有用 生产环境下 是没用的；
@@ -14,6 +14,13 @@ const http = axios.create({
             str += `${k}=${data[k]}&`
         }
         return str
+    },
+    headers: {
+        'sn': '20202020202020202021234567890',
+        'rqId': 'MB',
+        'bankId': '806',
+        'sid': '',
+        'dId': ''
     },
     params: {
         t: Math.random()
